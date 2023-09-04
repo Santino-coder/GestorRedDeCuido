@@ -3,13 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.6.33723.286
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestor.BS", "Gestor.BS\Gestor.BS.csproj", "{29303429-D277-48B3-AE05-594B6135C3AE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gestor.BS", "Gestor.BS\Gestor.BS.csproj", "{29303429-D277-48B3-AE05-594B6135C3AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestor.DA", "Gestor.DA\Gestor.DA.csproj", "{30AD2317-F3D8-4AE9-B6B0-4A18AB9FB50B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gestor.DA", "Gestor.DA\Gestor.DA.csproj", "{30AD2317-F3D8-4AE9-B6B0-4A18AB9FB50B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestor.Models", "Gestor.Models\Gestor.Models.csproj", "{5B23E7A9-7486-4624-ADA0-9E5238A5442D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gestor.Models", "Gestor.Models\Gestor.Models.csproj", "{5B23E7A9-7486-4624-ADA0-9E5238A5442D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Gestor.UI", "Gestor.UI\Gestor.UI.csproj", "{EBECEB5F-3272-4B8A-9D31-CB7FAB9B49B5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gestor.UI", "Gestor.UI\Gestor.UI.csproj", "{EBECEB5F-3272-4B8A-9D31-CB7FAB9B49B5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestorRedDeCuido.SI", "GestorRedDeCuido.SI\GestorRedDeCuido.SI.csproj", "{A1A6CAC2-8FBD-48D8-8532-85E600E76615}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{EBECEB5F-3272-4B8A-9D31-CB7FAB9B49B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBECEB5F-3272-4B8A-9D31-CB7FAB9B49B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBECEB5F-3272-4B8A-9D31-CB7FAB9B49B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1A6CAC2-8FBD-48D8-8532-85E600E76615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1A6CAC2-8FBD-48D8-8532-85E600E76615}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1A6CAC2-8FBD-48D8-8532-85E600E76615}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1A6CAC2-8FBD-48D8-8532-85E600E76615}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

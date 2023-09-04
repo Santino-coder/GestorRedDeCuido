@@ -9,6 +9,9 @@ namespace Gestor.DA
 {
     public class DBContexto : DbContext
     {
+
         public DBContexto(DbContextOptions<DBContexto> opciones) : base(opciones) { }
+
+        public DbSet<Gestor.Models.Beneficiario> Beneficiario { get; set; }
     }
 }

@@ -1,6 +1,26 @@
+using Gestor.DA;
 using Gestor.UI.Data;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using System.Configuration;
+using Microsoft.Extensions.Configuration;
+
+
+ void ConfigureServices(IServiceCollection services)
+{
+    // Configuración de la conexión a la base de datos
+    IConfiguration configuration = new ConfigurationBuilder()
+        .SetBasePath(Directory.GetCurrentDirectory())
+        .AddJsonFile("appsettings.json") // Asegúrate de que el nombre del archivo sea correcto
+        .Build();
+
+    services.AddDbContext<DBContexto>(options =>
+    {
+        options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+    });
+
+    // Otras configuraciones y servicios
+}
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -13,6 +33,7 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
 
 var app = builder.Build();
 
