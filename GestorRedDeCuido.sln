@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gestor.Models", "Gestor.Mod
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Gestor.UI", "Gestor.UI\Gestor.UI.csproj", "{EBECEB5F-3272-4B8A-9D31-CB7FAB9B49B5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GestorRedDeCuido.SI", "GestorRedDeCuido.SI\GestorRedDeCuido.SI.csproj", "{A1A6CAC2-8FBD-48D8-8532-85E600E76615}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,10 +33,6 @@ Global
 		{EBECEB5F-3272-4B8A-9D31-CB7FAB9B49B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EBECEB5F-3272-4B8A-9D31-CB7FAB9B49B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EBECEB5F-3272-4B8A-9D31-CB7FAB9B49B5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A1A6CAC2-8FBD-48D8-8532-85E600E76615}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A1A6CAC2-8FBD-48D8-8532-85E600E76615}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A1A6CAC2-8FBD-48D8-8532-85E600E76615}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A1A6CAC2-8FBD-48D8-8532-85E600E76615}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

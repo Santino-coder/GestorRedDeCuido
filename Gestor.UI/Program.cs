@@ -4,23 +4,35 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Configuration;
 using Microsoft.Extensions.Configuration;
+using Gestor.BS;
+using Microsoft.AspNetCore.Hosting;
 
 
- void ConfigureServices(IServiceCollection services)
+/*void ConfigureServices(IServiceCollection services)
 {
-    // Configuración de la conexión a la base de datos
-    IConfiguration configuration = new ConfigurationBuilder()
-        .SetBasePath(Directory.GetCurrentDirectory())
-        .AddJsonFile("appsettings.json") // Asegúrate de que el nombre del archivo sea correcto
-        .Build();
+   // Configuración de la conexión a la base de datos
+   IConfiguration configuration = new ConfigurationBuilder()
+       .SetBasePath(Directory.GetCurrentDirectory())
+       .AddJsonFile("appsettings.json") // Asegúrate de que el nombre del archivo sea correcto
+       .Build();
 
-    services.AddDbContext<DBContexto>(options =>
-    {
-        options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
-    });
+   services.AddDbContext<DBContexto>(options =>
+   {
+       options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
+   });
 
-    // Otras configuraciones y servicios
+   // Otras configuraciones y servicios
+}*/
+IConfiguration Configuration;
+
+void ConfigureServices(IServiceCollection services)
+{
+    services.AddDbContext<DBContexto>(opciones => opciones.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
+
+    services.AddControllersWithViews();
+    services.AddScoped<IServiciosRedDeCuido, ServiciosRedDeCuido>();
 }
+
 
 var builder = WebApplication.CreateBuilder(args);
 

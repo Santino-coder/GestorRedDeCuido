@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace Gestor.BS
@@ -12,7 +13,7 @@ namespace Gestor.BS
 
         //Sevicios para beneficiario
 
-        void AgregarBeneficiario(Gestor.Models.Beneficiario beneficiario);
+        void AgregarBeneficiario(Beneficiario beneficiario);
 
         List<Beneficiario> ListarBeneficiario();
     }
