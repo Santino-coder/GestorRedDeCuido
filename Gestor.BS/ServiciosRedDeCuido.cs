@@ -24,6 +24,13 @@ namespace Gestor.BS
             ContextoBD.SaveChanges();
         }
 
+        public void AgregarAlternativa(Alternativa alternativa)
+        {
+            ContextoBD.Alternativa.Add(alternativa);
+            ContextoBD.SaveChanges();
+        }
+
+
         public List<Beneficiario> ListarBeneficiario() {
 
             List<Beneficiario> listarBeneficiario;

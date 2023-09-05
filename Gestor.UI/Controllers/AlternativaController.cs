@@ -1,14 +1,51 @@
-﻿using Microsoft.AspNetCore.Http;
+﻿using Gestor.BS;
+using Gestor.Models;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Gestor.UI.Controllers
 {
-    public class Alternativa : Controller
+    public class AlternativaController : Controller
     {
-        // GET: Alternativa
-        public ActionResult Index()
+
+        private readonly IServiciosRedDeCuido ServiciosRedDeCuido;
+
+        public AlternativaController(IServiciosRedDeCuido serviciosRedDeCuido)
         {
-            return View();
+            ServiciosRedDeCuido = serviciosRedDeCuido;
+        }
+        // GET: Alternativa
+
+        public ActionResult AgregarAlternativa(int id)
+        {
+            Alternativa alternativa = new Alternativa();
+            alternativa.idAlternativa = id;
+
+            return View(alternativa);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult AgregarAlternativa(Alternativa alternativa)
+        {
+            try
+            {
+                ServiciosRedDeCuido.AgregarAlternativa(alternativa);
+                return RedirectToAction(nameof(ListarAlternativas));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+        public ActionResult ListarAlternativas()
+        {
+            List<Alternativa> listar;
+            listar = ServiciosRedDeCuido.ListarAlternativas();
+            return View(listar);
+          
         }
 
         // GET: Alternativa/Details/5
