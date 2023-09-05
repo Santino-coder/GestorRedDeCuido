@@ -30,5 +30,13 @@ namespace Gestor.BS
             listarBeneficiario = ContextoBD.Beneficiario.ToList();
             return listarBeneficiario;
         }
+
+        public List<Alternativa> ListarAlternativas()
+        {
+            List<Alternativa> listarAlternativa;
+            listarAlternativa = ContextoBD.Alternativa.ToList();
+            return listarAlternativa;
+
+        }
     }
 }

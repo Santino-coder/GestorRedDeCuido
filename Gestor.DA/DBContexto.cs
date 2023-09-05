@@ -13,5 +13,7 @@ namespace Gestor.DA
         public DBContexto(DbContextOptions<DBContexto> opciones) : base(opciones) { }
 
         public DbSet<Gestor.Models.Beneficiario> Beneficiario { get; set; }
+
+        public DbSet<Gestor.Models.Alternativa> Alternativa { get; set; }
     }
 }
