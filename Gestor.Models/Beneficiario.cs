@@ -17,9 +17,7 @@ namespace Gestor.Models
 
         public string? Nombre { get; set; }
 
-        public string? Apellido1 { get; set; }
-
-        public string? Apellido2 { get; set; }
+        public string? Apellidos { get; set; }
 
         public DateTime FechaDeNacimiento { get; set; }
 
@@ -27,7 +25,7 @@ namespace Gestor.Models
 
         public string? EstadoCivil { get; set; }
 
-        public string? Lugar { get; set; }
+        public string? Distrito { get; set; }
 
         public string? Direccion { get; set; }
 
@@ -45,7 +43,6 @@ namespace Gestor.Models
 
         public string? Observaciones { get; set; }
 
-  
-        public int idAlternativa { get; set; }
+        public string? Alternativa { get; set; }
     }
 }
