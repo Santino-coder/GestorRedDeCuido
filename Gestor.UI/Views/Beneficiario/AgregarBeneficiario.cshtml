@@ -4,11 +4,6 @@
     ViewData["Title"] = "AgregarBeneficiario";
 }
 
-@section Scripts {
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
 
 <!DOCTYPE html>
 <html lang="en">
@@ -22,7 +17,7 @@
 
     <link href="~/css/AgregarBeneficiario.css" rel="stylesheet" type="text/css" />
 
-   
+
 </head>
 <body>
     <div class="container-fluid">
@@ -30,310 +25,346 @@
 
             <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
                 <h2 class="h5 mb-3 mb-lg-0"><a href="../../pages/admin/customers.html" class="text-muted"><i class="bi bi-arrow-left-square me-2"></i></a> Agregar nuevo beneficiario</h2>
-                <div class="hstack gap-3">
-                    <button class="btn btn-primary btn-sm btn-icon-text"><i class="bi bi-save"></i> <span class="text">Agregar</span></button>
+
+            </div>
+
+            <form asp-action="AgregarBeneficiario">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+
+                    <span asp-validation-for="idBeneficiario" class="text-danger"></span>
+                </div>
+
+
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h3 class="h6 mb-4">Información Básica</h3>
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Número de identificación</label>
+                                            <input asp-for="DNI" type="number" class="form-control">
+                                            <span asp-validation-for="DNI" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Nombre</label>
+                                            <input asp-for="Nombre" type="text" class="form-control">
+                                            <span asp-validation-for="Nombre" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Apellidos</label>
+                                            <input asp-for ="Apellidos" type="text" class="form-control">
+                                            <span asp-validation-for="Apellidos" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Teléfono</label>
+                                            <input asp-for="Telefono" type="text" class="form-control">
+                                            <span asp-validation-for="Telefono" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Fecha de nacimiento</label>
+                                            <input asp-for="FechaDeNacimiento" type="date" class="form-control">
+                                            <span asp-validation-for="FechaDeNacimiento" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Edad</label>
+                                            <input asp-for="Edad"  type="number" class="form-control">
+                                            <span asp-validation-for="Edad" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Estado Civil</label>
+                                            <input asp-for="EstadoCivil" type="text" class="form-control">
+                                            <span asp-validation-for="EstadoCivil" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h3 class="h6 mb-4">Dirección</h3>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Distrito</label>
+                                            <select asp-for="Distrito" class="select2 form-control select2-hidden-accessible" data-select2-placeholder="" data-select2-id="select2-data-1-gy14" tabindex="-1" aria-hidden="true">
+                                                <option data-select2-id="select2-data-3-ibs9"></option>
+                                                <option value="Hojancha">Hojancha</option>
+                                                <option value="Monte Romo">Monte Romo</option>
+                                                <option value="Puerto Carrillo">Puerto Carrilo</option>
+                                                <option value="Huacas">Huacas</option>
+                                                <option value="Matambú">Matambú</option>
+                                            </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-2-46y9" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-vp8l-container" aria-controls="select2-vp8l-container"><span class="select2-selection__rendered" id="select2-vp8l-container" role="textbox" aria-readonly="true" title="Select country"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                   
+                                            <span asp-validation-for="Distrito" class="text-danger"></span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="mb-3">
+                                    <label class="form-label">Dirección completa</label>
+                                    <input asp-for="Direccion" type="text" class="form-control">
+                                    <span asp-validation-for="Direccion" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h3 class="h6 mb-4">Información Adicional</h3>
+
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Fecha de ingreso</label>
+                                            <input asp-for="FechaIngreso" type="date" class="form-control">
+                                            <span asp-validation-for="FechaIngreso" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Ingreso económico y orígen</label>
+                                            <input asp-for="IngresoEconomicoYOrigen" type="text" class="form-control">
+                                            <span asp-validation-for="IngresoEconomicoYOrigen" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Persona encargada</label>
+                                            <input asp-for="PersonaEncargada" type="text" class="form-control">
+                                            <span asp-validation-for="PersonaEncargada" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="mb-3">
+                                            <label class="form-label">Teléfono de la persona encargada</label>
+                                            <input asp-for="NumeroPersonaEncargada" type="text" class="form-control">
+                                            <span asp-validation-for="NumeroPersonaEncargada" class="text-danger"></span>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h3 class="h6">Observaciones</h3>
+                                <textarea asp-for="Observaciones" class="form-control" rows="3"></textarea>
+                                <span asp-validation-for="Observaciones" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <div class="col-lg-4">
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h3 class="h6">Estado</h3>
+                                <div class="form-check form-switch">
+                                    <input asp-for="Estado" class="form-check-input" type="checkbox" role="switch">
+                                    <span asp-validation-for="Estado" class="text-danger"></span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h3 class="h6">Alternativas</h3>
+                                <ul class="list-group list-group-flush mx-n2">
+                                    <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <h6 class="mb-0">Alimentación</h6>
+                                            <small>Financiamiento para alimentación.</small>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input asp-for="Alternativa" class="form-check-input" type="checkbox" role="switch">
+                                            <span asp-validation-for="Alternativa" class="text-danger"></span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <h6 class="mb-0">Artículos personales e higiene</h6>
+                                            <small>Artículos de uso personal e higiene.</small>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input asp-for="Alternativa" class="form-check-input" type="checkbox" role="switch">
+                                            <span asp-validation-for="Alternativa" class="text-danger"></span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <h6 class="mb-0">Medicamentos y Salud</h6>
+                                            <small>Medicamentos e implementos de salud.</small>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input asp-for="Alternativa" class="form-check-input" type="checkbox" role="switch">
+                                            <span asp-validation-for="Alternativa" class="text-danger"></span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <h6 class="mb-0">Atención Social</h6>
+                                            <small>Atención social en salud integral.</small>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input asp-for="Alternativa" class="form-check-input" type="checkbox" role="switch">
+                                            <span asp-validation-for="Alternativa" class="text-danger"></span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <h6 class="mb-0">Apoyo y Ayudas Técnicas</h6>
+                                            <small>Productos de apoyo o ayudas técnicas.</small>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input asp-for="Alternativa" class="form-check-input" type="checkbox" role="switch">
+                                            <span asp-validation-for="Alternativa" class="text-danger"></span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <h6 class="mb-0">Equipamiento de casa</h6>
+                                            <small>Artículos apara equipar la casa.</small>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input asp-for="Alternativa" class="form-check-input" type="checkbox" role="switch">
+                                            <span asp-validation-for="Alternativa" class="text-danger"></span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <h6 class="mb-0">Alquiler / Servicios / Municipales / Migratorios</h6>
+                                            <small>Alquiler de vivienda, servicios básicos, municipales y trámites migratorios.</small>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input asp-for="Alternativa" class="form-check-input" type="checkbox" role="switch">
+                                            <span asp-validation-for="Alternativa" class="text-danger"></span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <h6 class="mb-0">Familias Solidarias</h6>
+                                            <small>Descripción...</small>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input asp-for="Alternativa" class="form-check-input" type="checkbox" role="switch">
+                                            <span asp-validation-for="Alternativa" class="text-danger"></span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <h6 class="mb-0">Atención en domicilio / Cuidado especializado</h6>
+                                            <small>
+                                                Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado
+                                            </small>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input asp-for="Alternativa" class="form-check-input" type="checkbox" role="switch">
+                                            <span asp-validation-for="Alternativa" class="text-danger"></span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <h6 class="mb-0">Hogares Comunitarios</h6>
+                                            <small>Descripción... </small>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input asp-for="Alternativa" class="form-check-input" type="checkbox" role="switch">
+                                            <span asp-validation-for="Alternativa" class="text-danger"></span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <h6 class="mb-0">Transporte y Combustible</h6>
+                                            <small>Financiamiento para transporte y combustible.</small>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input asp-for="Alternativa" class="form-check-input" type="checkbox" role="switch">
+                                            <span asp-validation-for="Alternativa" class="text-danger"></span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <h6 class="mb-0">Salud</h6>
+                                            <small>Promoción y prevención de la salud.</small>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input asp-for="Alternativa" class="form-check-input" type="checkbox" role="switch">
+                                            <span asp-validation-for="Alternativa" class="text-danger"></span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <h6 class="mb-0">Institucionalización</h6>
+                                            <small>Descripción...</small>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input asp-for="Alternativa" class="form-check-input" type="checkbox" role="switch">
+                                            <span asp-validation-for="Alternativa" class="text-danger"></span>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
+                                        <div class="ms-2 me-auto">
+                                            <h6 class="mb-0">Mejoras habitacionales</h6>
+                                            <small>Mejoras en la casa.</small>
+                                        </div>
+                                        <div class="form-check form-switch">
+                                            <input asp-for="Alternativa" class="form-check-input" type="checkbox" role="switch">
+                                            <span asp-validation-for="Alternativa" class="text-danger"></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <input type="submit" value="AgregarBeneficiario" class="btn btn-primary btn-sm btn-icon-text" <i class="bi bi-x"></i>/>
                     <button class="btn btn-danger btn-sm btn-icon-text"><i class="bi bi-x"></i> <span class="text">Cancelar</span></button>
-                </div>
-            </div>
-
-            <div class="row">
-
-                <div class="col-lg-8">
-
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h3 class="h6 mb-4">Información Básica</h3>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Número de identificación</label>
-                                        <input type="number" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Nombre</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Apellidos</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Teléfono</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Fecha de nacimiento</label>
-                                        <input type="date" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Edad</label>
-                                        <input type="email" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Estado Civil</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h3 class="h6 mb-4">Dirección</h3>
-
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Distrito</label>
-                                        <select class="select2 form-control select2-hidden-accessible" data-select2-placeholder="" data-select2-id="select2-data-1-gy14" tabindex="-1" aria-hidden="true">
-                                            <option data-select2-id="select2-data-3-ibs9"></option>
-                                            <option value="HO">Hojancha</option>
-                                            <option value="MO">Monte Romo</option>
-                                            <option value="PC">Puerto Carrilo</option>
-                                            <option value="HU">Huacas</option>
-                                            <option value="MA">Matambú</option>
-                                        </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-2-46y9" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-vp8l-container" aria-controls="select2-vp8l-container"><span class="select2-selection__rendered" id="select2-vp8l-container" role="textbox" aria-readonly="true" title="Select country"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                    </div>
-                                </div>
-
-                            </div>
-
-                            <div class="mb-3">
-                                <label class="form-label">Dirección completa</label>
-                                <input type="text" class="form-control">
-                            </div>
-                            <div class="mb-3">
-                                <label class="form-label">Otras señas</label>
-                                <input type="text" class="form-control">
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h3 class="h6 mb-4">Información Adicional</h3>
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Fecha de ingreso</label>
-                                        <input type="date" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Ingreso económico y orígen</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Persona encargada</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Teléfono de la persona encargada</label>
-                                        <input type="text" class="form-control">
-                                    </div>
-                                </div>
-
-
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h3 class="h6">Observaciones</h3>
-<textarea class="form-control" rows="3"></textarea>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h3 class="h6">Foto</h3>
-                            <input class="form-control" type="file">
-                        </div>
-                    </div>
-
-
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h3 class="h6">Estado</h3>
-                            <select class="form-select">
-                                <option value="draft" selected>Seleccione estado</option>
-                                <option value="active">Activo</option>
-                                <option value="active">Inactivo</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h3 class="h6">Alternativas</h3>
-                            <ul class="list-group list-group-flush mx-n2">
-                                <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <h6 class="mb-0">Alimentación</h6>
-                                        <small>Financiamiento para alimentación.</small>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch">
-                                    </div>
-                                </li>
-                                <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <h6 class="mb-0">Artículos personales e higiene</h6>
-                                        <small>Artículos de uso personal e higiene.</small>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch">
-                                    </div>
-                                </li>
-                                <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <h6 class="mb-0">Medicamentos y Salud</h6>
-                                        <small>Medicamentos e implementos de salud.</small>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch">
-                                    </div>
-                                </li>
-                                <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <h6 class="mb-0">Atención Social</h6>
-                                        <small>Atención social en salud integral.</small>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch">
-                                    </div>
-                                </li>
-                                <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <h6 class="mb-0">Apoyo y Ayudas Técnicas</h6>
-                                        <small>Productos de apoyo o ayudas técnicas.</small>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch">
-                                    </div>
-                                </li>
-                                <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <h6 class="mb-0">Equipamiento de casa</h6>
-                                        <small>Artículos apara equipar la casa.</small>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch">
-                                    </div>
-                                </li>
-                                <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <h6 class="mb-0">Alquiler / Servicios / Municipales / Migratorios</h6>
-                                        <small>Alquiler de vivienda, servicios básicos, municipales y trámites migratorios.</small>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch">
-                                    </div>
-                                </li>
-                                <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <h6 class="mb-0">Familias Solidarias</h6>
-                                        <small>Descripción...</small>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch">
-                                    </div>
-                                </li>
-                                <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <h6 class="mb-0">Atención en domicilio / Cuidado especializado</h6>
-                                        <small>
-                                            Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado
-                                        </small>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch">
-                                    </div>
-                                </li>
-                                <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <h6 class="mb-0">Hogares Comunitarios</h6>
-                                        <small>Descripción... </small>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch">
-                                    </div>
-                                </li>
-                                <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <h6 class="mb-0">Transporte y Combustible</h6>
-                                        <small>Financiamiento para transporte y combustible.</small>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch">
-                                    </div>
-                                </li>
-                                <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <h6 class="mb-0">Salud</h6>
-                                        <small>Promoción y prevención de la salud.</small>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch">
-                                    </div>
-                                </li>
-                                <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <h6 class="mb-0">Institucionalización</h6>
-                                        <small>Descripción...</small>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch">
-                                    </div>
-                                </li>
-                                <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
-                                    <div class="ms-2 me-auto">
-                                        <h6 class="mb-0">Mejoras habitacionales</h6>
-                                        <small>Mejoras en la casa.</small>
-                                    </div>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" role="switch">
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
+            </form>
         </div>
     </div>
+  
+
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script type="text/javascript">
+    <script type="text/javascript"></script>
 
-    </script>
 </body>
 </html>
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
