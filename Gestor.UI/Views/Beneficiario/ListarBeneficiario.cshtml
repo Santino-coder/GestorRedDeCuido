@@ -84,8 +84,7 @@
                                     </td>
                                     <td>
                                         <div class="hstack gap-3">
-                                            <button class="btn btn-primary btn-sm btn-icon-text"><i class="bi bi-x"></i> <span class="text">Detalles</span></button>
-
+                                            @Html.ActionLink("Detalles", "Detalles", new { id = item.idBeneficiario})
                                         </div>
                                     </td>
                                 </tr>

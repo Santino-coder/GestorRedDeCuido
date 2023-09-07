@@ -45,5 +45,13 @@ namespace Gestor.BS
             return listarAlternativa;
 
         }
+
+        public Beneficiario ObtenerPorId(int id)
+        {
+            Beneficiario beneficiario;
+            beneficiario = ContextoBD.Beneficiario.Find(id);
+
+            return beneficiario;
+        }
     }
 }

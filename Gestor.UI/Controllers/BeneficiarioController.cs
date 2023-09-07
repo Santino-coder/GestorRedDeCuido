@@ -51,9 +51,11 @@ namespace Gestor.UI.Controllers
         }
 
         // GET: BeneficiarioController
-        public ActionResult Index()
+        public ActionResult Detalles(int id)
         {
-            return View();
+            Beneficiario beneficiario;
+            beneficiario = ServiciosRedDeCuido.ObtenerPorId(id);
+            return View(beneficiario);
         }
 
         // GET: BeneficiarioController/Details/5

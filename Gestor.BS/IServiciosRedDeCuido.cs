@@ -20,5 +20,7 @@ namespace Gestor.BS
         List<Beneficiario> ListarBeneficiario();
 
         List<Alternativa> ListarAlternativas();
+
+        Beneficiario ObtenerPorId(int id);
     }
 }
