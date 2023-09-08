@@ -35,7 +35,7 @@ namespace Gestor.Models
 
         public DateTime FechaIngreso { get; set; }
 
-        public Boolean Estado {  get; set; }
+        public string? Estado {  get; set; }
 
         public string? PersonaEncargada { get; set; }
 
