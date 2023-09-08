@@ -2,11 +2,11 @@
     background: #eee;
 }
 
-.container1{
+.container1 {
     position: relative;
 }
 
-.container2{
+.container2 {
     display: grid;
 }
 
@@ -34,6 +34,7 @@
     flex: 1 1 auto;
     padding: 1.5rem 1.5rem;
 }
+
 div {
     margin: 10px;
 }
