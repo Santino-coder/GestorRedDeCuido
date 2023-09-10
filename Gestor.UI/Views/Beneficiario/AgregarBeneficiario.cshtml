@@ -13,8 +13,16 @@
 
     <title>AgregarBeneficiario</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="~/css/AgregarBeneficiario.css" rel="stylesheet" type="text/css" />
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
+          rel="stylesheet" />
+
+    <!-- Bootstrap icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
+
 
 
 </head>
@@ -98,7 +106,7 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label class="form-label">Estado Civil</label>
-                                            <select asp-for="EstadoCivil" class="select2 form-control select2-hidden-accessible" data-select2-placeholder="" data-select2-id="select2-data-1-gy14" tabindex="-1" aria-hidden="true">
+                                            <select asp-for="EstadoCivil" class="form-select">
                                                 <option value="" data-select2-id="select2-data-3-ibs9">Seleccione el estado civil</option>
                                                 <option value="Soltero(a)">Soltero(a)</option>
                                                 <option value="Casado(a)">Casado(a)</option>
@@ -123,7 +131,7 @@
                                     <div class="col-lg-6">
                                         <div class="mb-3">
                                             <label class="form-label">Distrito</label>
-                                            <select asp-for="Distrito" class="select2 form-control select2-hidden-accessible" data-select2-placeholder="" data-select2-id="select2-data-1-gy14" tabindex="-1" aria-hidden="true">
+                                            <select asp-for="Distrito" class="form-select">
                                                 <option value="" data-select2-id="select2-data-3-ibs9">Seleccione el distrito</option>
                                                 <option value="Hojancha">Hojancha</option>
                                                 <option value="Monte Romo">Monte Romo</option>
@@ -186,21 +194,13 @@
                             </div>
                         </div>
 
-                        <div class="card mb-4">
-                            <div class="card-body">
-                                <h3 class="h6">Observaciones</h3>
-                                <textarea asp-for="Observaciones" class="form-control" rows="3"></textarea>
-                                <span asp-validation-for="Observaciones" class="text-danger"></span>
-                            </div>
-                        </div>
-
                     </div>
 
                     <div class="col-lg-4">
                         <div class="card mb-4">
                             <div class="card-body">
                                 <h3 class="h6">Estado</h3>
-                                <select asp-for="Estado" class="select2 form-control select2-hidden-accessible" data-select2-placeholder="" data-select2-id="select2-data-1-gy14" tabindex="-1" aria-hidden="true">
+                                <select asp-for="Estado" class="form-select">
                                     <option value="" data-select2-id="select2-data-3-ibs9">Seleccione el estado</option>
                                     <option value="Activo">Activo</option>
                                     <option value="Inactivo">Inactivo</option>
@@ -217,9 +217,8 @@
                                 <ul class="list-group list-group-flush mx-n2">
                                     <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
                                         <div class="ms-2 me-auto">
-                                            <h3 class="h6">Alternativa 1</h3>
-                                            <select asp-for="Alternativa1" class="select2 form-control select2-hidden-accessible" data-select2-placeholder="" data-select2-id="select2-data-1-gy14" tabindex="-1" aria-hidden="true">
-                                                <option value="" data-select2-id="select2-data-3-ibs9">Seleccione la alternativa 1</option>
+                                            <select asp-for="Alternativa1" class="form-select">
+                                                <option value="" data-select2-id="select2-data-3-ibs9">Seleccione una alternativa</option>
                                                 <option value="Alimentación">Alimentación</option>
                                                 <option value="Artículos de uso personal e higiene">Artículos de uso personal e higiene</option>
                                                 <option value="Medicamentos e implementos de salud">Medicamentos e implementos de salud </option>
@@ -239,102 +238,129 @@
                                         </div>
                                     </li>
                                     <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                            <h3 class="h6">Alternativa 2</h3>
-                                            <select asp-for="Alternativa2" class="select2 form-control select2-hidden-accessible" data-select2-placeholder="" data-select2-id="select2-data-1-gy14" tabindex="-1" aria-hidden="true">
-                                                <option value="" data-select2-id="select2-data-3-ibs9">Seleccione la alternativa 2</option>
-                                                <option value="Alimentación">Alimentación</option>
-                                                <option value="Artículos de uso personal e higiene">Artículos de uso personal e higiene</option>
-                                                <option value="Medicamentos e implementos de salud">Medicamentos e implementos de salud </option>
-                                                <option value="Atención social en salud integral">Atención social en salud integral</option>
-                                                <option value=" Productos de apoyo o ayudas técnicas">Productos de apoyo o ayudas técnicas</option>
-                                                <option value="Equipamiento de casa"> Equipamiento de casa</option>
-                                                <option value="Alquiler de vivienda, servicios básicos, municipales y trámites migratorios"> Alquiler de vivienda, servicios básicos, municipales y trámites migratorios</option>
-                                                <option value="Familias Solidarias">Familias Solidarias</option>
-                                                <option value="Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado">Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado</option>
-                                                <option value="Hogares comunitarios">Hogares comunitarios</option>
-                                                <option value="Transporte y combustible">Transporte y combustible</option>
-                                                <option value="Promoción y prevención de la salud">Promoción y prevención de la salud </option>
-                                                <option value="Institucionalización"> Institucionalización</option>
-                                                <option value="Mejoras habitacionales">Mejoras habitacionales</option>
-                                            </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-2-46y9" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-vp8l-container" aria-controls="select2-vp8l-container"><span class="select2-selection__rendered" id="select2-vp8l-container" role="textbox" aria-readonly="true" title="Select country"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                            <span asp-validation-for="Alternativa2" class="text-danger"></span>
+                                        <div>
+                                            <button type="button" id="mostrarAlternativa2" class="btn btn-outline-primary btn-sm"> <i class="bi bi-plus-square-fill"></i> Agregar otra alternativa </button>
+                                        </div>
+                                        <div id="Alternativa2" style="display: none;">
+                                            <div class="ms-2 me-auto">
+                                                <select asp-for="Alternativa2" class="form-select">
+                                                    <option value="" data-select2-id="select2-data-3-ibs9">Seleccione una alternativa</option>
+                                                    <option value="Alimentación">Alimentación</option>
+                                                    <option value="Artículos de uso personal e higiene">Artículos de uso personal e higiene</option>
+                                                    <option value="Medicamentos e implementos de salud">Medicamentos e implementos de salud </option>
+                                                    <option value="Atención social en salud integral">Atención social en salud integral</option>
+                                                    <option value=" Productos de apoyo o ayudas técnicas">Productos de apoyo o ayudas técnicas</option>
+                                                    <option value="Equipamiento de casa"> Equipamiento de casa</option>
+                                                    <option value="Alquiler de vivienda, servicios básicos, municipales y trámites migratorios"> Alquiler de vivienda, servicios básicos, municipales y trámites migratorios</option>
+                                                    <option value="Familias Solidarias">Familias Solidarias</option>
+                                                    <option value="Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado">Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado</option>
+                                                    <option value="Hogares comunitarios">Hogares comunitarios</option>
+                                                    <option value="Transporte y combustible">Transporte y combustible</option>
+                                                    <option value="Promoción y prevención de la salud">Promoción y prevención de la salud </option>
+                                                    <option value="Institucionalización"> Institucionalización</option>
+                                                    <option value="Mejoras habitacionales">Mejoras habitacionales</option>
+                                                </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-2-46y9" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-vp8l-container" aria-controls="select2-vp8l-container"><span class="select2-selection__rendered" id="select2-vp8l-container" role="textbox" aria-readonly="true" title="Select country"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                                <span asp-validation-for="Alternativa2" class="text-danger"></span>
+                                            </div>
                                         </div>
                                     </li>
                                     <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                            <h3 class="h6">Alternativa 3</h3>
-                                            <select asp-for="Alternativa3" class="select2 form-control select2-hidden-accessible" data-select2-placeholder="" data-select2-id="select2-data-1-gy14" tabindex="-1" aria-hidden="true">
-                                                <option value="" data-select2-id="select2-data-3-ibs9">Seleccione la alternativa 2</option>
-                                                <option value="Alimentación">Alimentación</option>
-                                                <option value="Artículos de uso personal e higiene">Artículos de uso personal e higiene</option>
-                                                <option value="Medicamentos e implementos de salud">Medicamentos e implementos de salud </option>
-                                                <option value="Atención social en salud integral">Atención social en salud integral</option>
-                                                <option value=" Productos de apoyo o ayudas técnicas">Productos de apoyo o ayudas técnicas</option>
-                                                <option value="Equipamiento de casa"> Equipamiento de casa</option>
-                                                <option value="Alquiler de vivienda, servicios básicos, municipales y trámites migratorios"> Alquiler de vivienda, servicios básicos, municipales y trámites migratorios</option>
-                                                <option value="Familias Solidarias">Familias Solidarias</option>
-                                                <option value="Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado">Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado</option>
-                                                <option value="Hogares comunitarios">Hogares comunitarios</option>
-                                                <option value="Transporte y combustible">Transporte y combustible</option>
-                                                <option value="Promoción y prevención de la salud">Promoción y prevención de la salud </option>
-                                                <option value="Institucionalización"> Institucionalización</option>
-                                                <option value="Mejoras habitacionales">Mejoras habitacionales</option>
-                                            </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-2-46y9" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-vp8l-container" aria-controls="select2-vp8l-container"><span class="select2-selection__rendered" id="select2-vp8l-container" role="textbox" aria-readonly="true" title="Select country"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                            <span asp-validation-for="Alternativa3" class="text-danger"></span>
+                                        <div>
+                                            <button type="button" id="mostrarAlternativa3" class="btn btn-outline-primary btn-sm"> <i class="bi bi-plus-square-fill"></i> Agregar otra alternativa </button>
+                                        </div>
+                                        <div id="Alternativa3" style="display: none;">
+                                            <div class="ms-2 me-auto">
+                                                <select asp-for="Alternativa3" class="form-select">
+                                                    <option value="" data-select2-id="select2-data-3-ibs9">Seleccione una alternativa</option>
+                                                    <option value="Alimentación">Alimentación</option>
+                                                    <option value="Artículos de uso personal e higiene">Artículos de uso personal e higiene</option>
+                                                    <option value="Medicamentos e implementos de salud">Medicamentos e implementos de salud </option>
+                                                    <option value="Atención social en salud integral">Atención social en salud integral</option>
+                                                    <option value=" Productos de apoyo o ayudas técnicas">Productos de apoyo o ayudas técnicas</option>
+                                                    <option value="Equipamiento de casa"> Equipamiento de casa</option>
+                                                    <option value="Alquiler de vivienda, servicios básicos, municipales y trámites migratorios"> Alquiler de vivienda, servicios básicos, municipales y trámites migratorios</option>
+                                                    <option value="Familias Solidarias">Familias Solidarias</option>
+                                                    <option value="Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado">Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado</option>
+                                                    <option value="Hogares comunitarios">Hogares comunitarios</option>
+                                                    <option value="Transporte y combustible">Transporte y combustible</option>
+                                                    <option value="Promoción y prevención de la salud">Promoción y prevención de la salud </option>
+                                                    <option value="Institucionalización"> Institucionalización</option>
+                                                    <option value="Mejoras habitacionales">Mejoras habitacionales</option>
+                                                </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-2-46y9" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-vp8l-container" aria-controls="select2-vp8l-container"><span class="select2-selection__rendered" id="select2-vp8l-container" role="textbox" aria-readonly="true" title="Select country"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                                <span asp-validation-for="Alternativa3" class="text-danger"></span>
+                                            </div>
+                                        </div>
+
+                                    </li>
+                                    <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <button type="button" id="mostrarAlternativa4" class="btn btn-outline-primary btn-sm"> <i class="bi bi-plus-square-fill"></i> Agregar otra alternativa </button>
+                                        </div>
+                                        <div id="Alternativa4" style="display: none;">
+                                            <div class="ms-2 me-auto">
+                                                <select asp-for="Alternativa4" class="form-select">
+                                                    <option value="" data-select2-id="select2-data-3-ibs9">Seleccione una alternativa</option>
+                                                    <option value="Alimentación">Alimentación</option>
+                                                    <option value="Artículos de uso personal e higiene">Artículos de uso personal e higiene</option>
+                                                    <option value="Medicamentos e implementos de salud">Medicamentos e implementos de salud </option>
+                                                    <option value="Atención social en salud integral">Atención social en salud integral</option>
+                                                    <option value=" Productos de apoyo o ayudas técnicas">Productos de apoyo o ayudas técnicas</option>
+                                                    <option value="Equipamiento de casa"> Equipamiento de casa</option>
+                                                    <option value="Alquiler de vivienda, servicios básicos, municipales y trámites migratorios"> Alquiler de vivienda, servicios básicos, municipales y trámites migratorios</option>
+                                                    <option value="Familias Solidarias">Familias Solidarias</option>
+                                                    <option value="Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado">Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado</option>
+                                                    <option value="Hogares comunitarios">Hogares comunitarios</option>
+                                                    <option value="Transporte y combustible">Transporte y combustible</option>
+                                                    <option value="Promoción y prevención de la salud">Promoción y prevención de la salud </option>
+                                                    <option value="Institucionalización"> Institucionalización</option>
+                                                    <option value="Mejoras habitacionales">Mejoras habitacionales</option>
+                                                </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-2-46y9" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-vp8l-container" aria-controls="select2-vp8l-container"><span class="select2-selection__rendered" id="select2-vp8l-container" role="textbox" aria-readonly="true" title="Select country"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                                <span asp-validation-for="Alternativa4" class="text-danger"></span>
+                                            </div>
                                         </div>
                                     </li>
                                     <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                            <h3 class="h6">Alternativa 4</h3>
-                                            <select asp-for="Alternativa4" class="select2 form-control select2-hidden-accessible" data-select2-placeholder="" data-select2-id="select2-data-1-gy14" tabindex="-1" aria-hidden="true">
-                                                <option value="" data-select2-id="select2-data-3-ibs9">Seleccione la alternativa 2</option>
-                                                <option value="Alimentación">Alimentación</option>
-                                                <option value="Artículos de uso personal e higiene">Artículos de uso personal e higiene</option>
-                                                <option value="Medicamentos e implementos de salud">Medicamentos e implementos de salud </option>
-                                                <option value="Atención social en salud integral">Atención social en salud integral</option>
-                                                <option value=" Productos de apoyo o ayudas técnicas">Productos de apoyo o ayudas técnicas</option>
-                                                <option value="Equipamiento de casa"> Equipamiento de casa</option>
-                                                <option value="Alquiler de vivienda, servicios básicos, municipales y trámites migratorios"> Alquiler de vivienda, servicios básicos, municipales y trámites migratorios</option>
-                                                <option value="Familias Solidarias">Familias Solidarias</option>
-                                                <option value="Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado">Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado</option>
-                                                <option value="Hogares comunitarios">Hogares comunitarios</option>
-                                                <option value="Transporte y combustible">Transporte y combustible</option>
-                                                <option value="Promoción y prevención de la salud">Promoción y prevención de la salud </option>
-                                                <option value="Institucionalización"> Institucionalización</option>
-                                                <option value="Mejoras habitacionales">Mejoras habitacionales</option>
-                                            </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-2-46y9" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-vp8l-container" aria-controls="select2-vp8l-container"><span class="select2-selection__rendered" id="select2-vp8l-container" role="textbox" aria-readonly="true" title="Select country"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                            <span asp-validation-for="Alternativa4" class="text-danger"></span>
+                                        <div>
+                                            <button type="button" id="mostrarAlternativa5" class="btn btn-outline-primary btn-sm"> <i class="bi bi-plus-square-fill"></i> Agregar otra alternativa </button>
                                         </div>
-                                    </li>
-                                    <li class="list-group-item px-0 d-flex justify-content-between align-items-start">
-                                        <div class="ms-2 me-auto">
-                                            <h3 class="h6">Alternativa 5</h3>
-                                            <select asp-for="Alternativa5" class="select2 form-control select2-hidden-accessible" data-select2-placeholder="" data-select2-id="select2-data-1-gy14" tabindex="-1" aria-hidden="true">
-                                                <option value="" data-select2-id="select2-data-3-ibs9">Seleccione la alternativa 2</option>
-                                                <option value="Alimentación">Alimentación</option>
-                                                <option value="Artículos de uso personal e higiene">Artículos de uso personal e higiene</option>
-                                                <option value="Medicamentos e implementos de salud">Medicamentos e implementos de salud </option>
-                                                <option value="Atención social en salud integral">Atención social en salud integral</option>
-                                                <option value=" Productos de apoyo o ayudas técnicas">Productos de apoyo o ayudas técnicas</option>
-                                                <option value="Equipamiento de casa"> Equipamiento de casa</option>
-                                                <option value="Alquiler de vivienda, servicios básicos, municipales y trámites migratorios"> Alquiler de vivienda, servicios básicos, municipales y trámites migratorios</option>
-                                                <option value="Familias Solidarias">Familias Solidarias</option>
-                                                <option value="Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado">Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado</option>
-                                                <option value="Hogares comunitarios">Hogares comunitarios</option>
-                                                <option value="Transporte y combustible">Transporte y combustible</option>
-                                                <option value="Promoción y prevención de la salud">Promoción y prevención de la salud </option>
-                                                <option value="Institucionalización"> Institucionalización</option>
-                                                <option value="Mejoras habitacionales">Mejoras habitacionales</option>
-                                            </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-2-46y9" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-vp8l-container" aria-controls="select2-vp8l-container"><span class="select2-selection__rendered" id="select2-vp8l-container" role="textbox" aria-readonly="true" title="Select country"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                            <span asp-validation-for="Alternativa5" class="text-danger"></span>
+                                        <div id="Alternativa5" style="display: none;">
+                                            <div class="ms-2 me-auto">
+                                                <select asp-for="Alternativa5" class="form-select">
+                                                    <option value="" data-select2-id="select2-data-3-ibs9">Seleccione una alternativa</option>
+                                                    <option value="Alimentación">Alimentación</option>
+                                                    <option value="Artículos de uso personal e higiene">Artículos de uso personal e higiene</option>
+                                                    <option value="Medicamentos e implementos de salud">Medicamentos e implementos de salud </option>
+                                                    <option value="Atención social en salud integral">Atención social en salud integral</option>
+                                                    <option value=" Productos de apoyo o ayudas técnicas">Productos de apoyo o ayudas técnicas</option>
+                                                    <option value="Equipamiento de casa"> Equipamiento de casa</option>
+                                                    <option value="Alquiler de vivienda, servicios básicos, municipales y trámites migratorios"> Alquiler de vivienda, servicios básicos, municipales y trámites migratorios</option>
+                                                    <option value="Familias Solidarias">Familias Solidarias</option>
+                                                    <option value="Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado">Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado</option>
+                                                    <option value="Hogares comunitarios">Hogares comunitarios</option>
+                                                    <option value="Transporte y combustible">Transporte y combustible</option>
+                                                    <option value="Promoción y prevención de la salud">Promoción y prevención de la salud </option>
+                                                    <option value="Institucionalización"> Institucionalización</option>
+                                                    <option value="Mejoras habitacionales">Mejoras habitacionales</option>
+                                                </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-2-46y9" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-vp8l-container" aria-controls="select2-vp8l-container"><span class="select2-selection__rendered" id="select2-vp8l-container" role="textbox" aria-readonly="true" title="Select country"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                                <span asp-validation-for="Alternativa5" class="text-danger"></span>
+                                            </div>
                                         </div>
                                     </li>
                                 </ul>
                             </div>
+                           
                         </div>
-                        <input type="submit" value="Agregar" class="btn btn-primary btn-sm btn-icon-text" <i class="bi bi-x"></i>
-                        <button class="btn btn-danger btn-sm btn-icon-text"><i class="bi bi-x"></i> <span class="text">Cancelar</span></button>
+
+                        <div class="card mb-4">
+                            <div class="card-body">
+                                <h3 class="h6">Observaciones</h3>
+                                <textarea asp-for="Observaciones" class="form-control" rows="3"></textarea>
+                                <span asp-validation-for="Observaciones" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <input type="submit" value="Agregar" class="btn btn-primary   btn-icon-text">
+                        <button class="btn btn-danger btn-icon-text"> <span class="text">Cancelar</span></button>
                     </div>
 
             </form>
