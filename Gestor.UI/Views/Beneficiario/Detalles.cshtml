@@ -143,11 +143,10 @@
                             @Html.DisplayFor(model => model.Alternativa5)
                         </dd>
                     </dl>
-                    @Html.ActionLink("Editar", "Editar", new { /* id = Model.PrimaryKey */ }) |
+                    @Html.ActionLink("Editar", "EditarBeneficiario", new { id = Model.idBeneficiario }) |
                     <a asp-action="ListarBeneficiario">Regresar a la lista de beneficiarios</a>
                 </div>
                 <div>
-                   
                 </div>
 
             </div>

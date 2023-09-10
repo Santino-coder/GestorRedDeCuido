@@ -15,7 +15,9 @@ namespace Gestor.BS
 
         void AgregarBeneficiario(Beneficiario beneficiario);
 
-        void AgregarAlternativa(Alternativa alternativa); 
+        void AgregarAlternativa(Alternativa alternativa);
+
+        void EditarBeneficiario(Beneficiario beneficiario);
 
         List<Beneficiario> ListarBeneficiario();
 

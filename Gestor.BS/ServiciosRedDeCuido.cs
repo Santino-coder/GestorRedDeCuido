@@ -31,7 +31,8 @@ namespace Gestor.BS
         }
 
 
-        public List<Beneficiario> ListarBeneficiario() {
+        public List<Beneficiario> ListarBeneficiario()
+        {
 
             List<Beneficiario> listarBeneficiario;
             listarBeneficiario = ContextoBD.Beneficiario.ToList();
@@ -52,6 +53,37 @@ namespace Gestor.BS
             beneficiario = ContextoBD.Beneficiario.Find(id);
 
             return beneficiario;
+        }
+
+        public void EditarBeneficiario(Beneficiario beneficiario)
+        {
+            Beneficiario editarBeneficiario;
+
+            editarBeneficiario = ObtenerPorId(beneficiario.idBeneficiario);
+            editarBeneficiario.DNI = beneficiario.DNI;
+            editarBeneficiario.Nombre = beneficiario.Nombre;
+            editarBeneficiario.Apellidos = beneficiario.Apellidos;
+            editarBeneficiario.FechaDeNacimiento = beneficiario.FechaDeNacimiento;
+            editarBeneficiario.Edad = beneficiario.Edad;
+            editarBeneficiario.EstadoCivil = beneficiario.EstadoCivil;
+            editarBeneficiario.Distrito = beneficiario.Distrito;
+            editarBeneficiario.Direccion = beneficiario.Direccion;
+            editarBeneficiario.Telefono = beneficiario.Telefono;
+            editarBeneficiario.IngresoEconomicoYOrigen = beneficiario.IngresoEconomicoYOrigen;
+            editarBeneficiario.FechaIngreso = beneficiario.FechaIngreso;
+            editarBeneficiario.Estado = beneficiario.Estado;
+            editarBeneficiario.PersonaEncargada = beneficiario.PersonaEncargada;
+            editarBeneficiario.NumeroPersonaEncargada = beneficiario.NumeroPersonaEncargada;
+            editarBeneficiario.Observaciones = beneficiario.Observaciones;
+            editarBeneficiario.Alternativa1 = beneficiario.Alternativa1;
+            editarBeneficiario.Alternativa2 = beneficiario.Alternativa2;
+            editarBeneficiario.Alternativa3 = beneficiario.Alternativa3;
+            editarBeneficiario.Alternativa4 = beneficiario.Alternativa4;
+            editarBeneficiario.Alternativa5 = beneficiario.Alternativa5;
+
+            ContextoBD.Beneficiario.Update(editarBeneficiario);
+            ContextoBD.SaveChanges();
+
         }
     }
 }

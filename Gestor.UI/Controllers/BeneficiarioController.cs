@@ -2,6 +2,10 @@
 using Gestor.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Newtonsoft.Json;
+using System.Collections.Generic;
+using System.Net.Http.Headers;
 
 namespace Gestor.UI.Controllers
 {
@@ -58,26 +62,25 @@ namespace Gestor.UI.Controllers
             return View(beneficiario);
         }
 
-        // GET: BeneficiarioController/Details/5
-        public ActionResult Details(int id)
+
+        public ActionResult EditarBeneficiario(int id)
         {
-            return View();
+            Beneficiario beneficiario;
+            beneficiario = ServiciosRedDeCuido.ObtenerPorId(id);
+
+            return View(beneficiario);
         }
 
-        // GET: BeneficiarioController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
 
-        // POST: BeneficiarioController/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public ActionResult EditarBeneficiario(Beneficiario beneficiario)
         {
             try
             {
-                return RedirectToAction(nameof(Index));
+                ServiciosRedDeCuido.EditarBeneficiario(beneficiario);
+
+                return RedirectToAction(nameof(ListarBeneficiario));
             }
             catch
             {
@@ -85,46 +88,5 @@ namespace Gestor.UI.Controllers
             }
         }
 
-        // GET: BeneficiarioController/Edit/5
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-        // POST: BeneficiarioController/Edit/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-        // GET: BeneficiarioController/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: BeneficiarioController/Delete/5
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
     }
 }
