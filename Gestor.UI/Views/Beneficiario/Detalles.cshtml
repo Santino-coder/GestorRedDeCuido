@@ -143,10 +143,13 @@
                             @Html.DisplayFor(model => model.Alternativa5)
                         </dd>
                     </dl>
-                    @Html.ActionLink("Editar", "EditarBeneficiario", new { id = Model.idBeneficiario }) |
-                    <a asp-action="ListarBeneficiario">Regresar a la lista de beneficiarios</a>
-                </div>
-                <div>
+
+                    <div class="hstack gap-3">
+                        @Html.ActionLink("Editar", "EditarBeneficiario", new { id = Model.idBeneficiario }, new { @class = "btn btn-primary btn-sm" })
+                        @Html.ActionLink("Regresar a la lista de beneficiarios", "ListarBeneficiario", new { id = Model.idBeneficiario }, new { @class = "btn btn-danger btn-sm" })
+                    </div>
+
+
                 </div>
 
             </div>
