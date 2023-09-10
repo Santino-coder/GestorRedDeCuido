@@ -83,10 +83,14 @@
                                         @Html.DisplayFor(modelItem => item.Telefono)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Alternativa1),
-                                        @Html.DisplayFor(modelItem => item.Alternativa2),
-                                        @Html.DisplayFor(modelItem => item.Alternativa3),
-                                        @Html.DisplayFor(modelItem => item.Alternativa4),
+                                        @Html.DisplayFor(modelItem => item.Alternativa1)
+                                        <br />
+                                        @Html.DisplayFor(modelItem => item.Alternativa2)
+                                        <br />
+                                        @Html.DisplayFor(modelItem => item.Alternativa3)
+                                        <br />
+                                        @Html.DisplayFor(modelItem => item.Alternativa4)
+                                        <br />
                                         @Html.DisplayFor(modelItem => item.Alternativa5)
                                     </td>
                                     <td>
@@ -94,7 +98,7 @@
                                     </td>
                                     <td>
                                         <div class="hstack gap-3">
-                                            @Html.ActionLink("Detalles", "Detalles", new { id = item.idBeneficiario})
+                                            @Html.ActionLink("Detalles", "Detalles", new { id = item.idBeneficiario }, new { @class = "btn btn-primary btn-sm" })
                                         </div>
                                     </td>
                                 </tr>
