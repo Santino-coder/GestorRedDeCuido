@@ -70,6 +70,17 @@ namespace Gestor.Models
 
         public string? Alternativa5 { get; set; }
 
+        [NotMapped]
+        public DetalleAlternativa DetalleAlternativa { get; set; }
+
+        [NotMapped]
+        public List<DetalleAlternativa> DetallesAlternativos {get; set; }
+
+        public Beneficiario()
+        {
+            DetallesAlternativos = new List<DetalleAlternativa>();
+        }
+
     }
 
 }

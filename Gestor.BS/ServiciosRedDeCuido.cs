@@ -18,19 +18,15 @@ namespace Gestor.BS
             ContextoBD = contextoBD;
         }
 
+
+        //Gestiones Beneficiario
         public void AgregarBeneficiario(Beneficiario beneficiario)
         {
             ContextoBD.Beneficiario.Add(beneficiario);
             ContextoBD.SaveChanges();
         }
 
-        public void AgregarAlternativa(Alternativa alternativa)
-        {
-            ContextoBD.Alternativa.Add(alternativa);
-            ContextoBD.SaveChanges();
-        }
-
-
+      
         public List<Beneficiario> ListarBeneficiario()
         {
 
@@ -39,21 +35,9 @@ namespace Gestor.BS
             return listarBeneficiario;
         }
 
-        public List<Alternativa> ListarAlternativas()
-        {
-            List<Alternativa> listarAlternativa;
-            listarAlternativa = ContextoBD.Alternativa.ToList();
-            return listarAlternativa;
+ 
 
-        }
-
-        public Beneficiario ObtenerPorId(int id)
-        {
-            Beneficiario beneficiario;
-            beneficiario = ContextoBD.Beneficiario.Find(id);
-
-            return beneficiario;
-        }
+     
 
         public void EditarBeneficiario(Beneficiario beneficiario)
         {
@@ -84,6 +68,47 @@ namespace Gestor.BS
             ContextoBD.Beneficiario.Update(editarBeneficiario);
             ContextoBD.SaveChanges();
 
+        }
+
+        //Gestiones detalle alternativa
+        public void AgregarDetalleAlternativa(DetalleAlternativa detalleAlternativa)
+        {
+            ContextoBD.DetalleAlternativa.Add(detalleAlternativa);
+            ContextoBD.SaveChanges();
+        }
+
+        public List<DetalleAlternativa> ListarDetalleAlternativa()
+        {
+            List<DetalleAlternativa> listaDetalleAlternativa = ContextoBD.DetalleAlternativa.ToList();
+            return listaDetalleAlternativa;
+        }
+
+        public List<DetalleAlternativa> ObtenerDetallePorIdBeneficiario(int idBeneficiario)
+        {
+           var resultado = from c in ContextoBD.DetalleAlternativa
+                           where c.idBeneficiario == idBeneficiario
+                           select c;
+
+            return resultado.ToList();
+        }
+
+
+        public Beneficiario ObtenerPorId(int id)
+        {
+            Beneficiario beneficiario;
+            beneficiario = ContextoBD.Beneficiario.Find(id);
+
+            return beneficiario;
+        }
+        public Beneficiario ObtenerBeneficiarioPorId(int id)
+        {
+
+
+            Beneficiario beneficiario;
+            beneficiario = ContextoBD.Beneficiario.FirstOrDefault(b => b.idBeneficiario == id);
+
+                return beneficiario;
+            
         }
     }
 }

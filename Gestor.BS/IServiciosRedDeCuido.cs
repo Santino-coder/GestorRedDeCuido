@@ -12,17 +12,28 @@ namespace Gestor.BS
     {
 
         //Sevicios para beneficiario
+        //Agregar
 
         void AgregarBeneficiario(Beneficiario beneficiario);
 
-        void AgregarAlternativa(Alternativa alternativa);
+        void AgregarDetalleAlternativa(DetalleAlternativa detalleAlternativa);
 
+
+        //Editar
         void EditarBeneficiario(Beneficiario beneficiario);
 
+
+        //Listar
         List<Beneficiario> ListarBeneficiario();
 
-        List<Alternativa> ListarAlternativas();
+        List<DetalleAlternativa> ListarDetalleAlternativa();
 
+        List<DetalleAlternativa> ObtenerDetallePorIdBeneficiario(int idBeneficiario);
+
+
+        //Obtener
         Beneficiario ObtenerPorId(int id);
+
+        Beneficiario ObtenerBeneficiarioPorId(int idBeneficiario);
     }
 }

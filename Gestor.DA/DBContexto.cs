@@ -14,6 +14,8 @@ namespace Gestor.DA
 
         public DbSet<Gestor.Models.Beneficiario> Beneficiario { get; set; }
 
-        public DbSet<Gestor.Models.Alternativa> Alternativa { get; set; }
+
+        public DbSet<Gestor.Models.DetalleAlternativa> DetalleAlternativa { get; set; }
+
     }
 }
