@@ -86,10 +86,34 @@
                                         @Html.DisplayFor(modelItem => item.NumeroFactura)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.FacturaFoto)
+                                        @if (item != null && item.FacturaFoto != null && item.FacturaFoto.Length > 0)
+                                        {
+                                        
+                                            string imagenBase64 = Convert.ToBase64String(item.FacturaFoto);
+                                            string imagenDataUrl = $"data:image/jpeg;base64,{imagenBase64}";
+
+                                            
+                                            <img src="@imagenDataUrl" alt="Factura" width="200" height="150" />
+                                        }
+                                        else
+                                        {
+                                            <p>No se encontró una foto</p>
+                                        }
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Proforma)
+                                        @if (item != null && item.Proforma != null && item.Proforma.Length > 0)
+                                        {
+                                      
+                                            string imagenBase64 = Convert.ToBase64String(item.Proforma);
+                                            string imagenDataUrl = $"data:image/jpeg;base64,{imagenBase64}";
+
+                                         
+                                            <img src="@imagenDataUrl" alt="Factura" width="200" height="150" />
+                                        }
+                                        else
+                                        {
+                                            <p>No se encontró una foto</p>
+                                        }
                                     </td>
                                 </tr>
                             }
