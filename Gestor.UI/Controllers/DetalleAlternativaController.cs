@@ -31,10 +31,27 @@ namespace Gestor.UI.Controllers
         // POST: DetalleAlternativa/Create
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AgregarDetalleAlternativa(DetalleAlternativa detalleAlternativa)
+        public ActionResult AgregarDetalleAlternativa(DetalleAlternativa detalleAlternativa, IFormFile FacturaFoto, IFormFile Proforma)
         {
             try
             {
+                if (FacturaFoto != null && FacturaFoto.Length > 0)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        FacturaFoto.CopyTo(ms);
+                        detalleAlternativa.FacturaFoto = ms.ToArray();
+                    }
+                }
+
+                if (Proforma != null && Proforma.Length > 0)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        Proforma.CopyTo(ms);
+                        detalleAlternativa.Proforma = ms.ToArray();
+                    }
+                }
                 ServiciosRedDeCuido.AgregarDetalleAlternativa(detalleAlternativa);
                 return RedirectToAction("ListarBeneficiario", "Beneficiario");
             }
@@ -42,9 +59,18 @@ namespace Gestor.UI.Controllers
             {
                 return View();
 
-              
+
             }
 
+        }
+
+        private byte[] ReadFileToByteArray(IFormFile file)
+        {
+            using (var memoryStream = new MemoryStream())
+            {
+                file.CopyTo(memoryStream);
+                return memoryStream.ToArray();
+            }
         }
 
         public ActionResult ListarDetalleAlternativa()
