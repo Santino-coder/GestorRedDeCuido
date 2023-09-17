@@ -13,6 +13,10 @@ namespace Gestor.Models
         [Key]
         public int idDetalleAlternativa { get; set; }
 
+        public string NombreAlternativa { get; set; }   
+
+        public DateTime Fecha { get; set; } 
+
         public string Articulo { get; set; }
 
         public string Proveedor { get; set; }
