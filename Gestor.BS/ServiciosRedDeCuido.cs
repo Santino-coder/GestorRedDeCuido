@@ -19,26 +19,20 @@ namespace Gestor.BS
         }
 
 
-        //Gestiones Beneficiario
+        //AGREGAR
         public void AgregarBeneficiario(Beneficiario beneficiario)
         {
             ContextoBD.Beneficiario.Add(beneficiario);
             ContextoBD.SaveChanges();
         }
-
-      
-        public List<Beneficiario> ListarBeneficiario()
+        public void AgregarDetalleAlternativa(DetalleAlternativa detalleAlternativa)
         {
-
-            List<Beneficiario> listarBeneficiario;
-            listarBeneficiario = ContextoBD.Beneficiario.ToList();
-            return listarBeneficiario;
+            ContextoBD.DetalleAlternativa.Add(detalleAlternativa);
+            ContextoBD.SaveChanges();
         }
 
- 
 
-     
-
+        //EDITAR
         public void EditarBeneficiario(Beneficiario beneficiario)
         {
             Beneficiario editarBeneficiario;
@@ -70,16 +64,20 @@ namespace Gestor.BS
 
         }
 
-        //Gestiones detalle alternativa
-        public void AgregarDetalleAlternativa(DetalleAlternativa detalleAlternativa)
-        {
-            ContextoBD.DetalleAlternativa.Add(detalleAlternativa);
-            ContextoBD.SaveChanges();
-        }
 
+        //LISTAS
+
+        public List<Beneficiario> ListarBeneficiario()
+        {
+
+            List<Beneficiario> listarBeneficiario;
+            listarBeneficiario = ContextoBD.Beneficiario.ToList();
+            return listarBeneficiario;
+        }
         public List<DetalleAlternativa> ListarDetalleAlternativa()
         {
-            List<DetalleAlternativa> listaDetalleAlternativa = ContextoBD.DetalleAlternativa.ToList();
+            List<DetalleAlternativa> listaDetalleAlternativa;
+            listaDetalleAlternativa = ContextoBD.DetalleAlternativa.ToList();
             return listaDetalleAlternativa;
         }
 
@@ -92,7 +90,9 @@ namespace Gestor.BS
             return resultado.ToList();
         }
 
+        
 
+        //OBTENER
         public Beneficiario ObtenerPorId(int id)
         {
             Beneficiario beneficiario;

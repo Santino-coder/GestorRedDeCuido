@@ -1,0 +1,95 @@
+﻿@model IEnumerable<Gestor.Models.DetalleAlternativa>
+
+@{
+    ViewData["Title"] = "ListarDetalleAlternativa";
+}
+
+<h1>ListarDetalleAlternativa</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.idDetalleAlternativa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NombreAlternativa)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Fecha)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Articulo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proveedor)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cantidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.NumeroFactura)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Monto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FacturaFoto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Proforma)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.idBeneficiario)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.idDetalleAlternativa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NombreAlternativa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Articulo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proveedor)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Cantidad)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumeroFactura)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Monto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FacturaFoto)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Proforma)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.idBeneficiario)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

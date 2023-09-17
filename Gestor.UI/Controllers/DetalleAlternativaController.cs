@@ -47,6 +47,27 @@ namespace Gestor.UI.Controllers
 
         }
 
+        public ActionResult ListarDetalleAlternativa()
+        {
+            List<DetalleAlternativa> listar;
+            listar = ServiciosRedDeCuido.ListarDetalleAlternativa();
+            return View(listar);
+        }
+
+        public ActionResult ObtenerDetallePorIdBeneficiario(int idBeneficiario)
+        {
+            List<DetalleAlternativa> detalles = ServiciosRedDeCuido.ObtenerDetallePorIdBeneficiario(idBeneficiario);
+
+            if (detalles == null)
+            {
+                TempData["MensajeError"] = "No se encontraron detalles para el beneficiario.";
+                // Manejar el caso cuando no se encuentran detalles para el beneficiario
+                return RedirectToAction("ListarBeneficiario", "Beneficiario"); // O redirige a donde sea necesario
+            }
+
+            return View(detalles);
+        }
+
         public ActionResult SeleccionarBeneficiario(int id)
         {
             TempData["IdBeneficiarioSeleccionado"] = id;
