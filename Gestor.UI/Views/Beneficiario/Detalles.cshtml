@@ -145,27 +145,27 @@
                         </dd>
                     </dl>
 
-                    <div class="hstack gap-3">
-                        @Html.ActionLink("Editar", "EditarBeneficiario", new { id = Model.idBeneficiario }, new { @class = "btn btn-primary btn-sm" })
-                        @Html.ActionLink("Regresar a la lista de beneficiarios", "ListarBeneficiario", new { id = Model.idBeneficiario }, new { @class = "btn btn-success btn-sm" })
-
-
-                        <form asp-controller="DetalleAlternativa" asp-action="ObtenerDetallePorIdBeneficiario" method="get">
-                            @Html.HiddenFor(model => model.idBeneficiario) <!-- Campo oculto para almacenar el idBeneficiario -->
-                            <input type="submit" value="Ver Detalles Alternativos" class="btn btn-info btn-sm" />
-                        </form>
-
-                        <form asp-controller="DetalleAlternativa" asp-action="AgregarDetalleAlternativa" asp-route-id="@Model.idBeneficiario" method="get">
-                            @Html.HiddenFor(model => model.idBeneficiario) <!-- Campo oculto para almacenar el idBeneficiario -->
-                            <input type="submit" value="Agregar Detalle Alternativa" class="btn btn-info btn-sm" />
-                        </form>
+                   
                     </div>
-
+               
 
                 </div>
 
             </div>
+        <div class="hstack gap-3">
+            @Html.ActionLink("Editar", "EditarBeneficiario", new { id = Model.idBeneficiario }, new { @class = "btn btn-primary btn-sm" })
+            @Html.ActionLink("Regresar a la lista de beneficiarios", "ListarBeneficiario", new { id = Model.idBeneficiario }, new { @class = "btn btn-success btn-sm" })
 
+
+            <form asp-controller="DetalleAlternativa" asp-action="ObtenerDetallePorIdBeneficiario" method="get">
+                @Html.HiddenFor(model => model.idBeneficiario) <!-- Campo oculto para almacenar el idBeneficiario -->
+                <input type="submit" value="Ver Detalles Alternativos" class="btn btn-info btn-sm" />
+            </form>
+
+            <form asp-controller="DetalleAlternativa" asp-action="AgregarDetalleAlternativa" asp-route-id="@Model.idBeneficiario" method="get">
+                @Html.HiddenFor(model => model.idBeneficiario) <!-- Campo oculto para almacenar el idBeneficiario -->
+                <input type="submit" value="Agregar Detalle Alternativa" class="btn btn-info btn-sm" />
+            </form>
         </div>
     </div>
 
