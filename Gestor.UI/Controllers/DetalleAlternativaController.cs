@@ -100,5 +100,24 @@ namespace Gestor.UI.Controllers
             return RedirectToAction("AgregarDetalleAlternativa");
         }
 
+        public ActionResult MontoTotalPorMes()
+        {
+            // Obtener todos los detalles de las alternativas
+            var detalles = ServiciosRedDeCuido.ListarDetalleAlternativa();
+
+            // Agrupar los detalles por Mes y Año y calcular la suma de montos para cada mes
+            var montosPorMes = detalles
+                .GroupBy(d => d.Fecha.ToString("yyyy-MM")) // Agrupar por Mes y Año
+                .Select(group => new Gestor.UI.Models.MontoPorMesViewModel
+                {
+                    Mesanio = group.Key,
+                    MontoTotal = group.Sum(d => d.Monto)
+                })
+                .ToList();
+
+            // Puedes pasar los datos a la vista para mostrarlos
+            return View(montosPorMes);
+        }
+
     }
 }
