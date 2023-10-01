@@ -1,24 +1,18 @@
 ﻿body {
-    background: #eee;
+    background-image: none;
+    background-color: #154360;
 }
 
-.container1 {
-    position: relative;
-}
-
-.container2 {
-    display: grid;
+.card {
+    box-shadow: 1px 1px 1px grey;
 }
 
 
 
 .card {
-    box-shadow: 0 20px 27px 0 rgb(0 0 0 / 5%);
-}
-
-.card {
-    justify-self: center;
-    align-self: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 500px;
     min-width: 0;
     word-wrap: break-word;
@@ -26,7 +20,16 @@
     background-clip: border-box;
     border: 0 solid rgba(0,0,0,.125);
     border-radius: 1rem;
+    margin: 40px auto;
+    box-shadow: 2px 2px 20px black;
+    transition: transform 0.3s ease;
 }
+
+    .card:hover {
+        transform: scale(1.1);
+    }
+
+
 
 .card-body {
     -webkit-box-flex: 1;

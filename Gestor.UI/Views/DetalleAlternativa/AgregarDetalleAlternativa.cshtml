@@ -13,142 +13,121 @@
 
     <title>AgregarDetalleAlternativa</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="~/css/EditarBeneficiario.css" rel="stylesheet" type="text/css" />
-
-    <!-- Bootstrap 5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css"
-          rel="stylesheet" />
-
-    <!-- Bootstrap icons -->
-    <link rel="stylesheet"
-          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css" />
-
-
+    <link rel="stylesheet" href="~/css/_Layout.css" asp-append-version="true" />
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="container">
 
-            <div class="d-flex justify-content-between align-items-lg-center py-3 flex-column flex-lg-row">
-                <h2 class="h5 mb-3 mb-lg-0">Agregar detalles de alternativas</h2>
+    @using (Html.BeginForm("AgregarDetalleAlternativa", "DetalleAlternativa", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
 
+        <form asp-action="AgregarDetalleAlternativa">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" style="display:none">
+                <label asp-for="idBeneficiario" class="control-label">Número de identificación</label>
+                <input asp-for="idBeneficiario" class="form-control" />
+                <span asp-validation-for="idBeneficiario" class="text-danger"></span>
             </div>
-
-            @using (Html.BeginForm("AgregarDetalleAlternativa", "DetalleAlternativa", FormMethod.Post, new { enctype = "multipart/form-data" }))
-            {
-
-                <form asp-action="AgregarDetalleAlternativa">
-                    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                    <div class="form-group" style="display:none">
-                        <label asp-for="idBeneficiario" class="control-label">Número de identificación</label>
-                        <input asp-for="idBeneficiario" class="form-control" />
-                        <span asp-validation-for="idBeneficiario" class="text-danger"></span>
-                    </div>
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <h3 class="h6">Detalles</h3>
-                            <hr />
-                            <div class="row">
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Alternativa</label>
-                                        <select asp-for="NombreAlternativa" class="form-select">
-                                            <option value="" data-select2-id="select2-data-3-ibs9">Seleccione una alternativa</option>
-                                            <option value="Alimentación">Alimentación</option>
-                                            <option value="Artículos de uso personal e higiene">Artículos de uso personal e higiene</option>
-                                            <option value="Medicamentos e implementos de salud">Medicamentos e implementos de salud </option>
-                                            <option value="Atención social en salud integral">Atención social en salud integral</option>
-                                            <option value=" Productos de apoyo o ayudas técnicas">Productos de apoyo o ayudas técnicas</option>
-                                            <option value="Equipamiento de casa"> Equipamiento de casa</option>
-                                            <option value="Alquiler de vivienda, servicios básicos, municipales y trámites migratorios"> Alquiler de vivienda, servicios básicos, municipales y trámites migratorios</option>
-                                            <option value="Familias Solidarias">Familias Solidarias</option>
-                                            <option value="Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado">Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado</option>
-                                            <option value="Hogares comunitarios">Hogares comunitarios</option>
-                                            <option value="Transporte y combustible">Transporte y combustible</option>
-                                            <option value="Promoción y prevención de la salud">Promoción y prevención de la salud </option>
-                                            <option value="Institucionalización"> Institucionalización</option>
-                                            <option value="Mejoras habitacionales">Mejoras habitacionales</option>
-                                        </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-2-46y9" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-vp8l-container" aria-controls="select2-vp8l-container"><span class="select2-selection__rendered" id="select2-vp8l-container" role="textbox" aria-readonly="true" title="Select country"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
-                                        <span asp-validation-for="NombreAlternativa" class="text-danger"></span>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Articulo</label>
-                                        <input asp-for="Articulo" type="text" class="form-control">
-                                        <span asp-validation-for="Articulo" class="text-danger"></span>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Cantidad</label>
-                                        <input asp-for="Cantidad" type="text" class="form-control">
-                                        <span asp-validation-for="Cantidad" class="text-danger"></span>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Proveedor</label>
-                                        <input asp-for="Proveedor" type="text" class="form-control">
-                                        <span asp-validation-for="Proveedor" class="text-danger"></span>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Monto</label>
-                                        <input asp-for="Monto" type="text" class="form-control">
-                                        <span asp-validation-for="Monto" class="text-danger"></span>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Fecha</label>
-                                        <input asp-for="Fecha" type="date" class="form-control">
-                                        <span asp-validation-for="Fecha" class="text-danger"></span>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label class="form-label">Numero de factura</label>
-                                        <input asp-for="NumeroFactura" type="number" class="form-control">
-                                        <span asp-validation-for="NumeroFactura" class="text-danger"></span>
-                                    </div>
-                                </div>
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label asp-for="FacturaFoto">Foto de factura</label>
-                                        <input asp-for="FacturaFoto" type="file" name="FacturaFoto" class="form-control" />
-                                        <span asp-validation-for="FacturaFoto" class="text-danger"></span>
-                                    </div>
-                                </div>
-
-                                <div class="col-lg-6">
-                                    <div class="mb-3">
-                                        <label asp-for="Proforma">Foto de proforma</label>
-                                        <input asp-for="Proforma" type="file" name="Proforma" class="form-control" />
-                                        <span asp-validation-for="Proforma" class="text-danger"></span>
-                                    </div>
-                                </div>
+            <div class="card mb-4">
+                <div class="card-body">
+                    <h3 class="h6">Detalles</h3>
+                    <hr />
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label">Alternativa</label>
+                                <select asp-for="NombreAlternativa" class="form-select">
+                                    <option value="" data-select2-id="select2-data-3-ibs9">Seleccione una alternativa</option>
+                                    <option value="Alimentación">Alimentación</option>
+                                    <option value="Artículos de uso personal e higiene">Artículos de uso personal e higiene</option>
+                                    <option value="Medicamentos e implementos de salud">Medicamentos e implementos de salud </option>
+                                    <option value="Atención social en salud integral">Atención social en salud integral</option>
+                                    <option value=" Productos de apoyo o ayudas técnicas">Productos de apoyo o ayudas técnicas</option>
+                                    <option value="Equipamiento de casa"> Equipamiento de casa</option>
+                                    <option value="Alquiler de vivienda, servicios básicos, municipales y trámites migratorios"> Alquiler de vivienda, servicios básicos, municipales y trámites migratorios</option>
+                                    <option value="Familias Solidarias">Familias Solidarias</option>
+                                    <option value="Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado">Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado</option>
+                                    <option value="Hogares comunitarios">Hogares comunitarios</option>
+                                    <option value="Transporte y combustible">Transporte y combustible</option>
+                                    <option value="Promoción y prevención de la salud">Promoción y prevención de la salud </option>
+                                    <option value="Institucionalización"> Institucionalización</option>
+                                    <option value="Mejoras habitacionales">Mejoras habitacionales</option>
+                                </select><span class="select2 select2-container select2-container--bootstrap-5" dir="ltr" data-select2-id="select2-data-2-46y9" style="width: 391px;"><span class="selection"><span class="select2-selection select2-selection--single" role="combobox" aria-haspopup="true" aria-expanded="false" tabindex="0" aria-disabled="false" aria-labelledby="select2-vp8l-container" aria-controls="select2-vp8l-container"><span class="select2-selection__rendered" id="select2-vp8l-container" role="textbox" aria-readonly="true" title="Select country"><span class="select2-selection__placeholder"></span></span><span class="select2-selection__arrow" role="presentation"><b role="presentation"></b></span></span></span><span class="dropdown-wrapper" aria-hidden="true"></span></span>
+                                <span asp-validation-for="NombreAlternativa" class="text-danger"></span>
                             </div>
+                        </div>
 
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label">Articulo</label>
+                                <input asp-for="Articulo" type="text" class="form-control">
+                                <span asp-validation-for="Articulo" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label">Cantidad</label>
+                                <input asp-for="Cantidad" type="text" class="form-control">
+                                <span asp-validation-for="Cantidad" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label">Proveedor</label>
+                                <input asp-for="Proveedor" type="text" class="form-control">
+                                <span asp-validation-for="Proveedor" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label">Monto</label>
+                                <input asp-for="Monto" type="text" class="form-control">
+                                <span asp-validation-for="Monto" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label">Fecha</label>
+                                <input asp-for="Fecha" type="date" class="form-control">
+                                <span asp-validation-for="Fecha" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label class="form-label">Numero de factura</label>
+                                <input asp-for="NumeroFactura" type="number" class="form-control">
+                                <span asp-validation-for="NumeroFactura" class="text-danger"></span>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label asp-for="FacturaFoto">Foto de factura</label>
+                                <input asp-for="FacturaFoto" type="file" name="FacturaFoto" class="form-control" />
+                                <span asp-validation-for="FacturaFoto" class="text-danger"></span>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="mb-3">
+                                <label asp-for="Proforma">Foto de proforma</label>
+                                <input asp-for="Proforma" type="file" name="Proforma" class="form-control" />
+                                <span asp-validation-for="Proforma" class="text-danger"></span>
+                            </div>
+                            <input type="submit" value="Agregar" class="btn btn-primary btn-sm btn-icon-text">
+                            @Html.ActionLink("Lista de beneficiarios", "ListarBeneficiario","Beneficiario", new { id = Model.idBeneficiario }, new { @class = "btn btn-danger btn-sm" })
                         </div>
                     </div>
+                </div>
+            </div>
+        </form>
+    }
 
-
-                    <input type="submit" value="Agregar" class="btn btn-primary btn-sm btn-icon-text">
-                    @Html.ActionLink("Lista de beneficiarios", "ListarBeneficiario","Beneficiario", new { id = Model.idBeneficiario }, new { @class = "btn btn-danger btn-sm" })
-
-                </form>
-            }
-        </div>
-    </div>
 
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

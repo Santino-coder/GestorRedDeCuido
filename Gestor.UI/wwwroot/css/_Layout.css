@@ -1,6 +1,139 @@
-﻿namespace Gestor.UI.wwwroot.css
-{
-    public class _Layout
-    {
+﻿body {
+    background-image: url('https://cdn.aarp.net/content/dam/aarp/home-and-family/caregiving/2018/09/1140-delirium-definition-management-esp.jpg');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+    li {
+    position: relative;
+    display: inline-block;
+    padding:0;
+}
+
+    li a {
+        color: #fff;
+        font-size: 18px;
+        text-decoration: none;
+        transition: color 1s;
+    }
+
+    li::after {
+        content: '';
+        background-color: #fff;
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 0;
+        height: 2px;
+        transition: width .5s;
+    }
+
+    li a:hover {
+        color: rgb(45,168,240);
+    }
+
+    li:hover::after {
+        width: 100%;
+        background-color: rgb(45,168,240);
+    }
+
+.container-fluid nav ul li a {
+    color: white !important;
+  
+}
+
+.container-fluid {
+ background-color: rgba(0, 0, 0, 0.5);
+ padding: 0;
+ margin:0;
+}
+
+
+.navbar {
+    min-height: 70px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-menu {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 60px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-link {
+    transition: 0.3s ease-out;
+}
+
+    .nav-link:hover {
+        color: dodgerblue;
+    }
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.bar {
+    display: block;
+    width: 25px;
+    height: 3px;
+    margin: 5px auto;
+    -webkit-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+    background-color: white;
+}
+
+@media(max-width:1024px) {
+
+    .hamburger {
+        display: block;
+        margin: 15px;
+    }
+
+        .hamburger.active .bar:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .bar:nth-child(1) {
+            transform: translateY(8px) rotate(45deg);
+        }
+
+        .hamburger.active .bar:nth-child(3) {
+            transform: translateY(-8px) rotate(-45deg);
+        }
+
+    .nav-menu {
+        position: absolute;
+        z-index: 1;
+        left: -100%;
+        top: 70px;
+        gap: 0;
+        flex-direction: column;
+        background-color: #154360;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
+    }
+
+    .nav-item {
+        margin: 5px 0;
+    }
+
+    .nav-menu.active {
+        left: 0;
+    }
+
+    table {
+        display: block;
+        width: 100%;
+        overflow-x: auto;
     }
 }

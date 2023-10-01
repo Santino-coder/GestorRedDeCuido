@@ -5,37 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Gestor.UI</title>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
-    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/Gestor.UI.styles.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/_Layout.css" asp-append-version="true" />
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Red de cuido Hojancha</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Red de Cuido</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Beneficiario" asp-action="ListarBeneficiario">Lista de beneficiarios</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Beneficiario" asp-action="AgregarBeneficiario">Agregar beneficiario</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="DetalleAlternativa" asp-action="ListarDetalleAlternativa">Registro de alternativas asignadas</a>
-                        </li>
-                    </ul>
-                    <partial name="_LoginPartial" />
+        <div class="container-fluid">
+            <nav class="navbar navbar-expand-md" id="myTopnav">
+
+                <div class="nav-branding">
+                    <img src="https://conapam.go.cr/wp-content/uploads/2023/02/logo-conapam-JD.png" class="rounded" style="height:70px;" alt="...">
                 </div>
-            </div>
-        </nav>
+
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Beneficiario" asp-action="ListarBeneficiario">Lista de beneficiarios</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="Beneficiario" asp-action="AgregarBeneficiario">Agregar beneficiario</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-dark" asp-area="" asp-controller="DetalleAlternativa" asp-action="ListarDetalleAlternativa">Registro de alternativas asignadas</a>
+                    </li>
+                        <partial name="_LoginPartial" />
+                </ul>
+               
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+
+            </nav>
+        </div>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
@@ -43,10 +48,10 @@
         </main>
     </div>
 
-   
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/_Layout.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
