@@ -102,9 +102,19 @@
 
                     @foreach (var item in Model.MontoPorBeneficiarios)
                     {
-
-                            @item.MontoTotalBeneficiario.ToString("C")
-                     
+                        <table class="table table-hover table-bordered results">
+                            <thead>
+                                <tr>
+                                    <th>@item.MesBeneficiario</th>
+                                </tr>
+                                <tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>@item.MontoTotalBeneficiario.ToString("C")</td>
+                                </tr>
+                            </tbody>
+                        </table>
                     }
                 }
             }
@@ -112,7 +122,6 @@
     </div>
 
 </body>
-<script src="~/js/Moneda.js"></script>
 </html>
 
 @section Scripts {
