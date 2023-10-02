@@ -1,11 +1,36 @@
 ﻿@model int
 
-<h1>Cantidad Total de Beneficiarios</h1>
-<p>La cantidad total de beneficiarios es: @Model</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
 
-<h1>Cantidad Total de Beneficiarios por Estado</h1>
-<p>Cantidad de Beneficiarios Activos: @ViewBag.CantidadActivos</p>
-<p>Cantidad de Beneficiarios Inactivos: @ViewBag.CantidadInactivos</p>
-<p>Cantidad de Beneficiarios Fallecidos: @ViewBag.CantidadFallecidos</p>
+    <title>Cantindad total de beneficiarios</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/_Layout.css" asp-append-version="true" />
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" />
 
-<a href="@Url.Action("ListarBeneficiario", "Beneficiario")">Volver a la lista de beneficiarios</a>
+</head>
+<body>
+    <div class="card mb-4" style="text-align:center">
+        <div class="card-body">
+            <h1>Cantidad Total de Beneficiarios</h1>
+            <p>La cantidad total de beneficiarios es: @Model</p>
+
+            <h1>Cantidad Total de Beneficiarios por Estado</h1>
+            <p>Cantidad de Beneficiarios Activos: @ViewBag.CantidadActivos</p>
+            <p>Cantidad de Beneficiarios Inactivos: @ViewBag.CantidadInactivos</p>
+            <p>Cantidad de Beneficiarios Fallecidos: @ViewBag.CantidadFallecidos</p>
+
+            <a href="@Url.Action("ListarBeneficiario", "Beneficiario")">Volver a la lista de beneficiarios</a>
+        </div>
+    </div>
+</body>
+</html>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
