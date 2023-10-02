@@ -32,4 +32,16 @@
     <ProjectReference Include="..\Gestor.Models\Gestor.Models.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <UpToDateCheckInput Remove="Views\Home\Dashboard.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Home\Dashboard.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Views\Home\Dashboard.cshtml" />
+  </ItemGroup>
+
 </Project>
