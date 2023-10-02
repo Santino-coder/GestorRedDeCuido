@@ -5,7 +5,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>Cantindad total de beneficiarios</title>
+    <title>CantidadTotalBeneficiaruos</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/css/_Layout.css" asp-append-version="true" />
@@ -17,13 +17,15 @@
         <div class="card-body">
             @if (Model.MontoPorMes != null && Model.MontoPorMes.Any())
             {
-                <h2>Monto Total por Mes</h2>
+               
+                <h3 class="h6">Monto total por mes</h3>
+                <hr />
 
-                <table class="table">
+                <table class="table table-hover table-bordered results">
                     <thead>
                         <tr>
-                            <th>Mes y Año</th>
-                            <th>Monto Total</th>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Monto</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -41,9 +43,10 @@
             @if (Model.MontoPorAnio != null && Model.MontoPorAnio.Any())
             {
 
-                <h2>Monto Total por Año</h2>
+                <h3 class="h6">Monto total por año</h3>
+                <hr />
 
-                <table class="table">
+                <table class="table table-hover table-bordered results">
                     <thead>
                         <tr>
                             <th>Año</th>
@@ -63,7 +66,8 @@
             }
 
 
-            <h1>Montos Totales por Beneficiario</h1>
+            <h3 class="h6">Monto total por beneficiario</h3>
+            <hr />
 
             @using (Html.BeginForm("CalcularMontoPorBeneficiario", "DetalleAlternativa", FormMethod.Get))
             {
@@ -75,13 +79,14 @@
                         <option value="@beneficiario.idBeneficiario">@beneficiario.Nombre</option>
                     }
                 </select>
-                <button type="submit">Mostrar Monto Total</button>
+                <button type="submit" class="btn btn-primary btn-sm btn-icon-text">Monto total</button>
 
 
                 @if (Model.Beneficiario != null)
                 {
-                    <h2>Beneficiario Seleccionado</h2>
-                    <p>Nombre del Beneficiario: @Model.Beneficiario.Nombre</p>
+                    <br />
+                    <h3 class="h6">Monto total de: @Model.Beneficiario.Nombre</h3>
+                   
                 }
 
                 @if (Model.MontoPorBeneficiario > 0)
@@ -90,6 +95,7 @@
 
                     @foreach (var item in Model.MontoPorBeneficiarios)
                     {
+
                         <tr>
                             <td>@item.MesBeneficiario</td>
                             <td>@item.MontoTotalBeneficiario.ToString("C")</td>
