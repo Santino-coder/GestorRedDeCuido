@@ -17,8 +17,8 @@
         <div class="card-body">
             @if (Model.MontoPorMes != null && Model.MontoPorMes.Any())
             {
-               
-                <h3 class="h6">Monto total por mes</h3>
+
+                <h3 class="h6">Montos totales por mes</h3>
                 <hr />
 
                 <table class="table table-hover table-bordered results">
@@ -39,11 +39,15 @@
                     </tbody>
                 </table>
             }
+        </div>
+    </div>
 
+    <div class="card mb-4" style="text-align:center">
+        <div class="card-body">
             @if (Model.MontoPorAnio != null && Model.MontoPorAnio.Any())
             {
 
-                <h3 class="h6">Monto total por año</h3>
+                <h3 class="h6">Montos totales por año</h3>
                 <hr />
 
                 <table class="table table-hover table-bordered results">
@@ -64,8 +68,11 @@
                     </tbody>
                 </table>
             }
+        </div>
+    </div>
 
-
+    <div class="card mb-4" style="text-align:center">
+        <div class="card-body">
             <h3 class="h6">Monto total por beneficiario</h3>
             <hr />
 
@@ -86,7 +93,7 @@
                 {
                     <br />
                     <h3 class="h6">Monto total de: @Model.Beneficiario.Nombre</h3>
-                   
+
                 }
 
                 @if (Model.MontoPorBeneficiario > 0)
@@ -96,15 +103,14 @@
                     @foreach (var item in Model.MontoPorBeneficiarios)
                     {
 
-                        <tr>
-                            <td>@item.MesBeneficiario</td>
-                            <td>@item.MontoTotalBeneficiario.ToString("C")</td>
-                        </tr>
+                            @item.MontoTotalBeneficiario.ToString("C")
+                     
                     }
                 }
             }
         </div>
     </div>
+
 </body>
 </html>
 

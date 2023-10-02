@@ -3,11 +3,6 @@
     background-color: #154360;
 }
 
-.card {
-    box-shadow: 1px 1px 1px grey;
-}
-
-
 
 .card {
     display: flex;
@@ -21,7 +16,7 @@
     border: 0 solid rgba(0,0,0,.125);
     border-radius: 1rem;
     margin: 40px auto;
-    box-shadow: 2px 2px 20px black;
+    box-shadow: 2px 2px 10px black;
     transition: transform 0.3s ease;
 }
 

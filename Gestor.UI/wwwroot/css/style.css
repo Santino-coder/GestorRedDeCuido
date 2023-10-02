@@ -14,7 +14,7 @@
     border: 0 solid rgba(0,0,0,.125);
     border-radius: 1rem;
     margin: 40px;
-    box-shadow: 2px 2px 15px black;
+    box-shadow: 2px 2px 10px black;
 }
 
 .card-body {
@@ -37,4 +37,5 @@
     padding: 8px;
     color: #ccc;
 }
+
 
