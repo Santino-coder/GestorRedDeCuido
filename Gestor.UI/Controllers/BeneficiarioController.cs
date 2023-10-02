@@ -88,6 +88,25 @@ namespace Gestor.UI.Controllers
             }
         }
 
-       
+        public ActionResult CantidadTotalBeneficiarios()
+        {
+            int cantidadTotal = ServiciosRedDeCuido.ListarBeneficiario().Count;
+
+            int cantidadActivos = ServiciosRedDeCuido.ListarBeneficiario().Count(b => b.Estado == "Activo");
+            int cantidadInactivos = ServiciosRedDeCuido.ListarBeneficiario().Count(b => b.Estado == "Inactivo");
+            int cantidadFallecidos = ServiciosRedDeCuido.ListarBeneficiario().Count(b => b.Estado == "Fallecido");
+
+            ViewBag.CantidadActivos = cantidadActivos;
+            ViewBag.CantidadInactivos = cantidadInactivos;
+            ViewBag.CantidadFallecidos = cantidadFallecidos;
+
+            return View(cantidadTotal);
+
+
+        }
+
+     
+
+
     }
 }

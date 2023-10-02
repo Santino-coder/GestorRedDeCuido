@@ -1,6 +1,7 @@
 ﻿using Gestor.BS;
 using Gestor.DA;
 using Gestor.Models;
+using Gestor.UI.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -99,6 +100,104 @@ namespace Gestor.UI.Controllers
             TempData["IdBeneficiarioSeleccionado"] = id;
             return RedirectToAction("AgregarDetalleAlternativa");
         }
+        public ActionResult ListarBeneficiario()
+        {
+            List<Beneficiario> listar;
+            listar = ServiciosRedDeCuido.ListarBeneficiario();
+            return View(listar);
+        }
+
+        public ActionResult MontosTotales()
+        {
+            // Obtener todos los detalles de las alternativas
+            var detalles = ServiciosRedDeCuido.ListarDetalleAlternativa();
+            var beneficiarios = ServiciosRedDeCuido.ListarBeneficiario(); // Reemplaza con el método real
+
+            // Calcular los montos por mes
+            var montosPorMes = detalles
+                .GroupBy(d => d.Fecha.ToString("yyyy-MM")) // Agrupar por Mes y Año
+                .Select(group => new MontosTotalesViewModel
+                {
+                    Mesanio = group.Key,
+                    MontoTotalMes = group.Sum(d => d.Monto)
+                })
+                .ToList();
+
+            // Calcular los montos por año
+            var montosPorAnio = detalles
+                .GroupBy(d => d.Fecha.Year) // Agrupar por Año
+                .Select(group => new MontosTotalesViewModel
+                {
+                    Anio = group.Key.ToString(),
+                    MontoTotalAnio = group.Sum(d => d.Monto)
+                })
+                .ToList();
+
+            // Llenar el modelo
+            var viewModel = new MontosTotalesViewModel
+            {
+                Detalles = detalles,
+                Beneficiarios = beneficiarios,
+                MontoPorMes = montosPorMes,
+                MontoPorAnio = montosPorAnio // Agrega esta propiedad al modelo
+            };
+
+            return View(viewModel);
+        }
+
+
+
+
+
+        public ActionResult CalcularMontoPorBeneficiario(int idBeneficiario)
+        {
+            // Obtener detalles solo para el beneficiario seleccionado
+            var detalles = ServiciosRedDeCuido.ObtenerDetallePorIdBeneficiario(idBeneficiario);
+
+            // Calcular el monto total para el beneficiario seleccionado
+            var montoTotalBeneficiario = detalles.Sum(d => d.Monto);
+
+            // Obtener el beneficiario específico (ajusta esto según cómo obtienes el beneficiario)
+            var beneficiario = ServiciosRedDeCuido.ObtenerBeneficiarioPorId(idBeneficiario);
+
+            // Verificar si el beneficiario se encontró correctamente
+            if (beneficiario == null)
+            {
+                // Maneja el caso cuando el beneficiario no se encuentra (por ejemplo, muestra un mensaje de error)
+                TempData["MensajeError"] = "El beneficiario no se encontró.";
+                return RedirectToAction("ListarBeneficiario", "Beneficiario");
+            }
+            var montosPorMesBeneficiario = detalles
+        .GroupBy(d => d.Fecha.ToString("yyyy-MM")) // Agrupar por Mes y Año
+        .Select(group => new MontosTotalesViewModel
+        {
+            MesBeneficiario = group.Key,
+            MontoTotalBeneficiario = group.Sum(d => d.Monto)
+        })
+        .ToList();
+
+            // Obtener la lista de beneficiarios utilizando ListarBeneficiario
+            var listaBeneficiarios = ServiciosRedDeCuido.ListarBeneficiario();
+
+            // Inicializar un nuevo objeto MontosTotalesViewModel
+            var viewModel = new MontosTotalesViewModel
+            {
+                Detalles = detalles,               
+                Beneficiario = beneficiario,
+                MontoPorBeneficiario = montoTotalBeneficiario,
+                Beneficiarios = listaBeneficiarios,
+                MontoPorBeneficiarios = montosPorMesBeneficiario
+
+            };
+
+            // Aquí puedes realizar cualquier otro procesamiento necesario
+
+            return View("MontosTotales", viewModel);
+        }
+
+
+
+
 
     }
 }

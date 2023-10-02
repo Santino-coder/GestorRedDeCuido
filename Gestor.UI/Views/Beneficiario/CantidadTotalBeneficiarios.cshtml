@@ -1,0 +1,11 @@
+﻿@model int
+
+<h1>Cantidad Total de Beneficiarios</h1>
+<p>La cantidad total de beneficiarios es: @Model</p>
+
+<h1>Cantidad Total de Beneficiarios por Estado</h1>
+<p>Cantidad de Beneficiarios Activos: @ViewBag.CantidadActivos</p>
+<p>Cantidad de Beneficiarios Inactivos: @ViewBag.CantidadInactivos</p>
+<p>Cantidad de Beneficiarios Fallecidos: @ViewBag.CantidadFallecidos</p>
+
+<a href="@Url.Action("ListarBeneficiario", "Beneficiario")">Volver a la lista de beneficiarios</a>

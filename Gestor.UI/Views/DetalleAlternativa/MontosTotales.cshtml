@@ -1,0 +1,84 @@
+﻿@model Gestor.UI.Models.MontosTotalesViewModel
+
+@if (Model.MontoPorMes != null && Model.MontoPorMes.Any())
+{
+    <h2>Monto Total por Mes</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Mes y Año</th>
+                <th>Monto Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.MontoPorMes)
+            {
+                <tr>
+                    <td>@item.Mesanio</td>
+                    <td>@item.MontoTotalMes.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+@if (Model.MontoPorAnio != null && Model.MontoPorAnio.Any())
+{
+
+    <h2>Monto Total por Año</h2>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Año</th>
+                <th>Monto Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.MontoPorAnio)
+            {
+                <tr>
+                    <td>@item.Anio</td>
+                    <td>@item.MontoTotalAnio.ToString("C")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+}
+
+
+<h1>Montos Totales por Beneficiario</h1>
+
+@using (Html.BeginForm("CalcularMontoPorBeneficiario", "DetalleAlternativa", FormMethod.Get))
+{
+    <label for="idBeneficiario">Selecciona un beneficiario:</label>
+    <select name="idBeneficiario" id="idBeneficiario">
+        @for (var i = 0; i < Model.Beneficiarios.Count; i++)
+        {
+            var beneficiario = Model.Beneficiarios[i];
+            <option value="@beneficiario.idBeneficiario">@beneficiario.Nombre</option>
+        }
+    </select>
+    <button type="submit">Mostrar Monto Total</button>
+
+
+@if (Model.Beneficiario != null)
+{
+    <h2>Beneficiario Seleccionado</h2>
+    <p>Nombre del Beneficiario: @Model.Beneficiario.Nombre</p>
+}
+
+@if (Model.MontoPorBeneficiario > 0)
+{
+  
+
+        @foreach (var item in Model.MontoPorBeneficiarios)
+        {
+            <tr>
+                <td>@item.MesBeneficiario</td>
+                <td>@item.MontoTotalBeneficiario.ToString("C")</td>
+            </tr>
+        }
+}
+}
