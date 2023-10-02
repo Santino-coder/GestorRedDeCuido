@@ -63,7 +63,7 @@
                                         @Html.DisplayFor(modelItem => item.Proveedor)
                                     </td>
                                     <td>
-                                        @Html.DisplayFor(modelItem => item.Monto)
+                                ₡@Html.DisplayFor(modelItem => item.Monto)
                                     </td>
                                     <td>
                                         @Html.DisplayFor(modelItem => item.NumeroFactura)
@@ -111,6 +111,7 @@
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <script src="~/js/ObtenerDetallePorIdBeneficiario.js"></script>
+<script src="~/js/Moneda.js"></script>
 </html>
 
 @section Scripts {
