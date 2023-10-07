@@ -44,7 +44,7 @@ namespace Gestor.UI.Areas.Identity.Pages.Account
 
             code = Encoding.UTF8.GetString(WebEncoders.Base64UrlDecode(code));
             var result = await _userManager.ConfirmEmailAsync(user, code);
-            StatusMessage = result.Succeeded ? "¡Gracias por confirmar tu cuenta!" : "Ha ocurrido un error.";
+            StatusMessage = result.Succeeded ? "¡Gracias por confirmar tu correo electrónico!" : "Ha ocurrido un error.";
             return Page();
         }
     }

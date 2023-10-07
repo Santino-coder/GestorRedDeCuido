@@ -132,7 +132,7 @@ namespace Gestor.UI.Areas.Identity.Pages.Account
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirma tu correo electrónico",
-                        $"Por favor confirma tu cuenta <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>dando click aquí</a>.");
+                        $"Por favor confirma tu correo electrónico dando <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'> click aquí</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {

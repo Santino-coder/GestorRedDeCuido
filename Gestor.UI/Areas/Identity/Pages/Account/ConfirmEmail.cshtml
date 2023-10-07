@@ -1,8 +1,40 @@
 ﻿@page
 @model ConfirmEmailModel
 @{
-    ViewData["Title"] = "Email confirmado";
+    ViewData["Title"] = "Correo electrónico confirmado";
 }
 
-<h1>@ViewData["Title"]</h1>
-<partial name="_StatusMessage" model="Model.StatusMessage" />
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+
+    <title>Confirmación de correo electrónico</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="~/css/_Layout.css" asp-append-version="true" />
+    <link href="~/css/style.css" rel="stylesheet" type="text/css" />
+
+</head>
+<body>
+    <div class="card mb-4">
+        <div class="card-body">
+            <h3 class="h6">Confirmación de correo electrónico</h3>
+            <hr />
+            <p>
+               ¡Gracias por confirmar tu correo electrónico!
+                <div class="input-group">
+                    <p>Ya puedes iniciar sesión dando <a href="~/Identity/Account/Login">click aquí</a></p>
+                </div>
+            </p>
+        </div>
+    </div>
+
+</body>
+</html>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
