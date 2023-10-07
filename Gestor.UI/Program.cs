@@ -2,8 +2,10 @@ using Gestor.BS;
 using Gestor.DA;
 using Gestor.UI;
 using Gestor.UI.Data;
+using Gestor.UI.Services;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -16,7 +18,7 @@ using System.Threading.Tasks;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Agrega esta línea al bloque "Add services to the container."
+// Agrega esta lï¿½nea al bloque "Add services to the container."
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -26,6 +28,9 @@ builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
     .AddEntityFrameworkStores<ApplicationDbContext>();
 builder.Services.AddControllersWithViews();
+
+builder.Services.AddSingleton<IEmailSender, EmailSender>();
+
 
 
 builder.Services.Configure<IdentityOptions>(options =>
