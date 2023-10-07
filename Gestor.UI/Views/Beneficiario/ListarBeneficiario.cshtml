@@ -26,8 +26,11 @@
             </div>
             @Html.ActionLink("Consultar cantidad de beneficiarios", "CantidadTotalBeneficiarios", new { @class = "btn btn-primary btn-sm" })
             <hr />
+            <button id="miBotonOrdenar">Ordenar por nombre</button>
+
+            <hr />
             <span class="counter pull-right"></span>
-            <table class="table table-hover table-bordered results">
+            <table class="table table-hover table-bordered results" id="miTabla">
 
                 <thead>
                     <tr>
