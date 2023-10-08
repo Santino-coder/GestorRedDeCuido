@@ -13,8 +13,10 @@ namespace Gestor.Models
         [Key]
         public int idDetalleAlternativa { get; set; }
 
-        public string NombreAlternativa { get; set; }   
+        public string NombreAlternativa { get; set; }
 
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime Fecha { get; set; } 
 
         public string Articulo { get; set; }
