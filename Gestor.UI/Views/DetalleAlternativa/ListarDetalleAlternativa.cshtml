@@ -31,6 +31,7 @@
 
                 <thead>
                     <tr>
+                        <th scope="col">Nombre Beneficiario</th>
                         <th scope="col">Fecha</th>
                         <th scope="col">Alternativa</th>
                         <th scope="col">Artículo</th>
@@ -47,6 +48,10 @@
                     @foreach (var item in Model)
                     {
                         <tr>
+
+                            <td>
+                                @Html.DisplayFor(modelItem => item.NombreBeneficiario)
+                            </td>
 
                             <td>
                                 @Html.DisplayFor(modelItem => item.Fecha)

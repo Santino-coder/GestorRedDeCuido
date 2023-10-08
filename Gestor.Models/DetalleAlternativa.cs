@@ -32,6 +32,8 @@ namespace Gestor.Models
         public byte[]? FacturaFoto { get; set; }
 
         public byte[]? Proforma { get; set; }
+        [NotMapped]
+        public string NombreBeneficiario { get; set; }
 
         
         [NotMapped]

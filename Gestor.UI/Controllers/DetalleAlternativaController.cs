@@ -78,6 +78,13 @@ namespace Gestor.UI.Controllers
         {
             List<DetalleAlternativa> listar;
             listar = ServiciosRedDeCuido.ListarDetalleAlternativa();
+
+            foreach (var detalle in listar)
+            {
+                var beneficiario = ServiciosRedDeCuido.ObtenerBeneficiarioPorId(detalle.idBeneficiario);
+                detalle.NombreBeneficiario = beneficiario != null ? beneficiario.Nombre : "Beneficiario no encontrado";
+            }
+
             return View(listar);
         }
 
