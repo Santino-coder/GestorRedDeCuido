@@ -34,8 +34,13 @@ namespace Gestor.Models
         public byte[]? Proforma { get; set; }
         [NotMapped]
         public string NombreBeneficiario { get; set; }
+        [NotMapped]
+        public string ApellidoBeneficiario { get; set; }
 
-        
+        [NotMapped]
+        public string NombreCompleto { get; set; }
+
+
         [NotMapped]
         public List<Beneficiario> beneficiario { get; set; }
 

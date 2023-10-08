@@ -83,7 +83,10 @@ namespace Gestor.UI.Controllers
             {
                 var beneficiario = ServiciosRedDeCuido.ObtenerBeneficiarioPorId(detalle.idBeneficiario);
                 detalle.NombreBeneficiario = beneficiario != null ? beneficiario.Nombre : "Beneficiario no encontrado";
-            }
+                detalle.ApellidoBeneficiario = beneficiario != null ? beneficiario.Apellidos : "Beneficiario no encontrado";
+                detalle.NombreCompleto = $"{detalle.NombreBeneficiario} {detalle.ApellidoBeneficiario}";
+            
+        }
 
             return View(listar);
         }
