@@ -56,3 +56,25 @@ function ordenarTabla() {
 // Llama a la función de ordenar al cargar la página
 window.onload = ordenarTabla;
 
+
+//Funcion para descargar factura
+function descargarFactura(dataUrl) {
+    // Crea un enlace oculto para la descarga de la imagen
+    var enlaceDescarga = document.createElement('a');
+    enlaceDescarga.href = dataUrl;
+    enlaceDescarga.download = 'factura.jpg'; // Nombre de la imagen para descargar
+    document.body.appendChild(enlaceDescarga);
+    enlaceDescarga.click();
+    document.body.removeChild(enlaceDescarga);
+}
+
+//Funcion para descargar proforma
+function descargarProforma(dataUrl) {
+    // Crea un enlace oculto para la descarga de la imagen
+    var enlaceDescarga = document.createElement('a');
+    enlaceDescarga.href = dataUrl;
+    enlaceDescarga.download = 'proforma.jpg'; // Nombre de la imagen para descargar
+    document.body.appendChild(enlaceDescarga);
+    enlaceDescarga.click();
+    document.body.removeChild(enlaceDescarga);
+}

@@ -84,6 +84,8 @@
 
 
                                     <img src="@imagenDataUrl" alt="Factura" width="200" height="150" />
+                                    <button onclick="descargarFactura('@imagenDataUrl')">Descargar factura</button>
+                                
                                 }
                                 else
                                 {
@@ -98,7 +100,8 @@
                                     string imagenDataUrl = $"data:image/jpeg;base64,{imagenBase64}";
 
 
-                                    <img src="@imagenDataUrl" alt="Factura" width="200" height="150" />
+                                    <img src="@imagenDataUrl" alt="Proforma" width="200" height="150" />
+                                    <button onclick="descargarProforma('@imagenDataUrl')">Descargar proforma</button>
                                 }
                                 else
                                 {
