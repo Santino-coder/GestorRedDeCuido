@@ -76,7 +76,7 @@
             <h3 class="h6">Monto total por beneficiario</h3>
             <hr />
 
-            @using (Html.BeginForm("CalcularMontoPorBeneficiario", "DetalleAlternativa", FormMethod.Get))
+            @using (Html.BeginForm("CalcularMontoPorBeneficiario", "DetalleAlternativa", FormMethod.Get, new { name = "formBeneficiario" }))
             {
                 <label for="idBeneficiario">Selecciona un beneficiario:</label>
                 <select name="idBeneficiario" id="idBeneficiario">
@@ -120,6 +120,65 @@
             }
         </div>
     </div>
+    
+
+    <div class="card mb-4" style="text-align:center">
+        <div class="card-body">
+            <h3 class="h6">Monto total por alternativa</h3>
+            <hr />
+
+            @using (Html.BeginForm("CalcularMontoPorAlternativa", "DetalleAlternativa", FormMethod.Get, new { name = "formAlternativa" }))
+            {
+                <label for="AlternativaSeleccionada">Selecciona una alternativa:</label>
+                <select name="AlternativaSeleccionada" id="AlternativaSeleccionada">
+                    <option value="Alimentación">Alimentación</option>
+                    <option value="Artículos de uso personal e higiene">Artículos de uso personal e higiene</option>
+                    <option value="Medicamentos e implementos de salud">Medicamentos e implementos de salud </option>
+                    <option value="Atención social en salud integral">Atención social en salud integral</option>
+                    <option value=" Productos de apoyo o ayudas técnicas">Productos de apoyo o ayudas técnicas</option>
+                    <option value="Equipamiento de casa"> Equipamiento de casa</option>
+                    <option value="Alquiler de vivienda, servicios básicos, municipales y trámites migratorios"> Alquiler de vivienda, servicios básicos, municipales y trámites migratorios</option>
+                    <option value="Familias Solidarias">Familias Solidarias</option>
+                    <option value="Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado">Servicios Básicos de atención en el domicilio y Servicios para la atención y cuidado especializado</option>
+                    <option value="Hogares comunitarios">Hogares comunitarios</option>
+                    <option value="Transporte y combustible">Transporte y combustible</option>
+                    <option value="Promoción y prevención de la salud">Promoción y prevención de la salud </option>
+                    <option value="Institucionalización"> Institucionalización</option>
+                    <option value="Mejoras habitacionales">Mejoras habitacionales</option>
+                    <!-- Agrega opciones para las otras alternativas -->
+                </select>
+                <button type="submit" class="btn btn-primary btn-sm btn-icon-text">Calcular Monto</button>
+            }
+
+            @if (!string.IsNullOrEmpty(Model.AlternativaSeleccionada))
+            {
+                <h3 class="h6">Monto total de la alternativa: @Model.AlternativaSeleccionada</h3>
+                <p>Monto total: @Model.MontoMensualPorAlternativa.ToString("C")</p>
+
+                <h3 class="h6">Montos por mes de la alternativa:</h3>
+                <table class="table table-hover table-bordered results">
+                    <thead>
+                        <tr>
+                            <th>Mes</th>
+                            <th>Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.MontoMensualDeAlternativa)
+                        {
+                            <tr>
+                                <td>@item.Mesanio</td>
+                                <td>@item.MontoTotalMes.ToString("C")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+        </div>
+    </div>
+
+
+
 
 </body>
 </html>

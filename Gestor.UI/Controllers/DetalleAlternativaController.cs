@@ -178,13 +178,13 @@ namespace Gestor.UI.Controllers
                 return RedirectToAction("ListarBeneficiario", "Beneficiario");
             }
             var montosPorMesBeneficiario = detalles
-        .GroupBy(d => d.Fecha.ToString("yyyy-MM")) // Agrupar por Mes y Año
-        .Select(group => new MontosTotalesViewModel
-        {
+         .GroupBy(d => d.Fecha.ToString("yyyy-MM")) // Agrupar por Mes y Año
+         .Select(group => new MontosTotalesViewModel
+         {
             MesBeneficiario = group.Key,
             MontoTotalBeneficiario = group.Sum(d => d.Monto)
-        })
-        .ToList();
+         })
+         .ToList();
 
             // Obtener la lista de beneficiarios utilizando ListarBeneficiario
             var listaBeneficiarios = ServiciosRedDeCuido.ListarBeneficiario();
@@ -206,6 +206,36 @@ namespace Gestor.UI.Controllers
         }
 
 
+        public ActionResult CalcularMontoPorAlternativa(string AlternativaSeleccionada)
+        {
+            // Obtener todos los detalles de las alternativas
+            var detalles = ServiciosRedDeCuido.ListarDetalleAlternativa();
+
+            // Filtrar los detalles para obtener solo los de la alternativa seleccionada
+            var detallesSeleccionados = detalles.Where(d => d.NombreAlternativa == AlternativaSeleccionada).ToList();
+
+            // Calcular el monto total para la alternativa seleccionada
+            var montoTotalAlternativa = detallesSeleccionados.Sum(d => d.Monto);
+            var montosPorMes = detallesSeleccionados
+               .GroupBy(d => d.Fecha.ToString("yyyy-MM"))
+               .Select(group => new MontosTotalesViewModel
+               {
+                   Mesanio = group.Key,
+                   MontoTotalMes = group.Sum(d => d.Monto)
+               })
+               .ToList();
+            // Llenar el modelo
+            var viewModel = new MontosTotalesViewModel
+            {
+                Detalles = detallesSeleccionados,
+                MontoMensualPorAlternativa = montoTotalAlternativa,
+                AlternativaSeleccionada = AlternativaSeleccionada,
+                MontoMensualDeAlternativa = montosPorMes
+                // Agrega otras propiedades necesarias aquí
+            };
+
+            return View("MontosTotales", viewModel);
+        }
 
 
 
