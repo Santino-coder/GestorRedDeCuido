@@ -11,12 +11,10 @@
     <link href="~/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <section class="card mb-4" style="text-align:center">
+    <div id="TotalPorBeneficiario" class="card mb-4 contenedor-div" style="text-align:center;">
         <div class="card-body">
-            @Html.ActionLink("Regresar a montos totales", "MontosTotales","DetalleAlternativa", new { @class = "btn btn-danger btn-sm" })
-            <h3 class="h6">Montos Totales por Beneficiario</h3>
+            <h4>Montos totales por beneficiario</h4>
             <hr />
-
             @using (Html.BeginForm("MontosTotalesPorBeneficiario", "DetalleAlternativa", FormMethod.Post, new { name = "formBeneficiario" }))
             {
                 <label for="idBeneficiario">Selecciona un beneficiario:</label>
@@ -33,6 +31,7 @@
             {
                 <br />
                 <h3 class="h6">Monto total de: @Model.Beneficiario.Nombre</h3>
+
             }
 
             @if (Model.MontoPorBeneficiario > 0)
@@ -56,19 +55,9 @@
                     </tbody>
                 </table>
             }
-        </div>
-        </div>
-    </section>
+            @Html.ActionLink("Regresar a montos totales", "MontosTotales","DetalleAlternativa", new { @class = "btn btn-danger btn-sm" })
 
-    <script>
-        function mostrarDiv(idDiv) {
-            var div = document.getElementById(idDiv);
-            if (div.style.display === 'none' || div.style.display === '') {
-                div.style.display = 'block';
-            } else {
-                div.style.display = 'none';
-            }
-        }
-    </script>
+        </div>
+    </div>
 </body>
 </html>

@@ -13,20 +13,12 @@
 
 </head>
 <body>
-
-
-    <section class="card mb-4" style="text-align:center">
-        <div class="card-body">
-            @Html.ActionLink("Regresar a montos totales", "MontosTotales","DetalleAlternativa", new { @class = "btn btn-danger btn-sm" })
-
             <div id="TotalPorAnio" class="card mb-4 contenedor-div" style="text-align:center;">
                 <div class="card-body">
+                    <h4>Montos totales por año</h4>
+                    <hr />
                     @if (Model.MontoPorAnio != null && Model.MontoPorAnio.Any())
                     {
-
-                        <h3 class="h6">Montos totales por año</h3>
-                        <hr />
-
                         <table class="table table-hover table-bordered results">
                             <thead>
                                 <tr>
@@ -45,13 +37,12 @@
                             </tbody>
                         </table>
                     }
+                    @Html.ActionLink("Regresar a montos totales", "MontosTotales","DetalleAlternativa", new { @class = "btn btn-danger btn-sm" })
                 </div>
             </div>
         </div>
-    </section>
-
+    </div>
 </body>
-
 </html>
 
 @section Scripts {

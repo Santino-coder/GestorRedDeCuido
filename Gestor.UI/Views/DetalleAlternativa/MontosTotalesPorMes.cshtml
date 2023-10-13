@@ -14,39 +14,34 @@
 </head>
 <body>
 
-    <section class="card mb-4" style="text-align:center">
+    <div id="TotalPorMes" class="card mb-4 contenedor-div" style="text-align:center;">
         <div class="card-body">
+            <h4>Montos totales por mes</h4>
+            <hr />
+
+            @if (Model.MontoPorMes != null && Model.MontoPorMes.Any())
+            {
+                <table class="table table-hover table-bordered results">
+                    <thead>
+                        <tr>
+                            <th scope="col">Fecha</th>
+                            <th scope="col">Monto</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.MontoPorMes)
+                        {
+                            <tr>
+                                <td>@item.Mesanio</td>
+                                <td>@item.MontoTotalMes.ToString("C")</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
             @Html.ActionLink("Regresar a montos totales", "MontosTotales","DetalleAlternativa", new { @class = "btn btn-danger btn-sm" })
-            <div id="TotalPorMes" class="card mb-4 contenedor-div" style="text-align:center;">
-                <div class="card-body">
-                    @if (Model.MontoPorMes != null && Model.MontoPorMes.Any())
-                    {
-
-                        <h3 class="h6">Montos totales por mes</h3>
-                        <hr />
-
-                        <table class="table table-hover table-bordered results">
-                            <thead>
-                                <tr>
-                                    <th scope="col">Fecha</th>
-                                    <th scope="col">Monto</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var item in Model.MontoPorMes)
-                                {
-                                    <tr>
-                                        <td>@item.Mesanio</td>
-                                        <td>@item.MontoTotalMes.ToString("C")</td>
-                                    </tr>
-                                }
-                            </tbody>
-                        </table>
-                    }
-                </div>
-            </div>
         </div>
-    </section>
+    </div>
 </body>
 </html>
 
