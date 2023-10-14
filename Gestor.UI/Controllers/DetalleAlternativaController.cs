@@ -119,41 +119,18 @@ namespace Gestor.UI.Controllers
 
         public ActionResult MontosTotales()
         {
-            // Obtener todos los detalles de las alternativas
             var detalles = ServiciosRedDeCuido.ListarDetalleAlternativa();
-            var beneficiarios = ServiciosRedDeCuido.ListarBeneficiario(); // Reemplaza con el método real
+            var beneficiarios = ServiciosRedDeCuido.ListarBeneficiario();
 
-            // Calcular los montos por mes
-            var montosPorMes = detalles
-                .GroupBy(d => d.Fecha.ToString("yyyy-MM")) // Agrupar por Mes y Año
-                .Select(group => new MontosTotalesViewModel
-                {
-                    Mesanio = group.Key,
-                    MontoTotalMes = group.Sum(d => d.Monto)
-                })
-                .ToList();
-
-            // Calcular los montos por año
-            var montosPorAnio = detalles
-                .GroupBy(d => d.Fecha.Year) // Agrupar por Año
-                .Select(group => new MontosTotalesViewModel
-                {
-                    Anio = group.Key.ToString(),
-                    MontoTotalAnio = group.Sum(d => d.Monto)
-                })
-                .ToList();
-
-            // Llenar el modelo
             var viewModel = new MontosTotalesViewModel
             {
                 Detalles = detalles,
                 Beneficiarios = beneficiarios,
-                MontoPorMes = montosPorMes,
-                MontoPorAnio = montosPorAnio // Agrega esta propiedad al modelo
             };
 
-            return View(viewModel);
+            return View("MontosTotales", viewModel);
         }
+
 
         public ActionResult MontosTotalesPorMes()
         {
