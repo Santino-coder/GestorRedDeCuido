@@ -66,7 +66,7 @@
     }
 
     .box:nth-child(1) {
-        background-color: var(--one-use-color);
+        background-color: var(--two-use-color);
     }
 
     .box:nth-child(2) {
@@ -74,7 +74,7 @@
     }
 
     .box:nth-child(3) {
-        background-color: var(--one-use-color);
+        background-color: var(--two-use-color);
     }
 
     .box:nth-child(4) {

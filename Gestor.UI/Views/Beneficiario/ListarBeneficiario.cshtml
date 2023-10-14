@@ -9,7 +9,6 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-
     <title>ListarBeneficiario</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -21,12 +20,13 @@
 
     <div class="card mb-4">
         <div class="card-body">
+            <h4 style="text-align:center;">Lista de beneficiarios</h4>
+            <hr />
             <div class="form-group pull-right">
                 <input type="text" class="search form-control" placeholder="Buscar">
             </div>
             @Html.ActionLink("Consultar cantidad de beneficiarios", "CantidadTotalBeneficiarios", new { @class = "btn btn-primary btn-sm" })
-            <hr />
-            
+          <br />
             <span class="counter pull-right"></span>
             <table class="table table-hover table-bordered results" id="miTabla">
 

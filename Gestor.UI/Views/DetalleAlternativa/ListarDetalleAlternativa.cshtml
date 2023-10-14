@@ -20,12 +20,13 @@
 
     <div class="card mb-4">
         <div class="card-body">
-
+            <h4 style="text-align:center;">Detalles de alternativas</h4>
+            <hr />
             <div class="form-group pull-right">
                 <input type="text" class="search form-control" placeholder="Buscar">
             </div>
             @Html.ActionLink("Consultar montos totales", "MontosTotales", new { @class = "btn btn-primary btn-sm" })
-            <hr />
+            <br />
             <span class="counter pull-right"></span>
             <table class="table table-hover table-bordered results">
 
@@ -84,7 +85,7 @@
 
 
                                     <img src="@imagenDataUrl" alt="Factura" width="200" height="150" />
-                                    <button onclick="descargarFactura('@imagenDataUrl')">Descargar factura</button>
+                                    <button class="btn btn-primary btn-sm" onclick="descargarFactura('@imagenDataUrl')">Descargar factura</button>
                                 
                                 }
                                 else
@@ -101,7 +102,7 @@
 
 
                                     <img src="@imagenDataUrl" alt="Proforma" width="200" height="150" />
-                                    <button onclick="descargarProforma('@imagenDataUrl')">Descargar proforma</button>
+                                    <button class="btn btn-primary btn-sm" onclick="descargarProforma('@imagenDataUrl')">Descargar proforma</button>
                                 }
                                 else
                                 {
