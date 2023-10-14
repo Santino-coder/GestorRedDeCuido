@@ -4,16 +4,15 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-
     <title>CantidadTotalBeneficiaruos</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width-device-width, initial-scale=1">
+    <!-- Enlace al archivo CSS de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Enlaces a los archivos de hojas de estilo personalizados -->
     <link rel="stylesheet" href="~/css/_Layout.css" asp-append-version="true" />
     <link href="~/css/style.css" rel="stylesheet" type="text/css" />
-
 </head>
 <body>
-
     <div id="TotalPorMes" class="card mb-4 contenedor-div" style="text-align:center;">
         <div class="card-body">
             <h4>Montos totales por mes</h4>
@@ -21,6 +20,7 @@
 
             @if (Model.MontoPorMes != null && Model.MontoPorMes.Any())
             {
+                <!-- Tabla para mostrar montos totales por mes -->
                 <table class="table table-hover table-bordered results">
                     <thead>
                         <tr>
@@ -31,6 +31,7 @@
                     <tbody>
                         @foreach (var item in Model.MontoPorMes)
                         {
+                            <!-- Fila de la tabla para cada mes con su monto total -->
                             <tr>
                                 <td>@item.Mesanio</td>
                                 <td>@item.MontoTotalMes.ToString("C")</td>
@@ -39,11 +40,13 @@
                     </tbody>
                 </table>
             }
+            <!-- Enlace para regresar a la vista de montos totales -->
             @Html.ActionLink("Regresar a montos totales", "MontosTotales","DetalleAlternativa", new { @class = "btn btn-danger btn-sm" })
         </div>
     </div>
 </body>
 </html>
+
 
 @section Scripts {
     @{

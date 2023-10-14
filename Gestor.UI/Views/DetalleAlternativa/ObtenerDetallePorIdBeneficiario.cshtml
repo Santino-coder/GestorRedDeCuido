@@ -8,110 +8,113 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-
     <title>ObtenerDetallePorIdBeneficiario</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Enlace al archivo CSS de Bootstrap -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Enlace a los archivos de hojas de estilo personalizados -->
     <link rel="stylesheet" href="~/css/_Layout.css" asp-append-version="true" />
     <link href="~/css/style.css" rel="stylesheet" type="text/css" />
-
 </head>
 <body>
-
-            <div class="card mb-4">
-                <div class="card-body">
+    <div class="card mb-4">
+        <div class="card-body">
             <h4 style="text-align:center;">Detalles de alternativas</h4>
             <hr />
-                    <div class="form-group pull-right">
-                        <input type="text" class="search form-control" placeholder="Buscar">
-                    </div>
-         
-                    <span class="counter pull-right"></span>
-                    <table class="table table-hover table-bordered results">
-
-                        <thead>
-                            <tr>
-                                <th scope="col">Fecha</th>
-                                <th scope="col">Alternativa</th>
-                                <th scope="col">Artículo</th>
-                                <th scope="col">Cantidad</th>
-                                <th scope="col">Proveedor</th>
-                                <th scope="col">Monto</th>
-                                <th scope="col">Número de factura</th>
-                                <th scope="col">Foto de factura </th>
-                                <th scope="col">Foto de proforma </th>
-                            </tr>
-                        </thead>
-
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
-                                <tr>
-
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Fecha)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NombreAlternativa)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Articulo)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Cantidad)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.Proveedor)
-                                    </td>
-                                    <td>
-                                ₡@Html.DisplayFor(modelItem => item.Monto)
-                                    </td>
-                                    <td>
-                                        @Html.DisplayFor(modelItem => item.NumeroFactura)
-                                    </td>
-                                    <td>
-                                        @if (item != null && item.FacturaFoto != null && item.FacturaFoto.Length > 0)
-                                        {
-                                        
-                                            string imagenBase64 = Convert.ToBase64String(item.FacturaFoto);
-                                            string imagenDataUrl = $"data:image/jpeg;base64,{imagenBase64}";
-
-                                            
-                                            <img src="@imagenDataUrl" alt="Factura" width="200" height="150" />
-                                        }
-                                        else
-                                        {
-                                            <p>No se encontró una foto</p>
-                                        }
-                                    </td>
-                                    <td>
-                                        @if (item != null && item.Proforma != null && item.Proforma.Length > 0)
-                                        {
-                                      
-                                            string imagenBase64 = Convert.ToBase64String(item.Proforma);
-                                            string imagenDataUrl = $"data:image/jpeg;base64,{imagenBase64}";
-
-                                         
-                                            <img src="@imagenDataUrl" alt="Factura" width="200" height="150" />
-                                        }
-                                        else
-                                        {
-                                            <p>No se encontró una foto</p>
-                                        }
-                                    </td>
-                                </tr>
-                            }
-                        <tbody>
-                    </table>
-                </div>
-
-
+            <div class="form-group pull-right">
+                <!-- Cuadro de búsqueda -->
+                <input type="text" class="search form-control" placeholder="Buscar">
             </div>
-
+            <!-- Contador de resultados -->
+            <span class="counter pull-right"></span>
+            <table class="table table-hover table-bordered results">
+                <thead>
+                    <tr>
+                        <th scope="col">Fecha</th>
+                        <th scope="col">Alternativa</th>
+                        <th scope="col">Artículo</th>
+                        <th scope="col">Cantidad</th>
+                        <th scope="col">Proveedor</th>
+                        <th scope="col">Monto</th>
+                        <th scope="col">Número de factura</th>
+                        <th scope="col">Foto de factura</th>
+                        <th scope="col">Foto de proforma</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>
+                                <!-- Fecha -->
+                                @Html.DisplayFor(modelItem => item.Fecha)
+                            </td>
+                            <td>
+                                <!-- Alternativa -->
+                                @Html.DisplayFor(modelItem => item.NombreAlternativa)
+                            </td>
+                            <td>
+                                <!-- Artículo -->
+                                @Html.DisplayFor(modelItem => item.Articulo)
+                            </td>
+                            <td>
+                                <!-- Cantidad -->
+                                @Html.DisplayFor(modelItem => item.Cantidad)
+                            </td>
+                            <td>
+                                <!-- Proveedor -->
+                                @Html.DisplayFor(modelItem => item.Proveedor)
+                            </td>
+                            <td>
+                                <!-- Monto -->
+                                ₡@Html.DisplayFor(modelItem => item.Monto)
+                            </td>
+                            <td>
+                                <!-- Número de factura -->
+                                @Html.DisplayFor(modelItem => item.NumeroFactura)
+                            </td>
+                            <td>
+                                @if (item != null && item.FacturaFoto != null && item.FacturaFoto.Length > 0)
+                                {
+                                    <!-- Mostrar imagen de factura si está disponible -->
+                                    @* Convierte la imagen de factura a Base64 y genera una URL de datos *@
+                                    string imagenBase64 = Convert.ToBase64String(item.FacturaFoto);
+                                    string imagenDataUrl = $"data:image/jpeg;base64,{imagenBase64}";
+                                    <img src="@imagenDataUrl" alt="Factura" width="200" height="150" />
+                                }
+                                else
+                                {
+                                    <!-- Mensaje si no hay foto de factura -->
+                                    <p>No se encontró una foto</p>
+                                }
+                            </td>
+                            <td>
+                                @if (item != null && item.Proforma != null && item.Proforma.Length > 0)
+                                {
+                                    <!-- Mostrar imagen de proforma si está disponible -->
+                                    @* Convierte la imagen de proforma a Base64 y genera una URL de datos *@
+                                    string imagenBase64 = Convert.ToBase64String(item.Proforma);
+                                    string imagenDataUrl = $"data:image/jpeg;base64,{imagenBase64}";
+                                    <img src="@imagenDataUrl" alt="Proforma" width="200" height="150" />
+                                }
+                                else
+                                {
+                                    <!-- Mensaje si no hay foto de proforma -->
+                                    <p>No se encontró una foto</p>
+                                }
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
 </body>
+<!-- Enlaces a scripts JavaScript -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="~/js/FuncionesParaTablas.js"></script>
 </html>
+
 
 @section Scripts {
     @{
