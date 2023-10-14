@@ -28,23 +28,8 @@
 .main {
     height: auto;
     width: 100%;
-    overflow-y: scroll;
-    overflow-x: hidden;
-    padding: 30px 30px 30px 30px;
-    /* Personalizar la barra de desplazamiento */
-    scrollbar-color: var(--one-use-color) var(--two-use-color);
-    scrollbar-width: thin;
+    padding: 30px;
 }
-
-    /* Estilos de la barra de desplazamiento en navegadores webkit */
-    .main::-webkit-scrollbar-thumb {
-        background-image: linear-gradient(to bottom, var(--one-use-color), var(--two-use-color));
-        width: 5px;
-    }
-
-    .main::-webkit-scrollbar-track {
-        background-color: #9e9e9eb2;
-    }
 
 /* Estilo de los contenedores de cajas flexibles */
 .box-container {
@@ -66,32 +51,30 @@
     justify-content: space-around;
     cursor: pointer;
     transition: transform 0.3s ease;
+}
+
     /* Cambio de tamaño al pasar el ratón por encima */
-    &:hover
+    .box:hover {
+        transform: scale(1.08);
+    }
 
-{
-    transform: scale(1.08);
-}
+    /* Establecer el fondo de las primeras cuatro cajas */
+    .box:nth-child(1),
+    .box:nth-child(2),
+    .box:nth-child(3),
+    .box:nth-child(4) {
+        background-color: var(--two-use-color);
+    }
 
-/* Establecer el fondo de las primeras cuatro cajas */
-&:nth-child(1),
-&:nth-child(2),
-&:nth-child(3),
-&:nth-child(4) {
-    background-color: var(--two-use-color);
-}
+    /* Estilo de las imágenes en las cajas */
+    .box img {
+        height: 50px;
+    }
 
-/* Estilo de las imágenes en las cajas */
-img {
-    height: 50px;
-}
-
-/* Estilo del texto en las cajas */
-.text {
-    color: white;
-}
-
-}
+    /* Estilo del texto en las cajas */
+    .box .text {
+        color: white;
+    }
 
 /* Estilo del texto de temas */
 .topic {
@@ -110,4 +93,15 @@ img {
 .no-link-style {
     text-decoration: none;
     color: inherit;
+}
+
+/* Estilos para pantallas de tamaño máximo de 1024px */
+@media (max-width: 1024px) {
+    svg {
+        display: none;
+    }
+
+    .topic-heading {
+        font-size: 15px; /* Cambia el tamaño del texto para pantallas más pequeñas */
+    }
 }
