@@ -1,37 +1,38 @@
-﻿body {
-    background-image: none;
-    background-color: #154360;
-    
+﻿/* Estilo del fondo del cuerpo de la página */
+body {
+    background-image: none; /* Elimina la imagen de fondo */
+    background-color: #154360; /* Establece un color de fondo */
 }
 
+/* Estilo de una tarjeta genérica */
 .card {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 500px;
+    width: 500px; /* Establece un ancho máximo para la tarjeta */
     min-width: 0;
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 0 solid rgba(0,0,0,.125);
+    border: 0 solid rgba(0, 0, 0, 0.125);
     border-radius: 1rem;
-    margin: 40px auto;
+    margin: 40px auto; /* Centra la tarjeta horizontalmente */
     box-shadow: 2px 2px 10px black;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease; /* Agrega una transición al hacer hover */
 }
 
+    /* Efecto de escala al pasar el ratón sobre la tarjeta */
     .card:hover {
         transform: scale(1.1);
     }
 
-
+/* Estilo del contenido de la tarjeta */
 .card-body {
-    -webkit-box-flex: 1;
-    -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     padding: 1.5rem 1.5rem;
 }
 
+/* Estilo para todos los elementos div en el documento */
 div {
-    margin: 10px;
+    margin: 10px; /* Agrega un margen a todos los elementos div */
 }

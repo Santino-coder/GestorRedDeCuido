@@ -1,46 +1,52 @@
-﻿@import url( "https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+﻿/* Importar una fuente de Google Fonts */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
 
+/* Estilos generales para el documento */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: "Poppins", sans-serif;
+    font-family: "Poppins", sans-serif; /* Aplicar la fuente importada a todos los elementos */
 }
 
+/* Definir variables de color personalizadas */
 :root {
     --Border-color: #3f0097;
     --one-use-color: #0367fc;
     --two-use-color: #037ffc;
 }
 
-
+/* Estilo del contenedor principal */
 .main-container {
     display: flex;
     width: 100vw;
     position: relative;
-    top: 70px;
+    top: 70px; /* Desplaza el contenido hacia abajo para evitar la barra de navegación */
 }
 
-
+/* Estilo del contenedor principal del contenido */
 .main {
     height: auto;
     width: 100%;
     overflow-y: scroll;
     overflow-x: hidden;
     padding: 30px 30px 30px 30px;
+    /* Personalizar la barra de desplazamiento */
+    scrollbar-color: var(--one-use-color) var(--two-use-color);
+    scrollbar-width: thin;
 }
 
+    /* Estilos de la barra de desplazamiento en navegadores webkit */
     .main::-webkit-scrollbar-thumb {
-        background-image: linear-gradient(to bottom, #0367fc, #037ffc);
-    }
-
-    .main::-webkit-scrollbar {
+        background-image: linear-gradient(to bottom, var(--one-use-color), var(--two-use-color));
         width: 5px;
     }
 
     .main::-webkit-scrollbar-track {
         background-color: #9e9e9eb2;
     }
+
+/* Estilo de los contenedores de cajas flexibles */
 .box-container {
     display: flex;
     flex-wrap: wrap;
@@ -48,9 +54,10 @@
     gap: 20px; /* Espacio entre los elementos */
 }
 
+/* Estilo de las cajas flexibles */
 .box {
     height: 130px;
-    width: calc(50% - 20px); /* El 50% garantiza que haya dos elementos en una fila */
+    width: calc(50% - 20px); /* El 50% garantiza dos elementos en una fila con margen */
     border-radius: 1rem;
     box-shadow: 2px 2px 10px black;
     padding: 20px;
@@ -59,48 +66,47 @@
     justify-content: space-around;
     cursor: pointer;
     transition: transform 0.3s ease;
+    /* Cambio de tamaño al pasar el ratón por encima */
+    &:hover
+
+{
+    transform: scale(1.08);
 }
 
-    .box:hover {
-        transform: scale(1.08);
-    }
+/* Establecer el fondo de las primeras cuatro cajas */
+&:nth-child(1),
+&:nth-child(2),
+&:nth-child(3),
+&:nth-child(4) {
+    background-color: var(--two-use-color);
+}
 
-    .box:nth-child(1) {
-        background-color: var(--two-use-color);
-    }
+/* Estilo de las imágenes en las cajas */
+img {
+    height: 50px;
+}
 
-    .box:nth-child(2) {
-        background-color: var(--two-use-color);
-    }
+/* Estilo del texto en las cajas */
+.text {
+    color: white;
+}
 
-    .box:nth-child(3) {
-        background-color: var(--two-use-color);
-    }
+}
 
-    .box:nth-child(4) {
-        background-color: var(--two-use-color);
-    }
-
-    .box img {
-        height: 50px;
-    }
-
-    .box .text {
-        color: white;
-    }
-
+/* Estilo del texto de temas */
 .topic {
     font-size: 13px;
     font-weight: 400;
     letter-spacing: 1px;
 }
 
+/* Estilo del encabezado de tema */
 .topic-heading {
     font-size: 30px;
     letter-spacing: 3px;
 }
 
-
+/* Estilo para eliminar el subrayado de los enlaces y heredar el color del texto */
 .no-link-style {
     text-decoration: none;
     color: inherit;

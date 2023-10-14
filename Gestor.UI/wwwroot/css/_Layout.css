@@ -1,14 +1,16 @@
-﻿body {
+﻿/* Establece el fondo de la página */
+body {
     background-image: url('https://cdn.aarp.net/content/dam/aarp/home-and-family/caregiving/2018/09/1140-delirium-definition-management-esp.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
 }
 
-    li {
+/* Estilo de la lista y los elementos de la lista */
+li {
     position: relative;
     display: inline-block;
-    padding:0;
+    padding: 0;
 }
 
     li a {
@@ -26,30 +28,30 @@
         bottom: 0;
         width: 0;
         height: 2px;
-        transition: width .5s;
+        transition: width 0.5s;
     }
 
     li a:hover {
-        color: rgb(45,168,240);
+        color: rgb(45, 168, 240);
     }
 
     li:hover::after {
         width: 100%;
-        background-color: rgb(45,168,240);
+        background-color: rgb(45, 168, 240);
     }
 
+/* Estilo del menú de navegación en un contenedor fluido */
 .container-fluid nav ul li a {
     color: white !important;
-  
 }
 
 .container-fluid {
- background-color: rgba(0, 0, 0, 0.5);
- padding: 0;
- margin:0;
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 0;
+    margin: 0;
 }
 
-
+/* Estilo de la barra de navegación */
 .navbar {
     min-height: 70px;
     display: flex;
@@ -59,6 +61,7 @@
     margin: 0;
 }
 
+/* Estilo del menú de navegación principal */
 .nav-menu {
     display: flex;
     justify-content: space-between;
@@ -68,6 +71,7 @@
     margin: 0;
 }
 
+/* Efecto de transición al pasar el ratón sobre los enlaces del menú */
 .nav-link {
     transition: 0.3s ease-out;
 }
@@ -76,11 +80,13 @@
         color: dodgerblue;
     }
 
+/* Estilo del icono de menú desplegable en pantallas pequeñas */
 .hamburger {
     display: none;
     cursor: pointer;
 }
 
+/* Estilo de las barras del icono de menú */
 .bar {
     display: block;
     width: 25px;
@@ -91,8 +97,8 @@
     background-color: white;
 }
 
-@media(max-width:1024px) {
-
+/* Estilos para pantallas de tamaño máximo de 1024px */
+@media (max-width: 1024px) {
     .hamburger {
         display: block;
         margin: 15px;
@@ -110,6 +116,7 @@
             transform: translateY(-8px) rotate(-45deg);
         }
 
+    /* Estilos del menú de navegación en pantallas pequeñas */
     .nav-menu {
         position: absolute;
         z-index: 1;
@@ -128,10 +135,12 @@
         margin: 5px 0;
     }
 
+    /* Muestra el menú en pantalla pequeña cuando está activo */
     .nav-menu.active {
         left: 0;
     }
 
+    /* Estilo de la tabla con desplazamiento horizontal */
     table {
         display: block;
         width: 100%;

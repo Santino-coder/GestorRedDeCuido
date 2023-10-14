@@ -1,8 +1,10 @@
-﻿body {
-    background-image: none;
-    background-color: #154360;
+﻿/* Estilo del fondo del cuerpo de la página */
+body {
+    background-image: none; /* Elimina la imagen de fondo */
+    background-color: #154360; /* Establece un color de fondo */
 }
 
+/* Estilo de una tarjeta genérica */
 .card {
     position: relative;
     display: flex;
@@ -11,31 +13,30 @@
     word-wrap: break-word;
     background-color: #fff;
     background-clip: border-box;
-    border: 0 solid rgba(0,0,0,.125);
+    border: 0 solid rgba(0, 0, 0, 0.125);
     border-radius: 1rem;
     margin: 40px;
     box-shadow: 2px 2px 10px black;
 }
 
+/* Estilo del contenido de una tarjeta */
 .card-body {
-    -webkit-box-flex: 1;
-    -ms-flex: 1 1 auto;
     flex: 1 1 auto;
     padding: 1.5rem 1.5rem;
 }
 
+/* Estilos para ocultar y mostrar elementos de una tabla */
 .results tr[visible='false'],
 .no-result {
-    display: none;
+    display: none; /* Oculta las filas y elementos sin resultados */
 }
 
 .results tr[visible='true'] {
-    display: table-row;
+    display: table-row; /* Muestra las filas con resultados */
 }
 
+/* Estilo para un contador con color de texto */
 .counter {
     padding: 8px;
     color: #ccc;
 }
-
-
