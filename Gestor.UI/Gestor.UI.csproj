@@ -8,10 +8,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Remove="wwwroot\js\MontosTotales.js" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.20" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.21" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.21" />
@@ -42,12 +38,10 @@
 
   <ItemGroup>
     <_ContentIncludedByDefault Remove="Views\Home\Dashboard.cshtml" />
-    <_ContentIncludedByDefault Remove="wwwroot\js\MontosTotales.js" />
   </ItemGroup>
 
   <ItemGroup>
     <None Include="Views\Home\Dashboard.cshtml" />
-    <None Include="wwwroot\js\MontosTotales.js" />
   </ItemGroup>
 
 </Project>

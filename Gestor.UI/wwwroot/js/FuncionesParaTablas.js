@@ -1,15 +1,18 @@
 ﻿$(document).ready(function () {
+    // Función que se ejecuta cuando se escribe en el campo de búsqueda con clase "search"
     $(".search").keyup(function () {
-        var searchTerm = $(".search").val();
+        var searchTerm = $(".search").val(); // Obtiene el término de búsqueda
         var listItem = $('.results tbody').children('tr');
-        var searchSplit = searchTerm.replace(/ /g, "'):containsi('")
+        var searchSplit = searchTerm.replace(/ /g, "'):containsi('");
 
+        // Extiende jQuery para agregar un selector personalizado ":containsi"
         $.extend($.expr[':'], {
             'containsi': function (elem, i, match, array) {
                 return (elem.textContent || elem.innerText || '').toLowerCase().indexOf((match[3] || "").toLowerCase()) >= 0;
             }
         });
 
+        // Oculta las filas que no coinciden con la búsqueda y muestra las que coinciden
         $(".results tbody tr").not(":containsi('" + searchSplit + "')").each(function (e) {
             $(this).attr('visible', 'false');
         });
@@ -18,12 +21,15 @@
             $(this).attr('visible', 'true');
         });
 
+        // Cuenta y muestra la cantidad de elementos que coinciden con la búsqueda
         var jobCount = $('.results tbody tr[visible="true"]').length;
         $('.counter').text(jobCount + ' item');
 
+        // Muestra un mensaje si no se encuentra ningún resultado
         if (jobCount == '0') { $('.no-result').show(); }
         else { $('.no-result').hide(); }
 
+        // Llama a la función para ordenar la tabla
         ordenarTabla();
     });
 });
@@ -56,24 +62,11 @@ function ordenarTabla() {
 // Llama a la función de ordenar al cargar la página
 window.onload = ordenarTabla;
 
-
-//Funcion para descargar factura
-function descargarFactura(dataUrl) {
-    // Crea un enlace oculto para la descarga de la imagen
+// Función para descargar una factura o proforma
+function descargarDocumento(dataUrl, nombreDocumento) {
     var enlaceDescarga = document.createElement('a');
     enlaceDescarga.href = dataUrl;
-    enlaceDescarga.download = 'factura.jpg'; // Nombre de la imagen para descargar
-    document.body.appendChild(enlaceDescarga);
-    enlaceDescarga.click();
-    document.body.removeChild(enlaceDescarga);
-}
-
-//Funcion para descargar proforma
-function descargarProforma(dataUrl) {
-    // Crea un enlace oculto para la descarga de la imagen
-    var enlaceDescarga = document.createElement('a');
-    enlaceDescarga.href = dataUrl;
-    enlaceDescarga.download = 'proforma.jpg'; // Nombre de la imagen para descargar
+    enlaceDescarga.download = nombreDocumento + '.jpg'; // Nombre del documento para descargar
     document.body.appendChild(enlaceDescarga);
     enlaceDescarga.click();
     document.body.removeChild(enlaceDescarga);
