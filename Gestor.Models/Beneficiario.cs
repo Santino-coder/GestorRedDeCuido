@@ -24,9 +24,8 @@ namespace Gestor.Models
 
         [Required(ErrorMessage = "Por favor, seleccione una fecha de nacimiento.")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaDeNacimiento { get; set; }
-
+     
         [Range(18, 100, ErrorMessage = "La edad debe estar entre 18 y 100.")]
         public int? Edad { get; set; }
 
@@ -49,7 +48,6 @@ namespace Gestor.Models
 
         [Required(ErrorMessage = "Por favor, seleccione la fecha de ingreso.")]
         [DataType(DataType.Date)]
-        [DisplayFormat(DataFormatString = "{0:dd-MM-yyyy}", ApplyFormatInEditMode = true)]
         public DateTime FechaIngreso { get; set; }
 
         [Required(ErrorMessage = "Por favor, seleccione el estado.")]
