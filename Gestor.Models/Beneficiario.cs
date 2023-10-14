@@ -61,6 +61,7 @@ namespace Gestor.Models
         [Required(ErrorMessage = "Por favor, digite el número de teléfono de la persona encargada.")]
         public int? NumeroPersonaEncargada { get; set; }
 
+        [DataType(DataType.MultilineText)]
         public string? Observaciones { get; set; }
 
         [Required(ErrorMessage = "Debe elegir almenos una alternativa.")]

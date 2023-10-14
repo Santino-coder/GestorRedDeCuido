@@ -116,7 +116,7 @@
                         <th scope="col">Observaciones</th>
                     </dt>
                     <dd class="col-sm-10">
-                        @Html.DisplayFor(model => model.Observaciones)
+                        @Html.Raw(Model.Observaciones.Replace(Environment.NewLine, "<br />"))
                     </dd>
                     <dt class="col-sm-2">
                         <th scope="col">Alternativas</th>
