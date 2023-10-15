@@ -105,6 +105,15 @@
                             </td>
                         </tr>
                     }
+
+                    @foreach (var detalle in Model)
+                    {
+
+                    <td>
+                        <a asp-action="EditarDetalleAlternativa" asp-route-id="@detalle.idDetalleAlternativa">Editar</a>
+                    </td>
+
+                    }
                 </tbody>
             </table>
         </div>

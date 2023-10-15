@@ -22,6 +22,8 @@ namespace Gestor.BS
         //Editar
         void EditarBeneficiario(Beneficiario beneficiario);
 
+        void EditarDetalleAlternativa(DetalleAlternativa detalleAlternativa);
+
 
         //Listar
         List<Beneficiario> ListarBeneficiario();
@@ -35,5 +37,7 @@ namespace Gestor.BS
         Beneficiario ObtenerPorId(int id);
 
         Beneficiario ObtenerBeneficiarioPorId(int idBeneficiario);
+
+        DetalleAlternativa ObteneridDetalleAlternativa(int id);
     }
 }

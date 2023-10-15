@@ -1,0 +1,72 @@
+﻿@model Gestor.Models.DetalleAlternativa
+
+@{
+    ViewData["Title"] = "EditarDetalleAlternativa";
+}
+
+<h1>EditarDetalleAlternativa</h1>
+
+<h4>DetalleAlternativa</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="EditarDetalleAlternativa">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" style="display:none">
+                <label asp-for="idDetalleAlternativa" class="control-label">Número de identificación</label>
+                <input asp-for="idDetalleAlternativa" class="form-control" />
+                <span asp-validation-for="idDetalleAlternativa" class="text-danger"></span>
+            </div>
+           
+            <div class="form-group">
+                <label asp-for="Articulo" class="control-label"></label>
+                <input asp-for="Articulo" class="form-control" />
+                <span asp-validation-for="Articulo" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Proveedor" class="control-label"></label>
+                <input asp-for="Proveedor" class="form-control" />
+                <span asp-validation-for="Proveedor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Cantidad" class="control-label"></label>
+                <input asp-for="Cantidad" class="form-control" />
+                <span asp-validation-for="Cantidad" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NumeroFactura" class="control-label"></label>
+                <input asp-for="NumeroFactura" class="form-control" />
+                <span asp-validation-for="NumeroFactura" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Monto" class="control-label"></label>
+                <input asp-for="Monto" class="form-control" />
+                <span asp-validation-for="Monto" class="text-danger"></span>
+            </div>
+         
+            <div class="form-group">
+                <label asp-for="Fecha" class="control-label"></label>
+                <input asp-for="Fecha" class="form-control" />
+                <span asp-validation-for="Fecha" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="NombreAlternativa" class="control-label"></label>
+                <input asp-for="NombreAlternativa" class="form-control" />
+                <span asp-validation-for="NombreAlternativa" class="text-danger"></span>
+            </div>
+           
+            
+            <div class="form-group">
+                <input type="submit" value="Editar" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

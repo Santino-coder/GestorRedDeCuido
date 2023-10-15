@@ -91,6 +91,34 @@ namespace Gestor.UI.Controllers
             return View(listar);
         }
 
+
+        public ActionResult EditarDetalleAlternativa(int id)
+        {
+            DetalleAlternativa detalleAlternativa;
+            detalleAlternativa = ServiciosRedDeCuido.ObteneridDetalleAlternativa(id);
+            return View(detalleAlternativa);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditarDetalleAlternativa(DetalleAlternativa detalleAlternativa)
+        {
+
+            try
+            {
+
+                ServiciosRedDeCuido.EditarDetalleAlternativa(detalleAlternativa);
+
+                return RedirectToAction("ObtenerDetallePorIdBeneficiario", new { idBeneficiario = detalleAlternativa.idBeneficiario });
+                // return RedirectToAction(nameof(ObtenerDetallePorIdBeneficiario));
+
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
         public ActionResult ObtenerDetallePorIdBeneficiario(int idBeneficiario)
         {
             List<DetalleAlternativa> detalles = ServiciosRedDeCuido.ObtenerDetallePorIdBeneficiario(idBeneficiario);
@@ -218,6 +246,8 @@ namespace Gestor.UI.Controllers
             };
             return View(viewModel);
         }
+
+
         [HttpPost]
         public ActionResult MontosTotalesPorBeneficiario(int idBeneficiario)
         {
@@ -270,6 +300,8 @@ namespace Gestor.UI.Controllers
             var viewModel = new MontosTotalesViewModel();
             return View(viewModel);
         }
+
+
         [HttpPost]
         public ActionResult MontosTotalesPorAlternativa(string AlternativaSeleccionada)
         {

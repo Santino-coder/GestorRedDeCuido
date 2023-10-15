@@ -64,6 +64,27 @@ namespace Gestor.BS
 
         }
 
+        public void EditarDetalleAlternativa(DetalleAlternativa detalleAlternativa)
+        {
+            DetalleAlternativa detalle;
+
+            detalle = ObteneridDetalleAlternativa(detalleAlternativa.idDetalleAlternativa);
+            detalle.NombreAlternativa = detalleAlternativa.NombreAlternativa;
+            detalle.Fecha = detalleAlternativa.Fecha;
+            detalle.Articulo = detalleAlternativa.Articulo;
+            detalle.Proveedor = detalleAlternativa.Proveedor;
+            detalle.Cantidad = detalleAlternativa.Cantidad;
+            detalle.NumeroFactura = detalleAlternativa.NumeroFactura;
+            detalle.Monto = detalleAlternativa.Monto;
+
+
+
+
+            ContextoBD.DetalleAlternativa.Update(detalle);
+            ContextoBD.SaveChanges();
+
+        }
+
 
         //LISTAS
 
@@ -109,6 +130,14 @@ namespace Gestor.BS
 
                 return beneficiario;
             
+        }
+
+        public DetalleAlternativa ObteneridDetalleAlternativa(int id)
+        {
+            DetalleAlternativa alternativa;
+            alternativa = ContextoBD.DetalleAlternativa.Find(id);
+
+            return alternativa;
         }
     }
 }
