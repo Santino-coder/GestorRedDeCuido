@@ -16,16 +16,22 @@ namespace Gestor.Models
         public string NombreAlternativa { get; set; }
 
         [DataType(DataType.Date)]
-        public DateTime Fecha { get; set; } 
+        [Required(ErrorMessage = "Por favor, indique la fecha.")]
+        public DateTime Fecha { get; set; }
 
+        [Required(ErrorMessage = "Por favor, ingrese el nombre del artículo.")]
         public string Articulo { get; set; }
 
+        [Required(ErrorMessage = "Por favor, ingrese el nombre del proveedor.")]
         public string Proveedor { get; set; }
 
-        public string Cantidad { get; set; }
+        [Required(ErrorMessage = "Por favor, ingrese el nombre la cantidad.")]
+        public int Cantidad { get; set; }
 
+        [Required(ErrorMessage = "Por favor, ingrese el número de factura.")]
         public int NumeroFactura { get; set; }
 
+        [Required(ErrorMessage = "Por favor, ingrese el monto.")]
         public decimal Monto { get; set; }
 
         public byte[]? FacturaFoto { get; set; }

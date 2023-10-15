@@ -40,8 +40,78 @@
                     <dd class="col-sm-10">
                         @Html.DisplayFor(model => model.Nombre)
                     </dd>
-                    <!-- Agregar más pares de etiquetas y valores para otros detalles -->
-                    <!-- ... -->
+                    <dt class="col-sm-2">
+                        <th scope="col">Apellidos</th>
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Apellidos)
+                    </dd>
+                    <dt class="col-sm-2">
+                        <th scope="col">Fecha de nacimiento</th>
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.FechaDeNacimiento)
+                    </dd>
+                    <dt class="col-sm-2">
+                        <th scope="col">Edad</th>
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Edad)
+                    </dd>
+                    <dt class="col-sm-2">
+                        <th scope="col">Estado civil</th>
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.EstadoCivil)
+                    </dd>
+                    <dt class="col-sm-2">
+                        <th scope="col">Distrito</th>
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Distrito)
+                    </dd>
+                    <dt class="col-sm-2">
+                        <th scope="col">Dirección</th>
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Direccion)
+                    </dd>
+                    <dt class="col-sm-2">
+                        <th scope="col">Teléfono</th>
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Telefono)
+                    </dd>
+                    <dt class="col-sm-2">
+                        <th scope="col">Ingreso económico y orígen</th>
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.IngresoEconomicoYOrigen)
+                    </dd>
+                    <dt class="col-sm-2">
+                        <th scope="col">Fecha de ingreso</th>
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.FechaIngreso)
+                    </dd>
+                    <dt class="col-sm-2">
+                        <th scope="col">Estado</th>
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.Estado)
+                    </dd>
+                    <dt class="col-sm-2">
+                        <th scope="col">Persona encargada</th>
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.PersonaEncargada)
+                    </dd>
+                    <dt class="col-sm-2">
+                        <th scope="col">Teléfono de la persona encargada</th>
+                    </dt>
+                    <dd class="col-sm-10">
+                        @Html.DisplayFor(model => model.NumeroPersonaEncargada)
+                    </dd>
                     <dt class="col-sm-2">
                         <th scope="col">Observaciones</th>
                     </dt>
@@ -53,12 +123,15 @@
                         <th scope="col">Alternativas</th>
                     </dt>
                     <dd class="col-sm-10">
-                        <!-- Muestra múltiples alternativas -->
                         @Html.DisplayFor(model => model.Alternativa1)
                         <br />
                         @Html.DisplayFor(model => model.Alternativa2)
                         <br />
-                        <!-- Agregar más alternativas según sea necesario -->
+                        @Html.DisplayFor(model => model.Alternativa3)
+                        <br />
+                        @Html.DisplayFor(model => model.Alternativa4)
+                        <br />
+                        @Html.DisplayFor(model => model.Alternativa5)
                     </dd>
                 </dl>
             </div>

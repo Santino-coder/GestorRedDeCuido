@@ -14,7 +14,7 @@ namespace Gestor.Models
         public int idBeneficiario { get; set; }
 
         [Required(ErrorMessage = "Por favor, digite el número de identificación.")]
-        public int? DNI { get; set; }
+        public int DNI { get; set; }
 
         [Required(ErrorMessage = "Por favor, ingrese el nombre.")]
         public string Nombre { get; set; }
@@ -22,15 +22,15 @@ namespace Gestor.Models
         [Required(ErrorMessage = "Por favor, ingrese los apellidos.")]
         public string Apellidos { get; set; }
 
-        [Required(ErrorMessage = "Por favor, seleccione una fecha de nacimiento.")]
+        [Required(ErrorMessage = "Por favor, indique la fecha de nacimiento.")]
         [DataType(DataType.Date)]
         public DateTime FechaDeNacimiento { get; set; }
      
         [Range(18, 100, ErrorMessage = "La edad debe estar entre 18 y 100.")]
-        public int? Edad { get; set; }
+        public int Edad { get; set; }
 
 
-        [Required(ErrorMessage = "Por favor, seleccione el estado civil.")]
+        [Required(ErrorMessage = "Por favor, seleccione el estado civíl.")]
         public string EstadoCivil { get; set; }
 
         [Required(ErrorMessage = "Por favor, seleccione el distrito en el que se encuentra la residencia.")]
@@ -40,13 +40,13 @@ namespace Gestor.Models
         public string Direccion { get; set; }
 
 
-        [Required(ErrorMessage = "Por favor, digite el número de teléfono.")]
-        public int? Telefono { get; set; }
+        [Required(ErrorMessage = "Por favor, ingrese el número de teléfono.")]
+        public int Telefono { get; set; }
 
-        [Required(ErrorMessage = "Por favor, digite el ingreso económico mensual y su origen.")]
+        [Required(ErrorMessage = "Por favor, ingrese el ingreso económico mensual y su origen.")]
         public string IngresoEconomicoYOrigen { get; set; }
 
-        [Required(ErrorMessage = "Por favor, seleccione la fecha de ingreso.")]
+        [Required(ErrorMessage = "Por favor, indique la fecha de ingreso.")]
         [DataType(DataType.Date)]
         public DateTime FechaIngreso { get; set; }
 
@@ -56,8 +56,8 @@ namespace Gestor.Models
         [Required(ErrorMessage = "Por favor, ingrese el nombre de la persona encargada.")]
         public string PersonaEncargada { get; set; }
 
-        [Required(ErrorMessage = "Por favor, digite el número de teléfono de la persona encargada.")]
-        public int? NumeroPersonaEncargada { get; set; }
+        [Required(ErrorMessage = "Por favor, ingrese el número de teléfono de la persona encargada.")]
+        public int NumeroPersonaEncargada { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string? Observaciones { get; set; }
