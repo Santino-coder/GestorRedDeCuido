@@ -58,21 +58,28 @@
                 <input asp-for="Fecha" class="form-control" />
                 <span asp-validation-for="Fecha" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                @Html.LabelFor(model => model.FacturaFoto, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <input type="file" name="FacturaFoto" id="FacturaFoto">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.FacturaFoto, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @if (Model.FacturaFoto != null)
+                        {
+                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.FacturaFoto)" />
+                        }
+                        <input type="file" name="FacturaFoto" id="FacturaFoto">
+                    </div>
                 </div>
-            </div>
 
-            <div class="form-group">
-                @Html.LabelFor(model => model.Proforma, htmlAttributes: new { @class = "control-label col-md-2" })
-                <div class="col-md-10">
-                    <input type="file" name="Proforma" id="Proforma">
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Proforma, htmlAttributes: new { @class = "control-label col-md-2" })
+                    <div class="col-md-10">
+                        @if (Model.Proforma != null)
+                        {
+                            <img src="data:image/jpeg;base64,@Convert.ToBase64String(Model.Proforma)" />
+                        }
+                        <input type="file" name="Proforma" id="Proforma">
+                    </div>
                 </div>
-            </div>
-           
-           
+
             
             <div class="form-group">
                 <input type="submit" value="Editar" class="btn btn-primary" />
