@@ -79,9 +79,11 @@
 
                     <div class="col-lg-3 mb-3">
                         <label class="form-label">Monto</label>
-                        <input asp-for="Monto" class="form-control" />
+                        <input asp-for="Monto" class="form-control" value="@Model.Monto.ToString("F0")" />
                         <span asp-validation-for="Monto" class="text-danger"></span>
                     </div>
+
+
 
                     <div class="col-lg-3 mb-3">
                         <label class="form-label">Fecha</label>
