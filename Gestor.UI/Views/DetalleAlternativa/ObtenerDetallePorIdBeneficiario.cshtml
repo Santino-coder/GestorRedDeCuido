@@ -80,7 +80,7 @@
                                     @* Convierte la imagen de factura a Base64 y genera una URL de datos *@
                                     string imagenBase64 = Convert.ToBase64String(item.FacturaFoto);
                                     string imagenDataUrl = $"data:image/jpeg;base64,{imagenBase64}";
-                                    <img src="@imagenDataUrl" alt="Factura" width="200" height="150" />
+                                    <img src="@imagenDataUrl" alt="Factura" width="120" height="180" />
                                 }
                                 else
                                 {
@@ -95,7 +95,7 @@
                                     @* Convierte la imagen de proforma a Base64 y genera una URL de datos *@
                                     string imagenBase64 = Convert.ToBase64String(item.Proforma);
                                     string imagenDataUrl = $"data:image/jpeg;base64,{imagenBase64}";
-                                    <img src="@imagenDataUrl" alt="Proforma" width="200" height="150" />
+                                    <img src="@imagenDataUrl" alt="Proforma" width="120" height="180" />
                                 }
                                 else
                                 {
@@ -103,17 +103,17 @@
                                     <p>No se encontró una foto</p>
                                 }
                             </td>
+                            @foreach (var detalle in Model)
+                            {
+
+                                <td>
+                                    <a asp-action="EditarDetalleAlternativa" asp-route-id="@detalle.idDetalleAlternativa" class="btn btn-primary btn-sm">Editar</a>
+                                </td>
+
+                            }
                         </tr>
                     }
 
-                    @foreach (var detalle in Model)
-                    {
-
-                    <td>
-                        <a asp-action="EditarDetalleAlternativa" asp-route-id="@detalle.idDetalleAlternativa">Editar</a>
-                    </td>
-
-                    }
                 </tbody>
             </table>
         </div>

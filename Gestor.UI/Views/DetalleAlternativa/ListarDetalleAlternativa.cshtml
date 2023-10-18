@@ -19,7 +19,7 @@
 <body>
     <div class="card mb-4">
         <div class="card-body">
-            <h4 style="text-align:center;">Detalles de alternativas</h4>
+            <h4 style="text-align:center;">Registro de alternativas asignadas</h4>
             <hr />
             <div class="form-group pull-right">
                 <input type="text" class="search form-control" placeholder="Buscar">
@@ -77,9 +77,7 @@
                                     string imagenBase64 = Convert.ToBase64String(item.FacturaFoto);
                                     string imagenDataUrl = $"data:image/jpeg;base64,{imagenBase64}";
 
-                                    <img src="@imagenDataUrl" alt="Factura" width="200" height="150" />
-                                    <!-- Botón para descargar factura con JavaScript -->
-                                    <button class="btn btn-primary btn-sm" onclick="descargarFactura('@imagenDataUrl')">Descargar factura</button>
+                                    <img src="@imagenDataUrl" alt="Factura" width="120" height="180" />
                                 }
                                 else
                                 {
@@ -92,9 +90,7 @@
                                     string imagenBase64 = Convert.ToBase64String(item.Proforma);
                                     string imagenDataUrl = $"data:image/jpeg;base64,{imagenBase64}";
 
-                                    <img src="@imagenDataUrl" alt="Proforma" width="200" height="150" />
-                                    <!-- Botón para descargar proforma con JavaScript -->
-                                    <button class="btn btn-primary btn-sm" onclick="descargarProforma('@imagenDataUrl')">Descargar proforma</button>
+                                    <img src="@imagenDataUrl" alt="Proforma" width="120" height="180" />
                                 }
                                 else
                                 {

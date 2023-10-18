@@ -62,12 +62,3 @@ function ordenarTabla() {
 // Llama a la función de ordenar al cargar la página
 window.onload = ordenarTabla;
 
-// Función para descargar una factura o proforma
-function descargarDocumento(dataUrl, nombreDocumento) {
-    var enlaceDescarga = document.createElement('a');
-    enlaceDescarga.href = dataUrl;
-    enlaceDescarga.download = nombreDocumento + '.jpg'; // Nombre del documento para descargar
-    document.body.appendChild(enlaceDescarga);
-    enlaceDescarga.click();
-    document.body.removeChild(enlaceDescarga);
-}
