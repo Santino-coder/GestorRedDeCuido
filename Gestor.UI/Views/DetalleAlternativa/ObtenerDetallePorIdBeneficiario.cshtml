@@ -103,14 +103,9 @@
                                     <p>No se encontró una foto</p>
                                 }
                             </td>
-                            @foreach (var detalle in Model)
-                            {
-
-                                <td>
-                                    <a asp-action="EditarDetalleAlternativa" asp-route-id="@detalle.idDetalleAlternativa" class="btn btn-primary btn-sm">Editar</a>
-                                </td>
-
-                            }
+                            <td>
+                                <a asp-action="EditarDetalleAlternativa" asp-route-id="@item.idDetalleAlternativa" class="btn btn-primary btn-sm">Editar</a>
+                            </td>
                         </tr>
                     }
 
