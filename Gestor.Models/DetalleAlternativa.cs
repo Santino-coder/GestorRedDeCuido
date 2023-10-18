@@ -32,6 +32,7 @@ namespace Gestor.Models
         public int NumeroFactura { get; set; }
 
         [Required(ErrorMessage = "Por favor, ingrese el monto.")]
+        [DisplayFormat(DataFormatString = "{0:N0}", ApplyFormatInEditMode = true)]
         public decimal Monto { get; set; }
 
         public byte[]? FacturaFoto { get; set; }
