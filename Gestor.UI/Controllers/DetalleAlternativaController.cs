@@ -100,23 +100,52 @@ namespace Gestor.UI.Controllers
         }
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditarDetalleAlternativa(DetalleAlternativa detalleAlternativa)
+        public ActionResult EditarDetalleAlternativa(DetalleAlternativa detalleAlternativa, IFormFile FacturaFoto, IFormFile Proforma)
         {
-
             try
             {
+                // Carga el detalle original desde la base de datos
+                DetalleAlternativa detalleOriginal = ServiciosRedDeCuido.ObteneridDetalleAlternativa(detalleAlternativa.idDetalleAlternativa);
+
+                if (FacturaFoto != null && FacturaFoto.Length > 0)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        FacturaFoto.CopyTo(ms);
+                        detalleAlternativa.FacturaFoto = ms.ToArray();
+                    }
+                }
+                else
+                {
+                    // Si no se proporciona una nueva imagen, conserva la imagen original
+                    detalleAlternativa.FacturaFoto = detalleOriginal.FacturaFoto;
+                }
+
+                if (Proforma != null && Proforma.Length > 0)
+                {
+                    using (var ms = new MemoryStream())
+                    {
+                        Proforma.CopyTo(ms);
+                        detalleAlternativa.Proforma = ms.ToArray();
+                    }
+                }
+                else
+                {
+                    // Si no se proporciona una nueva imagen, conserva la imagen original
+                    detalleAlternativa.Proforma = detalleOriginal.Proforma;
+                }
 
                 ServiciosRedDeCuido.EditarDetalleAlternativa(detalleAlternativa);
 
-                return RedirectToAction("ObtenerDetallePorIdBeneficiario", new { idBeneficiario = detalleAlternativa.idBeneficiario });
-                // return RedirectToAction(nameof(ObtenerDetallePorIdBeneficiario));
-
+                return RedirectToAction("ObtenerDetallePorIdBeneficiario", new { id = detalleAlternativa.idBeneficiario });
             }
             catch
             {
-                return View();
+                return View(detalleAlternativa);
             }
         }
+
+
 
 
         public ActionResult ObtenerDetallePorIdBeneficiario(int idBeneficiario)

@@ -3,6 +3,11 @@
 @{
     ViewData["Title"] = "EditarDetalleAlternativa";
 }
+@using (Html.BeginForm("EditarDetalleAlternativa", "DetalleAlternativa", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+
+    @Html.AntiForgeryToken()
+
 
 <h1>EditarDetalleAlternativa</h1>
 
@@ -17,7 +22,11 @@
                 <input asp-for="idDetalleAlternativa" class="form-control" />
                 <span asp-validation-for="idDetalleAlternativa" class="text-danger"></span>
             </div>
-           
+            <div class="form-group">
+                <label asp-for="NombreAlternativa" class="control-label"></label>
+                <input asp-for="NombreAlternativa" class="form-control" />
+                <span asp-validation-for="NombreAlternativa" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="Articulo" class="control-label"></label>
                 <input asp-for="Articulo" class="form-control" />
@@ -50,10 +59,19 @@
                 <span asp-validation-for="Fecha" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="NombreAlternativa" class="control-label"></label>
-                <input asp-for="NombreAlternativa" class="form-control" />
-                <span asp-validation-for="NombreAlternativa" class="text-danger"></span>
+                @Html.LabelFor(model => model.FacturaFoto, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="FacturaFoto" id="FacturaFoto">
+                </div>
             </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Proforma, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <input type="file" name="Proforma" id="Proforma">
+                </div>
+            </div>
+           
            
             
             <div class="form-group">
@@ -69,4 +87,5 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
 }

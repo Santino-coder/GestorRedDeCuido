@@ -76,6 +76,8 @@ namespace Gestor.BS
             detalle.Cantidad = detalleAlternativa.Cantidad;
             detalle.NumeroFactura = detalleAlternativa.NumeroFactura;
             detalle.Monto = detalleAlternativa.Monto;
+            detalle.FacturaFoto = detalleAlternativa.FacturaFoto;
+            detalle.Proforma = detalleAlternativa.Proforma;
 
 
 
