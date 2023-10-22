@@ -137,7 +137,7 @@ namespace Gestor.UI.Controllers
 
                 ServiciosRedDeCuido.EditarDetalleAlternativa(detalleAlternativa);
 
-                return RedirectToAction("ObtenerDetallePorIdBeneficiario", new { id = detalleAlternativa.idBeneficiario });
+                return RedirectToAction("ObtenerDetallePorIdBeneficiario", new { idBeneficiario = detalleAlternativa.idBeneficiario });
             }
             catch
             {
