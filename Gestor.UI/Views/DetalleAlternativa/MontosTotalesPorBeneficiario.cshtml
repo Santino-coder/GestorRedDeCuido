@@ -22,7 +22,7 @@
                 <select name="idBeneficiario" id="idBeneficiario">
                     @foreach (var beneficiario in Model.Beneficiarios)
                     {
-                        <option value="@beneficiario.idBeneficiario">@beneficiario.Nombre</option>
+                        <option value="@beneficiario.idBeneficiario">@beneficiario.Nombre @beneficiario.Apellidos</option>
                     }
                 </select>
                 <button type="submit" class="btn btn-primary btn-sm btn-icon-text">Calcular Monto Total</button>
@@ -31,7 +31,7 @@
             @if (Model.Beneficiario != null)
             {
                 <br />
-                <h3 class="h6">Monto total de: @Model.Beneficiario.Nombre</h3>
+                <h3 class="h6">Monto total de: @Model.Beneficiario.Nombre @Model.Beneficiario.Apellidos</h3>
             }
 
             @if (Model.MontoPorBeneficiario > 0)
