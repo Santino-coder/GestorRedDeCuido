@@ -8,50 +8,38 @@
 
     public class RegistroController : Controller
     {
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly IEmailSender _emailSender; // Debes implementar una interfaz de envío de correo electrónico personalizada
-
-        public RegistroController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IEmailSender emailSender)
-        {
-            _userManager = userManager;
-            _signInManager = signInManager;
-            _emailSender = emailSender;
-        }
-
-        [HttpPost]
-        public async Task<IActionResult> Registrar([Bind("Email,Password")] RegisterModel model)
+        public IActionResult Registrar([FromBody] RegistroModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = new IdentityUser { UserName = model.Input.Email, Email = model.Input.Email };
-                var result = await _userManager.CreateAsync(user, model.Input.Password);
+                // Lógica de registro (simulada)
+                var user = new { UserName = model.Email, Email = model.Email }; // Simulación de usuario
 
-                if (result.Succeeded)
-                {
-                    // Genera un token de confirmación de correo electrónico
-                    var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+                // Aquí podrías realizar la lógica de registro personalizada, por ejemplo, almacenar el usuario en una base de datos
 
-                    // Crea una URL de confirmación de correo electrónico
-                    var callbackUrl = Url.Action("ConfirmarEmail", "Cuenta", new { userId = user.Id, code = token }, protocol: HttpContext.Request.Scheme);
+                // Genera un token de confirmación de correo electrónico (simulado)
+                var token = "token_de_confirmacion_generado";
 
-                    // Envía un correo electrónico de confirmación con el enlace
-                    await _emailSender.SendEmailAsync(model.Input.Email, "Confirmar tu correo electrónico",
-                        $"Por favor, confirma tu correo electrónico haciendo clic <a href='{callbackUrl}'>aquí</a>.");
+                // Crea una URL de confirmación de correo electrónico
+                var callbackUrl = $"https://localhost:7229/api/Registro={user.UserName}&code={token}";
 
-                    // Redirige al usuario a una página de confirmación
-                    return View("ConfirmacionEnviada");
-                }
+                // En una implementación real, enviarías un correo electrónico para la confirmación
+                // Aquí se simula el envío del correo electrónico
 
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+                // Redirige al usuario a una página de confirmación
+                return Ok("Usuario registrado con éxito");
             }
 
-            // Si hay errores, muestra el formulario nuevamente
-            return View(model);
+            // Si hay errores, devuelve los errores al cliente
+            return BadRequest(ModelState);
         }
     }
 
+    public class RegistroModel
+    {
+        public string Email { get; set; }
+        public string Password { get; set; }
+    }
 }
+
+

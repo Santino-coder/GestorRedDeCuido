@@ -1,112 +1,207 @@
-﻿using Gestor.BS;
-using Gestor.Models;
+﻿using Gestor.Models;
+
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 
 namespace Gestor.UI.Controllers
 {
+   // [Authorize]
     public class BeneficiarioController : Controller
     {
-
-        private readonly IServiciosRedDeCuido ServiciosRedDeCuido;
-
-        public BeneficiarioController(IServiciosRedDeCuido serviciosRedDeCuido)
+        public BeneficiarioController()
         {
-            ServiciosRedDeCuido = serviciosRedDeCuido;
+
         }
 
-        public ActionResult ListarBeneficiario()
+        public async Task<IActionResult> ListarBeneficiario()
         {
-            List<Beneficiario> listar;
-            listar = ServiciosRedDeCuido.ListarBeneficiario();
-            return View(listar);
+            List<Beneficiario> listaBeneficiarios;
+
+            try
+            {
+                var httpClient = new HttpClient();
+
+                var response = await httpClient.GetAsync("https://localhost:7229/api/BeneficiarioSI/ListarBeneficiario");
+
+               
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                   
+                listaBeneficiarios = JsonConvert.DeserializeObject<List<Beneficiario>>(apiResponse);
+               
+                   
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return View(listaBeneficiarios);
         }
-
-
-
-        //Beneficiarios agregar
-
-
-        public ActionResult AgregarBeneficiario(int id)
+        
+        public ActionResult AgregarBeneficiario()
         {
-            Beneficiario beneficiario = new Beneficiario();
-            beneficiario.idBeneficiario = id;
-
-            return View(beneficiario);
+          return View();
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult AgregarBeneficiario(Beneficiario beneficiario)
+        public async Task<IActionResult> AgregarBeneficiario(Beneficiario beneficiario)
         {
             try
             {
-                ServiciosRedDeCuido.AgregarBeneficiario(beneficiario);
-                return RedirectToAction(nameof(ListarBeneficiario));
+                if (ModelState.IsValid)
+                {
+                    var httpClient = new HttpClient();
+                    string json = JsonConvert.SerializeObject(beneficiario);
+                    var buffer = System.Text.Encoding.UTF8.GetBytes(json);
+
+                    var byteContent = new ByteArrayContent(buffer);
+
+                    byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+                    await httpClient.PostAsync("https://localhost:7229/api/BeneficiarioSI/AgregarBeneficiario", byteContent);
+
+
+                    return RedirectToAction(nameof(ListarBeneficiario));
+                }
+                else
+                {
+                    return View();
+                }
+
+
             }
-            catch
+            catch (Exception ex)
             {
                 return View();
             }
         }
 
-        // GET: BeneficiarioController
-        public ActionResult Detalles(int id)
+
+        public async Task<IActionResult> Detalles(int id)
         {
             Beneficiario beneficiario;
-            beneficiario = ServiciosRedDeCuido.ObtenerPorId(id);
+
+            try
+            {
+                var httpClient = new HttpClient();
+                var response = await httpClient.GetAsync($"https://localhost:7229/api/BeneficiarioSI/ObtenerPorId/{id}");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    beneficiario = JsonConvert.DeserializeObject<Beneficiario>(apiResponse);
+                }
+                else
+                {
+                    // Maneja el error de una manera adecuada para tu aplicación.
+                    throw new Exception("Error al obtener los detalles del beneficiario");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
             return View(beneficiario);
         }
 
-
-        public ActionResult EditarBeneficiario(int id)
+        public async Task<IActionResult> EditarBeneficiario(int id)
         {
+           
             Beneficiario beneficiario;
-            beneficiario = ServiciosRedDeCuido.ObtenerPorId(id);
 
+            try
+            {
+                var httpClient = new HttpClient();
+                var response1 = await httpClient.GetAsync($"https://localhost:7229/api/BeneficiarioSI/ObtenerPorId/{id}");
+                string apiResponse1 = await response1.Content.ReadAsStringAsync();
+                beneficiario = JsonConvert.DeserializeObject<Beneficiario>(apiResponse1);
+                
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            
             return View(beneficiario);
         }
-
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult EditarBeneficiario(Beneficiario beneficiario)
+        public async Task<ActionResult> EditarBeneficiario(Beneficiario beneficiario)
         {
             try
             {
-                ServiciosRedDeCuido.EditarBeneficiario(beneficiario);
+                if (ModelState.IsValid) {
 
-                return RedirectToAction(nameof(ListarBeneficiario));
+                    var httpClient = new HttpClient();
+                    string jsonBeneficiario = JsonConvert.SerializeObject(beneficiario);
+                    var buffer = System.Text.Encoding.UTF8.GetBytes(jsonBeneficiario);
+                    var byteContent = new ByteArrayContent(buffer);
+                    byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                    await httpClient.PutAsync("https://localhost:7229/api/BeneficiarioSI/EditarBeneficiario/", byteContent);
+                    return RedirectToAction(nameof(ListarBeneficiario));
+
+
+                }
+                else
+                {
+                    return View();
+                }
             }
-            catch
+            catch 
             {
                 return View();
             }
         }
 
-        public ActionResult CantidadTotalBeneficiarios()
+        public async Task<IActionResult> CantidadTotalBeneficiarios()
         {
-            int cantidadTotal = ServiciosRedDeCuido.ListarBeneficiario().Count;
+            List<Beneficiario> listaBeneficiarios;
 
-            int cantidadActivos = ServiciosRedDeCuido.ListarBeneficiario().Count(b => b.Estado == "Activo");
-            int cantidadInactivos = ServiciosRedDeCuido.ListarBeneficiario().Count(b => b.Estado == "Inactivo");
-            int cantidadFallecidos = ServiciosRedDeCuido.ListarBeneficiario().Count(b => b.Estado == "Fallecido");
+            try
+            {
+                var httpClient = new HttpClient();
+                var response = await httpClient.GetAsync("https://localhost:7229/api/BeneficiarioSI/CantidadTotalBeneficiarios");
+
+                if (response.IsSuccessStatusCode)
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    listaBeneficiarios = JsonConvert.DeserializeObject<List<Beneficiario>>(apiResponse);
+                }
+                else
+                {
+                    // Maneja el error de una manera adecuada para tu aplicación.
+                    throw new Exception("Error al obtener la lista de beneficiarios");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            int cantidadTotal = listaBeneficiarios.Count;
+            int cantidadActivos = listaBeneficiarios.Count(b => b.Estado == "Activo");
+            int cantidadInactivos = listaBeneficiarios.Count(b => b.Estado == "Inactivo");
+            int cantidadFallecidos = listaBeneficiarios.Count(b => b.Estado == "Fallecido");
 
             ViewBag.CantidadActivos = cantidadActivos;
             ViewBag.CantidadInactivos = cantidadInactivos;
             ViewBag.CantidadFallecidos = cantidadFallecidos;
 
             return View(cantidadTotal);
-
-
         }
-
-     
-
 
     }
 }

@@ -6,32 +6,97 @@ namespace Gestor.UI.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        public HomeController() { }
 
-        public HomeController(ILogger<HomeController> logger)
+        public async Task<IActionResult> Index()
         {
-            _logger = logger;
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    string apiUrl = "https://localhost:7229/api/Home/Index";
+                    var response = await httpClient.GetAsync(apiUrl);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+
+                        // Aquí puedes procesar la respuesta, por ejemplo, deserializarla si es JSON.
+                        // Ejemplo de deserialización de JSON:
+                        // var listaBeneficiarios = JsonConvert.DeserializeObject<List<Beneficiario>>(apiResponse);
+
+                        // Luego, puedes usar los datos como lo necesites.
+
+                        return View(); // Retorna la vista adecuada o un modelo con los datos.
+                    }
+                    else
+                    {
+                        // Maneja el error de una manera adecuada para tu aplicación.
+                        throw new Exception($"Error al hacer la solicitud. Código de estado: {response.StatusCode}");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                // Maneja los errores de una manera adecuada para tu aplicación.
+                throw ex;
+            }
         }
 
-        public IActionResult Index()
+
+        public async Task<IActionResult> Privacy()
         {
-            return View();
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    string apiUrl = "https://localhost:7229/api/Home/Privacy";
+                    var response = await httpClient.GetAsync(apiUrl);
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string privacyData = await response.Content.ReadAsStringAsync();
+                        return Ok(privacyData);
+                    }
+                    else
+                    {
+                        // Maneja el error de una manera adecuada para tu aplicación.
+                        throw new Exception("Error al obtener la política de privacidad");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
-        public IActionResult Index1()
-        {
-            return View();
-        }
 
-        public IActionResult Privacy()
+        public async Task<IActionResult> Error()
         {
-            return View();
-        }
+            try
+            {
+                using (var httpClient = new HttpClient())
+                {
+                    string apiUrl = "https://localhost:7229/api/Home/Error";
+                    var response = await httpClient.GetAsync(apiUrl);
 
-        [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
-        public IActionResult Error()
-        {
-            return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string errorData = await response.Content.ReadAsStringAsync();
+                        return Ok(errorData);
+                    }
+                    else
+                    {
+                        // Maneja el error de una manera adecuada para tu aplicación.
+                        throw new Exception("Error al obtener información de error");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

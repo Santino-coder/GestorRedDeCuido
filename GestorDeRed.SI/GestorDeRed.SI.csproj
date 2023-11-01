@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Gestor.BS\Gestor.BS.csproj" />
+    <ProjectReference Include="..\Gestor.DA\Gestor.DA.csproj" />
+    <ProjectReference Include="..\Gestor.Models\Gestor.Models.csproj" />
+    <ProjectReference Include="..\Gestor.UI\Gestor.UI.csproj" />
+  </ItemGroup>
+
+</Project>
