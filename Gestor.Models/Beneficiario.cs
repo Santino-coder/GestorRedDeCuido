@@ -13,16 +13,16 @@ namespace Gestor.Models
         [Key]
         public int idBeneficiario { get; set; }
 
-        [Required(ErrorMessage = "Por favor, digite el número de identificación.")]
+        [Required(ErrorMessage = "*Dato requerido.")]
         public int DNI { get; set; }
 
-        [Required(ErrorMessage = "Por favor, ingrese el nombre.")]
+        [Required(ErrorMessage = "*Dato requerido.")]
         public string Nombre { get; set; }
 
-        [Required(ErrorMessage = "Por favor, ingrese los apellidos.")]
+        [Required(ErrorMessage = "*Dato requerido.")]
         public string Apellidos { get; set; }
 
-        [Required(ErrorMessage = "Por favor, indique la fecha de nacimiento.")]
+        [Required(ErrorMessage = "*Dato requerido.")]
         [DataType(DataType.Date)]
         public DateTime FechaDeNacimiento { get; set; }
      
@@ -30,39 +30,39 @@ namespace Gestor.Models
         public int Edad { get; set; }
 
 
-        [Required(ErrorMessage = "Por favor, seleccione el estado civíl.")]
+        [Required(ErrorMessage = "*Dato requerido.")]
         public string EstadoCivil { get; set; }
 
-        [Required(ErrorMessage = "Por favor, seleccione el distrito en el que se encuentra la residencia.")]
+        [Required(ErrorMessage = "*Dato requerido.")]
         public string Distrito { get; set; }
 
-        [Required(ErrorMessage = "Por favor, ingrese la dirección completa.")]
+        [Required(ErrorMessage = "*Dato requerido.")]
         public string Direccion { get; set; }
 
 
-        [Required(ErrorMessage = "Por favor, ingrese el número de teléfono.")]
+        [Required(ErrorMessage = "*Dato requerido.")]
         public int Telefono { get; set; }
 
-        [Required(ErrorMessage = "Por favor, ingrese el ingreso económico mensual y su origen.")]
+        [Required(ErrorMessage = "*Dato requerido.")]
         public string IngresoEconomicoYOrigen { get; set; }
 
-        [Required(ErrorMessage = "Por favor, indique la fecha de ingreso.")]
+        [Required(ErrorMessage = "*Dato requerido.")]
         [DataType(DataType.Date)]
         public DateTime FechaIngreso { get; set; }
 
-        [Required(ErrorMessage = "Por favor, seleccione el estado.")]
+        [Required(ErrorMessage = "*Dato requerido.")]
         public string Estado { get; set; }
 
-        [Required(ErrorMessage = "Por favor, ingrese el nombre de la persona encargada.")]
+        [Required(ErrorMessage = "*Dato requerido.")]
         public string PersonaEncargada { get; set; }
 
-        [Required(ErrorMessage = "Por favor, ingrese el número de teléfono de la persona encargada.")]
+        [Required(ErrorMessage = "*Dato requerido.")]
         public int NumeroPersonaEncargada { get; set; }
 
         [DataType(DataType.MultilineText)]
         public string? Observaciones { get; set; }
 
-        [Required(ErrorMessage = "Debe elegir almenos una alternativa.")]
+        [Required(ErrorMessage = "*Debe elegir almenos una alternativa.")]
         public string Alternativa1 { get; set; }
 
         public string? Alternativa2 { get; set; }

@@ -16,6 +16,7 @@
     <link href="~/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+    @Html.Partial("CantidadTotalBeneficiarios", Model.Count())
     <!-- Encabezado de la página -->
     <div class="card mb-4">
         <div class="card-body">
@@ -25,8 +26,7 @@
             <div class="form-group pull-right">
                 <input type="text" class="search form-control" placeholder="Buscar">
             </div>
-            <!-- Enlace para consultar la cantidad total de beneficiarios -->
-            @Html.ActionLink("Consultar cantidad de beneficiarios", "CantidadTotalBeneficiarios", new { @class = "btn btn-primary btn-sm" })
+           
             <br />
             <span class="counter pull-right"></span>
             <!-- Tabla de beneficiarios -->
