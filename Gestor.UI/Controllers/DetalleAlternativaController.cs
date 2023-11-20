@@ -42,7 +42,7 @@ namespace Gestor.UI.Controllers
 
                     byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-                    await httpClient.PostAsync("https://reddecuido-hojancha.azurewebsites.net/api/DetalleAlternativa/AgregarDetalleAlternativa", byteContent);
+                    await httpClient.PostAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/AgregarDetalleAlternativa", byteContent);
 
 
                     return RedirectToAction(nameof(ListarDetalleAlternativa));
@@ -69,7 +69,7 @@ namespace Gestor.UI.Controllers
             {
                 var httpClient = new HttpClient();
 
-                var response = await httpClient.GetAsync("https://reddecuido-hojancha.azurewebsites.net/api/DetalleAlternativa/ListarDetalleAlternativa");
+                var response = await httpClient.GetAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/ListarDetalleAlternativa");
 
 
                 string apiResponse = await response.Content.ReadAsStringAsync();
@@ -97,7 +97,7 @@ namespace Gestor.UI.Controllers
             try
             {
                 var httpClient = new HttpClient();
-                var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha.azurewebsites.net/api/DetalleAlternativa/EditarDetalleAlternativa/{id}");
+                var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/EditarDetalleAlternativa/{id}");
                 string apiResponse1 = await response1.Content.ReadAsStringAsync();
                 detalleAlternativa = JsonConvert.DeserializeObject<DetalleAlternativa>(apiResponse1);
 
@@ -124,7 +124,7 @@ namespace Gestor.UI.Controllers
                     var buffer = System.Text.Encoding.UTF8.GetBytes(jsonBeneficiario);
                     var byteContent = new ByteArrayContent(buffer);
                     byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                    await httpClient.PutAsync("https://reddecuido-hojancha.azurewebsites.net/api/DetalleAlternativa/EditarDetalleAlternativa", byteContent);
+                    await httpClient.PutAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/EditarDetalleAlternativa", byteContent);
                     return RedirectToAction(nameof(ListarDetalleAlternativa));
 
 
@@ -149,7 +149,7 @@ namespace Gestor.UI.Controllers
             try
             {
                 var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync($"https://reddecuido-hojancha.azurewebsites.net/api/DetalleAlternativa/ObtenerDetallePorIdBeneficiario/{id}");
+                var response = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/ObtenerDetallePorIdBeneficiario/{id}");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -175,7 +175,7 @@ namespace Gestor.UI.Controllers
         public async Task<IActionResult> SeleccionarBeneficiario(int id)
         {
             return Ok(new { IdBeneficiarioSeleccionado = id });
-            //https://reddecuido-hojancha.azurewebsites.net/api/DetalleAlternativa/SeleccionarBeneficiario/
+            //https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/SeleccionarBeneficiario/
         }
 
 
@@ -188,7 +188,7 @@ namespace Gestor.UI.Controllers
             try
             {
                 var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync("https://reddecuido-hojancha.azurewebsites.net/api/DetalleAlternativa/ListarBeneficiario");
+                var response = await httpClient.GetAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/ListarBeneficiario");
                 if (response.IsSuccessStatusCode)
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
@@ -218,7 +218,7 @@ namespace Gestor.UI.Controllers
             try
             {
                 var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync("https://reddecuido-hojancha.azurewebsites.net/api/DetalleAlternativa/MontosTotales");
+                var response = await httpClient.GetAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotales");
                 if (response.IsSuccessStatusCode)
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
@@ -245,7 +245,7 @@ namespace Gestor.UI.Controllers
             try
             {
                 var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync("https://reddecuido-hojancha.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorMes");
+                var response = await httpClient.GetAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorMes");
                 if (response.IsSuccessStatusCode)
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
@@ -272,7 +272,7 @@ namespace Gestor.UI.Controllers
             try
             {
                 var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync("https://reddecuido-hojancha.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorAnio");
+                var response = await httpClient.GetAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorAnio");
                 if (response.IsSuccessStatusCode)
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
@@ -300,7 +300,7 @@ namespace Gestor.UI.Controllers
             try
             {
                 var httpClient = new HttpClient();
-                var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorBeneficiario?idBeneficiario={id}");
+                var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorBeneficiario?idBeneficiario={id}");
                 string apiResponse1 = await response1.Content.ReadAsStringAsync();
                 beneficiario = JsonConvert.DeserializeObject<Beneficiario>(apiResponse1);
 
@@ -321,7 +321,7 @@ namespace Gestor.UI.Controllers
             try
             {
                 var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync("https://reddecuido-hojancha.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorBeneficiario");
+                var response = await httpClient.GetAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorBeneficiario");
                 if (response.IsSuccessStatusCode)
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
@@ -356,7 +356,7 @@ namespace Gestor.UI.Controllers
             try
             {
                 var httpClient = new HttpClient();
-                var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorAlternativa?AlternativaSeleccionada={id}");
+                var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorAlternativa?AlternativaSeleccionada={id}");
                 string apiResponse1 = await response1.Content.ReadAsStringAsync();
                 detalleAlternativa = JsonConvert.DeserializeObject<DetalleAlternativa>(apiResponse1);
 
@@ -375,7 +375,7 @@ namespace Gestor.UI.Controllers
             try
             {
                 var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync("https://reddecuido-hojancha.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorAlternativa");
+                var response = await httpClient.GetAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorAlternativa");
                 if (response.IsSuccessStatusCode)
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();

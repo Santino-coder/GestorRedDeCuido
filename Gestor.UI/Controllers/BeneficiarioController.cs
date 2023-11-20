@@ -30,7 +30,7 @@ namespace Gestor.UI.Controllers
             {
                 var httpClient = new HttpClient();
 
-                var response = await httpClient.GetAsync("https://reddecuido-hojancha.azurewebsites.net/api/Beneficiario/ListarBeneficiario");
+                var response = await httpClient.GetAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/Beneficiario/ListarBeneficiario");
 
                
                     string apiResponse = await response.Content.ReadAsStringAsync();
@@ -69,7 +69,7 @@ namespace Gestor.UI.Controllers
 
                     byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-                    await httpClient.PostAsync("https://reddecuido-hojancha.azurewebsites.net/api/Beneficiario/AgregarBeneficiario", byteContent);
+                    await httpClient.PostAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/Beneficiario/AgregarBeneficiario", byteContent);
 
 
                     return RedirectToAction(nameof(ListarBeneficiario));
@@ -95,7 +95,7 @@ namespace Gestor.UI.Controllers
             try
             {
                 var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync($"https://reddecuido-hojancha.azurewebsites.net/api/Beneficiario/ObtenerPorId/{id}");
+                var response = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/Beneficiario/ObtenerPorId/{id}");
 
                 if (response.IsSuccessStatusCode)
                 {
@@ -124,7 +124,7 @@ namespace Gestor.UI.Controllers
             try
             {
                 var httpClient = new HttpClient();
-                var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha.azurewebsites.net/api/Beneficiario/ObtenerPorId/{id}");
+                var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/Beneficiario/ObtenerPorId/{id}");
                 string apiResponse1 = await response1.Content.ReadAsStringAsync();
                 beneficiario = JsonConvert.DeserializeObject<Beneficiario>(apiResponse1);
                 
@@ -150,7 +150,7 @@ namespace Gestor.UI.Controllers
                     var buffer = System.Text.Encoding.UTF8.GetBytes(jsonBeneficiario);
                     var byteContent = new ByteArrayContent(buffer);
                     byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                    await httpClient.PutAsync("https://reddecuido-hojancha.azurewebsites.net/api/Beneficiario/EditarBeneficiario/", byteContent);
+                    await httpClient.PutAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/Beneficiario/EditarBeneficiario/", byteContent);
                     return RedirectToAction(nameof(ListarBeneficiario));
 
 
@@ -173,7 +173,7 @@ namespace Gestor.UI.Controllers
             try
             {
                 var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync("https://reddecuido-hojancha.azurewebsites.net/api/Beneficiario/CantidadTotalBeneficiarios");
+                var response = await httpClient.GetAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/Beneficiario/CantidadTotalBeneficiarios");
 
                 if (response.IsSuccessStatusCode)
                 {

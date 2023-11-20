@@ -14,7 +14,7 @@ namespace Gestor.UI.Controllers
             {
                 using (var httpClient = new HttpClient())
                 {
-                    string apiUrl = "https://reddecuido-hojancha.azurewebsites.net/api/Home/Index";
+                    string apiUrl = "https://reddecuido-hojancha-si.azurewebsites.net/api/Home/Index";
                     var response = await httpClient.GetAsync(apiUrl);
 
                     if (response.IsSuccessStatusCode)
@@ -50,7 +50,7 @@ namespace Gestor.UI.Controllers
             {
                 using (var httpClient = new HttpClient())
                 {
-                    string apiUrl = "https://reddecuido-hojancha.azurewebsites.net/api/Home/Privacy";
+                    string apiUrl = "https://reddecuido-hojancha-si.azurewebsites.net/api/Home/Privacy";
                     var response = await httpClient.GetAsync(apiUrl);
 
                     if (response.IsSuccessStatusCode)
@@ -78,7 +78,7 @@ namespace Gestor.UI.Controllers
             {
                 using (var httpClient = new HttpClient())
                 {
-                    string apiUrl = "https://reddecuido-hojancha.azurewebsites.net/api/Home/Error";
+                    string apiUrl = "https://reddecuido-hojancha-si.azurewebsites.net/api/Home/Error";
                     var response = await httpClient.GetAsync(apiUrl);
 
                     if (response.IsSuccessStatusCode)

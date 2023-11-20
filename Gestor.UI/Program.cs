@@ -1,5 +1,4 @@
-﻿
-using Gestor.BS;
+﻿using Gestor.BS;
 using Gestor.DA;
 using Gestor.UI;
 using Gestor.UI.Data;
@@ -19,7 +18,7 @@ using System.Threading.Tasks;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-// Agrega esta l�nea al bloque "Add services to the container."
+// Agrega esta l nea al bloque "Add services to the container."
 
 var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
@@ -43,6 +42,17 @@ builder.Services.Configure<IdentityOptions>(options =>
 builder.Services.AddScoped<IServiciosRedDeCuido, ServiciosRedDeCuido>();
 builder.Services.AddDbContext<DBContexto>(options =>
     options.UseSqlServer(connectionString));
+
+
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder
+            .WithOrigins("https://reddecuido-hojancha-ui.azurewebsites.net") // Reemplaza con el dominio real de tu proyecto UI
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
 
 var app = builder.Build();
 
@@ -72,5 +82,7 @@ app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
 app.MapRazorPages();
+
+app.UseCors("AllowSpecificOrigin");
 
 app.Run();

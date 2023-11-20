@@ -1,5 +1,4 @@
-﻿
-using Gestor.DA;
+﻿using Gestor.DA;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,7 +15,14 @@ var connectionString = builder.Configuration.GetConnectionString("DefaultConecti
 builder.Services.AddDbContext<DBContexto>(x => x.UseSqlServer(connectionString));
 
 
-
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowSpecificOrigin",
+        builder => builder
+            .WithOrigins("https://reddecuido-hojancha-ui.azurewebsites.net") // Reemplaza con el dominio real de tu proyecto UI
+            .AllowAnyHeader()
+            .AllowAnyMethod());
+});
 
 
 
@@ -35,6 +41,9 @@ app.UseSwaggerUI();
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+
+app.UseCors("AllowSpecificOrigin");
+
 
 app.MapControllers();
 
