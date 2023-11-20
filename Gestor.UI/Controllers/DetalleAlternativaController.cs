@@ -16,11 +16,6 @@ namespace Gestor.UI.Controllers
     {
 
 
-        public DetalleAlternativaController()
-        {
-
-        }
-
         public ActionResult AgregarDetalleAlternativa()
         {
             return View();

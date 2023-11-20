@@ -12,7 +12,7 @@ namespace Gestor.SI.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class DetalleAlternativaController : ControllerBase
+    public class DetalleAlternativaController : Controller
     {
         private readonly IServiciosRedDeCuido _serviciosRedDeCuido;
 

@@ -17,10 +17,6 @@ namespace Gestor.UI.Controllers
    // [Authorize]
     public class BeneficiarioController : Controller
     {
-        public BeneficiarioController()
-        {
-
-        }
 
         public async Task<IActionResult> ListarBeneficiario()
         {
