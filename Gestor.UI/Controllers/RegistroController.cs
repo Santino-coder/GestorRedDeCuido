@@ -21,7 +21,7 @@
                 var token = "token_de_confirmacion_generado";
 
                 // Crea una URL de confirmación de correo electrónico
-                var callbackUrl = $"https://localhost:7229/api/Registro={user.UserName}&code={token}";
+                var callbackUrl = $"https://reddecuido-hojancha.azurewebsites.net/api/Registro={user.UserName}&code={token}";
 
                 // En una implementación real, enviarías un correo electrónico para la confirmación
                 // Aquí se simula el envío del correo electrónico

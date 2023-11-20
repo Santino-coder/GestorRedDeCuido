@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
 
-namespace Gestor.UI.Controllers
+namespace Gestor.SI.Controllers
 {
     
     [Route("api/[controller]")]
@@ -18,7 +18,7 @@ namespace Gestor.UI.Controllers
 
         private readonly UserManager<IdentityUser> _userManager;
         private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly IEmailSender _emailSender; // Debes implementar una interfaz de envío de correo electrónico personalizada
+        private readonly IEmailSender _emailSender; 
 
         public RegistroController(UserManager<IdentityUser> userManager, SignInManager<IdentityUser> signInManager, IEmailSender emailSender)
         {
