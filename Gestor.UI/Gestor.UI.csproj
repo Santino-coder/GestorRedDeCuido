@@ -7,6 +7,10 @@
     <UserSecretsId>aspnet-Gestor.UI-de7e1211-b893-4f7a-a202-06526bdbded2</UserSecretsId>
   </PropertyGroup>
 
+  <PropertyGroup>
+    <ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+  </PropertyGroup>
+
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.Identity.Core.es" Version="2.2.4" />
     <PackageReference Include="Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore" Version="6.0.20" />
