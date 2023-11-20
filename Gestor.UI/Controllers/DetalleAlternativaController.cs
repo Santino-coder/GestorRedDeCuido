@@ -14,6 +14,10 @@ namespace Gestor.UI.Controllers
 {
     public class DetalleAlternativaController : Controller
     {
+        public DetalleAlternativaController()
+        {
+
+        }
 
 
         public ActionResult AgregarDetalleAlternativa()
