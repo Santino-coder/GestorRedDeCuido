@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gestor.UI.Models
+namespace Gestor.Models
 {
     public class MontosTotalesViewModel
     {   

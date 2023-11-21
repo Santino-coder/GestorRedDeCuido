@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Cors" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity.UI" Version="6.0.21" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="7.0.10">
       <PrivateAssets>all</PrivateAssets>
@@ -29,7 +30,6 @@
     <ProjectReference Include="..\Gestor.BS\Gestor.BS.csproj" />
     <ProjectReference Include="..\Gestor.DA\Gestor.DA.csproj" />
     <ProjectReference Include="..\Gestor.Models\Gestor.Models.csproj" />
-    <ProjectReference Include="..\Gestor.UI\Gestor.UI.csproj" />
   </ItemGroup>
 
 </Project>

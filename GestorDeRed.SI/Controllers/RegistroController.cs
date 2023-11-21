@@ -1,6 +1,6 @@
-﻿using Gestor.UI.Areas.Identity.Pages.Account;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
+using Microsoft.AspNetCore.Identity.UI.V4.Pages.Account.Internal;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
