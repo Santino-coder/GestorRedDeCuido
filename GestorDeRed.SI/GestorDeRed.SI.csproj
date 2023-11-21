@@ -26,10 +26,4 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
   </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\Gestor.BS\Gestor.BS.csproj" />
-    <ProjectReference Include="..\Gestor.DA\Gestor.DA.csproj" />
-    <ProjectReference Include="..\Gestor.Models\Gestor.Models.csproj" />
-  </ItemGroup>
-
 </Project>

@@ -1,6 +1,5 @@
 ﻿using Gestor.Models;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using System.Diagnostics;
 
 namespace GestorDeRed.SI.Controllers

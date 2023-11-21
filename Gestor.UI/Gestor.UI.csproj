@@ -37,12 +37,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Gestor.BS\Gestor.BS.csproj" />
-    <ProjectReference Include="..\Gestor.DA\Gestor.DA.csproj" />
-    <ProjectReference Include="..\Gestor.Models\Gestor.Models.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
     <UpToDateCheckInput Remove="Views\Home\Dashboard.cshtml" />
   </ItemGroup>
 
@@ -52,6 +46,10 @@
 
   <ItemGroup>
     <None Include="Views\Home\Dashboard.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\GestorDeRed.SI\GestorDeRed.SI.csproj" />
   </ItemGroup>
 
 </Project>
