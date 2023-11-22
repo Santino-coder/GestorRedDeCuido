@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Gestor.BS;
 using Gestor.Models;
 using System;
 using System.Collections.Generic;
@@ -144,7 +143,7 @@ namespace Gestor.UI.Controllers
 
         public async Task<IActionResult> ObtenerDetallePorIdBeneficiario(int id)
         {
-            DetalleAlternativa detalleAlternativa;
+            List<DetalleAlternativa> detalleAlternativa;
 
             try
             {
@@ -154,7 +153,7 @@ namespace Gestor.UI.Controllers
                 if (response.IsSuccessStatusCode)
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    detalleAlternativa = JsonConvert.DeserializeObject<DetalleAlternativa>(apiResponse);
+                    detalleAlternativa = JsonConvert.DeserializeObject<List<DetalleAlternativa>>(apiResponse);
                 }
                 else
                 {
@@ -234,7 +233,7 @@ namespace Gestor.UI.Controllers
                 // Maneja el error de acuerdo a tus necesidades (por ejemplo, registrando el error).
             }
 
-            return Ok(viewModel);
+            return View(viewModel);
         }
 
 
@@ -261,7 +260,7 @@ namespace Gestor.UI.Controllers
                 // Maneja el error de acuerdo a tus necesidades (por ejemplo, registrando el error).
             }
 
-            return Ok(viewModel);
+            return View(viewModel);
         }
 
         //montos totales por año****************************************************************
@@ -288,21 +287,21 @@ namespace Gestor.UI.Controllers
                 // Maneja el error de acuerdo a tus necesidades (por ejemplo, registrando el error).
             }
 
-            return Ok(viewModel);
+            return View(viewModel);
         }
 
         //Montos totales por beneficiario*****************************************************
         public async Task<IActionResult> MontosTotalesPorBeneficiario(int id)
         {
 
-            Beneficiario beneficiario;
+            MontosTotalesViewModel beneficiario;
 
             try
             {
                 var httpClient = new HttpClient();
                 var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorBeneficiario?idBeneficiario={id}");
                 string apiResponse1 = await response1.Content.ReadAsStringAsync();
-                beneficiario = JsonConvert.DeserializeObject<Beneficiario>(apiResponse1);
+                beneficiario = JsonConvert.DeserializeObject<MontosTotalesViewModel>(apiResponse1);
 
             }
             catch (Exception ex)
@@ -337,7 +336,7 @@ namespace Gestor.UI.Controllers
                 // Maneja el error de acuerdo a tus necesidades (por ejemplo, registrando el error).
             }
 
-            return Ok(viewModel);
+            return View(viewModel);
         }
 
 
@@ -348,6 +347,7 @@ namespace Gestor.UI.Controllers
 
         //montos totales por alternativa*****************************************************
 
+        [HttpGet("{id}")]
         public async Task<IActionResult> MontosTotalesPorAlternativa(int id)
         {
 
@@ -391,7 +391,7 @@ namespace Gestor.UI.Controllers
                 // Maneja el error de acuerdo a tus necesidades (por ejemplo, registrando el error).
             }
 
-            return Ok(viewModel);
+            return View(viewModel);
         }
 
 

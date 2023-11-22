@@ -1,4 +1,5 @@
 ﻿using Gestor.Models;
+using Gestor.UI.Models;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -46,9 +47,12 @@ namespace Gestor.UI.Controllers
 
             return View(listaBeneficiarios);
         }
-        
+
+        [HttpGet]
         public ActionResult AgregarBeneficiario()
         {
+
+
           return View();
         }
 

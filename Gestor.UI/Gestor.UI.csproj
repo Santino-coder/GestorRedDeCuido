@@ -51,7 +51,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\GestorDeRed.SI\GestorDeRed.SI.csproj" />
+    <ProjectReference Include="..\Gestor.Models\Gestor.Models.csproj" />
   </ItemGroup>
 
 </Project>

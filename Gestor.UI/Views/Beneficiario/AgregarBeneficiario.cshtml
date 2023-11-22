@@ -1,4 +1,5 @@
-﻿@model Gestor.Models.Beneficiario
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@model Gestor.Models.Beneficiario
 
 @{
     ViewData["Title"] = "AgregarBeneficiario";
@@ -19,7 +20,7 @@
 </head>
 <body>
 
-    <form asp-action="AgregarBeneficiario">
+    <form asp-area="" asp-controller="Beneficiario" asp-action="AgregarBeneficiario" method="post">
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
 
@@ -349,15 +350,15 @@
                             </div>
                         </div>
                         <div style="text-align:center">
-                        <input type="submit" value="Agregar" class="btn btn-primary btn-sm btn-icon-text">
-                        @Html.ActionLink("Lista de beneficiarios", "ListarBeneficiario", new { id = Model.idBeneficiario }, new { @class = "btn btn-danger btn-sm" })
+                        <input type="submit" value="Agregar" class="btn btn-primary btn-sm btn-icon-text " />
+                            @Html.ActionLink("Lista de beneficiarios", "ListarBeneficiario", new {  }, new { @class = "btn btn-danger btn-sm" })
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </form>
-    z
+    
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script type="text/javascript"></script>

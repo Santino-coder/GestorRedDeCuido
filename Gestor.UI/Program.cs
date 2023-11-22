@@ -1,5 +1,4 @@
-﻿using Gestor.BS;
-using Gestor.DA;
+﻿
 using Gestor.UI;
 using Gestor.UI.Data;
 using Gestor.UI.Services;
@@ -42,9 +41,9 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Lockout.MaxFailedAccessAttempts = 3;
     options.Lockout.AllowedForNewUsers = true;
 });
-builder.Services.AddScoped<IServiciosRedDeCuido, ServiciosRedDeCuido>();
-builder.Services.AddDbContext<DBContexto>(options =>
-    options.UseSqlServer(connectionString));
+//builder.Services.AddScoped<IServiciosRedDeCuido, ServiciosRedDeCuido>();
+//builder.Services.AddDbContext<DBContexto>(options =>
+//    options.UseSqlServer(connectionString));
 
 
 
@@ -82,8 +81,12 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(
+    name: "areas",
+    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+app.MapControllerRoute(
     name: "default",
     pattern: "{controller=Home}/{action=Index}/{id?}");
+
 app.MapRazorPages();
 
 app.UseCors("AllowSpecificOrigin");

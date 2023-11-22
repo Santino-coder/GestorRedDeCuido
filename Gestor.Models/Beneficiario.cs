@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -74,6 +75,7 @@ namespace Gestor.Models
         public string? Alternativa5 { get; set; }
 
         [NotMapped]
+        [JsonProperty("detalleDeAlternativa")]
         public DetalleAlternativa DetalleAlternativa { get; set; }
 
         [NotMapped]
