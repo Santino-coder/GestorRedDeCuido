@@ -166,7 +166,7 @@ namespace Gestor.UI.Controllers
                     var buffer = System.Text.Encoding.UTF8.GetBytes(jsonBeneficiario);
                     var byteContent = new ByteArrayContent(buffer);
                     byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                    await httpClient.PutAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/Beneficiario/EditarBeneficiario/", byteContent);
+                    await httpClient.PutAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/Beneficiario/EditarBeneficiario/{beneficiario.Id}", byteContent);
                     return RedirectToAction(nameof(ListarBeneficiario));
 
 
