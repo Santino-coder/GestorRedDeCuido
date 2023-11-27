@@ -76,7 +76,7 @@ namespace Gestor.Models
 
         [NotMapped]
         [JsonProperty("detalleDeAlternativa")]
-        public DetalleAlternativa DetalleAlternativa { get; set; }
+        public DetalleAlternativa? DetalleAlternativa { get; set; }
 
         [NotMapped]
         public List<DetalleAlternativa> DetallesAlternativos {get; set; }

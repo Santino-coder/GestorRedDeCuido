@@ -350,7 +350,7 @@
                             </div>
                         </div>
                         <div style="text-align:center">
-                        <input type="submit" value="Agregar" class="btn btn-primary btn-sm btn-icon-text " />
+                            <input type="submit" value="Agregar" class="btn btn-primary btn-sm btn-icon-text " id="btn" />
                             @Html.ActionLink("Lista de beneficiarios", "ListarBeneficiario", new {  }, new { @class = "btn btn-danger btn-sm" })
                         </div>
                     </div>
@@ -365,10 +365,15 @@
 
 </body>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="~/js/AgregarBeneficiario.js"></script>
+<script src="~/js/AgregarBeneficiario.js">
+
+     var boton = document.getElementById("btn"); 
+     boton.addEvenListener("click", ()=>{ console.log("hola")});
+
+</script>
 </html>
-@section Scripts {
+@* @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
-}
+} *@

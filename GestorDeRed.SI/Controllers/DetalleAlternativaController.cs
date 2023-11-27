@@ -35,6 +35,7 @@ namespace Gestor.SI.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult AgregarDetalleAlternativa(DetalleAlternativa detalleAlternativa, IFormFile FacturaFoto, IFormFile Proforma)
         {
+            var datos = detalleAlternativa;
             try
             {
                 if (FacturaFoto != null && FacturaFoto.Length > 0)

@@ -35,9 +35,9 @@ namespace Gestor.Models
         [Required(ErrorMessage = "*Dato requerido.")]
         [DisplayFormat(DataFormatString = "{0:N0}", ApplyFormatInEditMode = true)]
         public decimal Monto { get; set; }
-
+        [JsonIgnore]
         public byte[]? FacturaFoto { get; set; }
-
+        [JsonIgnore]
         public byte[]? Proforma { get; set; }
         [NotMapped]
         public string NombreBeneficiario { get; set; }
@@ -49,10 +49,14 @@ namespace Gestor.Models
 
 
         [NotMapped]
+        [JsonIgnore]
         [JsonProperty("listaBeneficiario")]
+
         public List<Beneficiario> beneficiario { get; set; }
 
         [NotMapped]
+        [JsonIgnore]
+
         [JsonProperty("elBeneficiario")]
         public Beneficiario Beneficiario { get; set; }
 

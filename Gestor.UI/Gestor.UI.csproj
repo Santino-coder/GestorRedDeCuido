@@ -51,6 +51,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Gestor.BS\Gestor.BS.csproj" />
     <ProjectReference Include="..\Gestor.Models\Gestor.Models.csproj" />
   </ItemGroup>
 

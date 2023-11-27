@@ -1,7 +1,10 @@
 ﻿
+using Gestor.BS;
+using Gestor.DA;
 using Gestor.UI;
 using Gestor.UI.Data;
 using Gestor.UI.Services;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
@@ -12,6 +15,7 @@ using Microsoft.Extensions.Logging;
 using Newtonsoft.Json.Serialization;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -41,11 +45,14 @@ builder.Services.Configure<IdentityOptions>(options =>
     options.Lockout.MaxFailedAccessAttempts = 3;
     options.Lockout.AllowedForNewUsers = true;
 });
-//builder.Services.AddScoped<IServiciosRedDeCuido, ServiciosRedDeCuido>();
-//builder.Services.AddDbContext<DBContexto>(options =>
-//    options.UseSqlServer(connectionString));
+builder.Services.AddScoped<IServiciosRedDeCuido, ServiciosRedDeCuido>();
+builder.Services.AddDbContext<DBContexto>(options =>
+    options.UseSqlServer(connectionString));
 
-
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.SameSite = SameSiteMode.None;
+});
 
 builder.Services.AddCors(options =>
 {
@@ -79,6 +86,8 @@ app.UseRouting();
 
 app.UseAuthentication();
 app.UseAuthorization();
+
+
 
 app.MapControllerRoute(
     name: "areas",

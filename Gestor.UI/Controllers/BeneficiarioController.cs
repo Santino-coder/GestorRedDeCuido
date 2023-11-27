@@ -56,12 +56,23 @@ namespace Gestor.UI.Controllers
           return View();
         }
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
+        //[HttpPost]
+
+        //public async Task<IActionResult> Test(Beneficiario beneficiario)
+        //{
+        //    var datos = beneficiario;
+        //    return Ok("Sirve");
+        //}
+
+
+         [HttpPost()]
+   
         public async Task<IActionResult> AgregarBeneficiario(Beneficiario beneficiario)
         {
             try
             {
+                ModelState.Remove("DetalleAlternativa");
+
                 if (ModelState.IsValid)
                 {
                     var httpClient = new HttpClient();
@@ -86,7 +97,9 @@ namespace Gestor.UI.Controllers
             }
             catch (Exception ex)
             {
-                return View();
+                Console.WriteLine(ex.Message);
+                
+                return View(ex);
             }
         }
 
