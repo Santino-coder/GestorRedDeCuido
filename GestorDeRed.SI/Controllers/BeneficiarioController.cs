@@ -47,17 +47,31 @@ namespace Gestor.SI.Controllers
         [HttpPost("AgregarBeneficiario")]
         public IActionResult AgregarBeneficiario([FromBody] Beneficiario beneficiario)
         {
-            if (ModelState.IsValid)
+            try
             {
+                // Verificar si los datos se vinculan correctamente
+                if (ModelState.IsValid)
+                {
+                    // Agregar lógica para manejar el beneficiario (por ejemplo, guardarlo en una base de datos)
+                    ServiciosRedDeCuido.AgregarBeneficiario(beneficiario);
 
-                ServiciosRedDeCuido.AgregarBeneficiario(beneficiario);
-                return Ok(beneficiario);
+                    // Devolver una respuesta exitosa
+                    return Ok(beneficiario);
+                }
+                else
+                {
+                    // Devolver errores de validación si el modelo no es válido
+                    return BadRequest(ModelState);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                return BadRequest(ModelState);
+                // Registrar cualquier error que ocurra durante el procesamiento
+                Console.WriteLine($"Error al procesar la solicitud: {ex.Message}");
+                return StatusCode(500, "Error interno del servidor");
             }
-             }
+        }
+
 
         [HttpPut("EditarBeneficiario/{id}")]
         public IActionResult EditarBeneficiario([FromBody] Beneficiario beneficiario)
