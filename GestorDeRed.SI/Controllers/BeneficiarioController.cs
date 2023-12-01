@@ -30,19 +30,7 @@ namespace Gestor.SI.Controllers
             return listarBeneficiario;
         }
 
-        [HttpGet("ObtenerPorId/{id}")]
-        public IActionResult ObtenerPorId(int id)
-        {
-            Beneficiario beneficiario;
-            beneficiario = ServiciosRedDeCuido.ObtenerPorId(id);
-
-            
-            if (beneficiario == null)
-            {
-                return NotFound();
-            }
-            return Ok(beneficiario);
-        }
+     
 
         [HttpPost("AgregarBeneficiario")]
         public IActionResult AgregarBeneficiario([FromBody] Beneficiario beneficiario)
@@ -71,36 +59,33 @@ namespace Gestor.SI.Controllers
                 return StatusCode(500, "Error interno del servidor");
             }
         }
+        [HttpGet("ObtenerPorId/{id}")]
+        public IActionResult ObtenerPorId(int id)
+        {
+            Beneficiario beneficiario;
+            beneficiario = ServiciosRedDeCuido.ObtenerPorId(id);
 
 
-        [HttpPut("EditarBeneficiario/{id}")]
-        public IActionResult EditarBeneficiario(int id, [FromBody] Beneficiario beneficiario)
+            if (beneficiario == null)
+            {
+                return NotFound();
+            }
+            return Ok(beneficiario);
+        }
+
+        [HttpPut("EditarBeneficiario")]
+        public IActionResult EditarBeneficiario([FromBody] Beneficiario beneficiario)
         {
             try
             {
-                // Verificar si los datos se vinculan correctamente
-                if (ModelState.IsValid)
-                {
-                    // Agregar lógica para obtener el beneficiario existente por su ID y actualizar los datos
-                    var beneficiarioExistente = ServiciosRedDeCuido.ObtenerPorId(id);
-
-                    if (beneficiarioExistente == null)
-                    {
-                        // Devolver NotFound si el beneficiario no se encuentra
-                        return NotFound($"Beneficiario con ID {id} no encontrado");
-                    }
+              
 
                     // Luego, llama a tu método de servicio para guardar los cambios en la base de datos
-                    ServiciosRedDeCuido.EditarBeneficiario(beneficiarioExistente);
+                    ServiciosRedDeCuido.EditarBeneficiario(beneficiario);
 
                     // Devolver una respuesta exitosa
-                    return Ok(beneficiarioExistente);
-                }
-                else
-                {
-                    // Devolver errores de validación si el modelo no es válido
-                    return BadRequest(ModelState);
-                }
+                    return Ok(beneficiario);
+              
             }
             catch (Exception ex)
             {

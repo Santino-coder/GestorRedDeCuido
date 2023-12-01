@@ -56,17 +56,7 @@ namespace Gestor.UI.Controllers
           return View();
         }
 
-        //[HttpPost]
-
-        //public async Task<IActionResult> Test(Beneficiario beneficiario)
-        //{
-        //    var datos = beneficiario;
-        //    return Ok("Sirve");
-        //}
-
-
-         [HttpPost()]
-   
+         [HttpPost()]   
         public async Task<IActionResult> AgregarBeneficiario(Beneficiario beneficiario)
         {
             try
@@ -103,6 +93,57 @@ namespace Gestor.UI.Controllers
             }
         }
 
+        [HttpGet]
+        public async Task<IActionResult> EditarBeneficiario(int id)
+        {
+
+            Beneficiario beneficiario;
+
+            try
+            {
+                var httpClient = new HttpClient();
+                var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/Beneficiario/ObtenerPorId/{id}");
+                string apiResponse1 = await response1.Content.ReadAsStringAsync();
+                beneficiario = JsonConvert.DeserializeObject<Beneficiario>(apiResponse1);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return View(beneficiario);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> EditarBeneficiario(Beneficiario beneficiario)
+        {
+            try
+            {
+                if (ModelState.IsValid)
+                {
+
+                    var httpClient = new HttpClient();
+                    string jsonBeneficiario = JsonConvert.SerializeObject(beneficiario);
+                    var buffer = System.Text.Encoding.UTF8.GetBytes(jsonBeneficiario);
+                    var byteContent = new ByteArrayContent(buffer);
+                    byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                    await httpClient.PutAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/Beneficiario/EditarBeneficiario", byteContent);
+                    return RedirectToAction(nameof(ListarBeneficiario));
+
+
+                }
+                else
+                {
+                    return View();
+                }
+            }
+            catch
+            {
+                return View();
+            }
+        }
 
         public async Task<IActionResult> Detalles(int id)
         {
@@ -132,55 +173,7 @@ namespace Gestor.UI.Controllers
             return View(beneficiario);
         }
 
-        public async Task<IActionResult> EditarBeneficiario(int id)
-        {
-           
-            Beneficiario beneficiario;
-
-            try
-            {
-                var httpClient = new HttpClient();
-                var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/Beneficiario/ObtenerPorId/{id}");
-                string apiResponse1 = await response1.Content.ReadAsStringAsync();
-                beneficiario = JsonConvert.DeserializeObject<Beneficiario>(apiResponse1);
-                
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-            
-            return View(beneficiario);
-        }
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditarBeneficiario(Beneficiario beneficiario)
-        {
-            try
-            {
-                if (ModelState.IsValid) {
-
-                    var httpClient = new HttpClient();
-                    string jsonBeneficiario = JsonConvert.SerializeObject(beneficiario);
-                    var buffer = System.Text.Encoding.UTF8.GetBytes(jsonBeneficiario);
-                    var byteContent = new ByteArrayContent(buffer);
-                    byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                    await httpClient.PutAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/Beneficiario/EditarBeneficiario/{beneficiario.Id}", byteContent);
-                    return RedirectToAction(nameof(ListarBeneficiario));
-
-
-                }
-                else
-                {
-                    return View();
-                }
-            }
-            catch 
-            {
-                return View();
-            }
-        }
+       
 
         public async Task<IActionResult> CantidadTotalBeneficiarios()
         {
