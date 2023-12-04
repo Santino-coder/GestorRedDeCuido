@@ -45,6 +45,15 @@ namespace Gestor.UI.Controllers
                 throw ex;
             }
 
+            int cantidadTotal = listaBeneficiarios.Count;
+            int cantidadActivos = listaBeneficiarios.Count(b => b.Estado == "Activo");
+            int cantidadInactivos = listaBeneficiarios.Count(b => b.Estado == "Inactivo");
+            int cantidadFallecidos = listaBeneficiarios.Count(b => b.Estado == "Fallecido");
+
+            ViewBag.CantidadActivos = cantidadActivos;
+            ViewBag.CantidadInactivos = cantidadInactivos;
+            ViewBag.CantidadFallecidos = cantidadFallecidos;
+
             return View(listaBeneficiarios);
         }
 
@@ -172,45 +181,5 @@ namespace Gestor.UI.Controllers
 
             return View(beneficiario);
         }
-
-       
-
-        public async Task<IActionResult> CantidadTotalBeneficiarios()
-        {
-            List<Beneficiario> listaBeneficiarios;
-
-            try
-            {
-                var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/Beneficiario/CantidadTotalBeneficiarios");
-
-                if (response.IsSuccessStatusCode)
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    listaBeneficiarios = JsonConvert.DeserializeObject<List<Beneficiario>>(apiResponse);
-                }
-                else
-                {
-                    // Maneja el error de una manera adecuada para tu aplicación.
-                    throw new Exception("Error al obtener la lista de beneficiarios");
-                }
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            int cantidadTotal = listaBeneficiarios.Count;
-            int cantidadActivos = listaBeneficiarios.Count(b => b.Estado == "Activo");
-            int cantidadInactivos = listaBeneficiarios.Count(b => b.Estado == "Inactivo");
-            int cantidadFallecidos = listaBeneficiarios.Count(b => b.Estado == "Fallecido");
-
-            ViewBag.CantidadActivos = cantidadActivos;
-            ViewBag.CantidadInactivos = cantidadInactivos;
-            ViewBag.CantidadFallecidos = cantidadFallecidos;
-
-            return View(cantidadTotal);
-        }
-
     }
 }

@@ -30,7 +30,7 @@ namespace Gestor.SI.Controllers
             return listarBeneficiario;
         }
 
-     
+
 
         [HttpPost("AgregarBeneficiario")]
         public IActionResult AgregarBeneficiario([FromBody] Beneficiario beneficiario)
@@ -78,14 +78,14 @@ namespace Gestor.SI.Controllers
         {
             try
             {
-              
 
-                    // Luego, llama a tu método de servicio para guardar los cambios en la base de datos
-                    ServiciosRedDeCuido.EditarBeneficiario(beneficiario);
 
-                    // Devolver una respuesta exitosa
-                    return Ok(beneficiario);
-              
+                // Luego, llama a tu método de servicio para guardar los cambios en la base de datos
+                ServiciosRedDeCuido.EditarBeneficiario(beneficiario);
+
+                // Devolver una respuesta exitosa
+                return Ok(beneficiario);
+
             }
             catch (Exception ex)
             {
@@ -93,26 +93,6 @@ namespace Gestor.SI.Controllers
                 Console.WriteLine($"Error al procesar la solicitud: {ex.Message}");
                 return StatusCode(500, "Error interno del servidor");
             }
-        }
-
-        [HttpGet("CantidadTotalBeneficiarios")]
-        public ActionResult<IEnumerable<int>> CantidadTotalBeneficiarios()
-        {
-            var beneficiarios = ServiciosRedDeCuido.ListarBeneficiario();
-            int cantidadTotal = beneficiarios.Count;
-            int cantidadActivos = beneficiarios.Count(b => b.Estado == "Activo");
-            int cantidadInactivos = beneficiarios.Count(b => b.Estado == "Inactivo");
-            int cantidadFallecidos = beneficiarios.Count(b => b.Estado == "Fallecido");
-
-            var result = new List<int>
-    {
-        cantidadTotal,
-        cantidadActivos,
-        cantidadInactivos,
-        cantidadFallecidos
-    };
-
-            return result;
         }
 
     }
