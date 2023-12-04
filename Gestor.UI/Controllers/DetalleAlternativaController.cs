@@ -139,35 +139,39 @@ namespace Gestor.UI.Controllers
             }
         }
 
-
-
-        public async Task<IActionResult> ObtenerDetallePorIdBeneficiario(int id)
+  
+        public async Task<ActionResult<IEnumerable<DetalleAlternativa>>> ObtenerDetallePorIdBeneficiario(int idBeneficiario)
         {
-            List<DetalleAlternativa> detalleAlternativa;
-
             try
             {
                 var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/ObtenerDetallePorIdBeneficiario/{id}");
+                var response = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/ObtenerDetallePorIdBeneficiario/{idBeneficiario}");
 
                 if (response.IsSuccessStatusCode)
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
-                    detalleAlternativa = JsonConvert.DeserializeObject<List<DetalleAlternativa>>(apiResponse);
+                    List<DetalleAlternativa> detalles = JsonConvert.DeserializeObject<List<DetalleAlternativa>>(apiResponse);
+
+                    if (detalles == null || detalles.Count == 0)
+                    {
+                        return NotFound("No se encontraron detalles para el beneficiario.");
+                    }
+
+                    return View(detalles);
                 }
                 else
                 {
-                    // Maneja el error de una manera adecuada para tu aplicación.
-                    throw new Exception("Error al obtener los detalles del beneficiario");
+                    // Log the error or handle it appropriately for your application.
+                    return StatusCode((int)response.StatusCode, "Error al obtener los detalles del beneficiario");
                 }
             }
             catch (Exception ex)
             {
-                throw ex;
+                // Log the exception or handle it appropriately for your application.
+                return StatusCode(500, "Error interno del servidor al obtener los detalles del beneficiario");
             }
-
-            return View(detalleAlternativa);
         }
+
 
 
 
