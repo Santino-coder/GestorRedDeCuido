@@ -79,7 +79,7 @@ namespace Gestor.UI.Controllers
 
 
 
-    public async Task<IActionResult> ListarDetalleAlternativa()
+        public async Task<IActionResult> ListarDetalleAlternativa()
         {
             List<DetalleAlternativa> listadetallealternativa;
 
@@ -158,7 +158,7 @@ namespace Gestor.UI.Controllers
             }
         }
 
-  
+
         public async Task<ActionResult<IEnumerable<DetalleAlternativa>>> ObtenerDetallePorIdBeneficiario(int idBeneficiario)
         {
             try
@@ -316,24 +316,29 @@ namespace Gestor.UI.Controllers
         //montos totales por beneficiario*****************************************************
 
         [HttpGet]
-        public async Task<ActionResult> MontosTotalesPorBeneficiario()
+        public async Task<ActionResult> MontosTotalesPorBeneficiario(int? idBeneficiario = null)
         {
             MontosTotalesViewModel viewModel = new MontosTotalesViewModel();
 
             try
             {
-                var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorBeneficiario/9"); // Reemplaza '1' con el ID real que necesitas.
+                // Si no se proporciona un ID de beneficiario seleccionado, utiliza un valor predeterminado o maneja de acuerdo a tus necesidades.
+                int beneficiaryId = idBeneficiario ?? 9; // Cambia '1' al valor predeterminado que desees.
 
-                if (response.IsSuccessStatusCode)
+                using (var httpClient = new HttpClient())
                 {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    viewModel = JsonConvert.DeserializeObject<MontosTotalesViewModel>(apiResponse);
-                }
-                else
-                {
-                    // Maneja el error de una manera adecuada para tu aplicación.
-                    return StatusCode((int)response.StatusCode, response.ReasonPhrase);
+                    var response = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorBeneficiario/{beneficiaryId}");
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        string apiResponse = await response.Content.ReadAsStringAsync();
+                        viewModel = JsonConvert.DeserializeObject<MontosTotalesViewModel>(apiResponse);
+                    }
+                    else
+                    {
+                        // Maneja el error de una manera adecuada para tu aplicación.
+                        return StatusCode((int)response.StatusCode, response.ReasonPhrase);
+                    }
                 }
             }
             catch (Exception ex)
@@ -399,11 +404,11 @@ namespace Gestor.UI.Controllers
         }
 
 
-      
+
 
     }
 
-    
+
 }
 
 

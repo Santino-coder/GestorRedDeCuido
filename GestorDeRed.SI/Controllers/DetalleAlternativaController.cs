@@ -242,6 +242,26 @@ namespace Gestor.SI.Controllers
             return Ok(viewModel);
         }
 
+        [HttpGet("MontosTotalesPorBeneficiario")]
+        public ActionResult MontosTotalesPorBeneficiario()
+        {
+            try
+            {
+                var listaBeneficiarios = _serviciosRedDeCuido.ListarBeneficiario();
+                var viewModel = new MontosTotalesViewModel
+                {
+                    Beneficiarios = listaBeneficiarios
+                };
+
+                return View(viewModel);
+            }
+            catch (Exception ex)
+            {
+                // Maneja el error de acuerdo a tus necesidades (por ejemplo, registrando el error).
+                return StatusCode(500, "Error interno del servidor");
+            }
+        }
+
         [HttpGet("MontosTotalesPorBeneficiario/{id}")]
         public async Task<ActionResult<MontosTotalesViewModel>> MontosTotalesPorBeneficiario(int id)
         {
@@ -283,6 +303,7 @@ namespace Gestor.SI.Controllers
                 return StatusCode(500, "Error interno del servidor");
             }
         }
+
 
 
         [HttpGet("MontosTotalesPorAlternativa")]
