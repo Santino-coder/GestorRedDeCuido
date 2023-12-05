@@ -171,7 +171,7 @@ namespace Gestor.UI.Controllers
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     List<DetalleAlternativa> detalles = JsonConvert.DeserializeObject<List<DetalleAlternativa>>(apiResponse);
 
-                    if (detalles == null || detalles.Count == 0)
+                    if (detalles == null && detalles.Count == 0)
                     {
                         return NotFound("No se encontraron detalles para el beneficiario.");
                     }
