@@ -19,15 +19,18 @@ namespace Gestor.UI.Controllers
         }
 
 
+        [HttpGet]
         public ActionResult AgregarDetalleAlternativa()
         {
+
+
             return View();
         }
 
 
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AgregarDetalleAlternativa(DetalleAlternativa detalleAlternativa)
+        [HttpPost()]
+        //[ValidateAntiForgeryToken]
+        public async Task<IActionResult> AgregarDetalleAlternativa(DetalleAlternativa detalleAlternativa, IFormFile FacturaFoto, IFormFile Proforma)
         {
             try
             {
@@ -38,11 +41,27 @@ namespace Gestor.UI.Controllers
                     var buffer = System.Text.Encoding.UTF8.GetBytes(json);
 
                     var byteContent = new ByteArrayContent(buffer);
-
                     byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-                    await httpClient.PostAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/AgregarDetalleAlternativa", byteContent);
+                    if (FacturaFoto != null)
+                    {
+                        using (var stream = new MemoryStream())
+                        {
+                            await FacturaFoto.CopyToAsync(stream);
+                            detalleAlternativa.FacturaFoto = stream.ToArray();
+                        }
+                    }
 
+                    if (Proforma != null)
+                    {
+                        using (var stream = new MemoryStream())
+                        {
+                            await Proforma.CopyToAsync(stream);
+                            detalleAlternativa.Proforma = stream.ToArray();
+                        }
+                    }
+
+                    await httpClient.PostAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/AgregarDetalleAlternativa", byteContent);
 
                     return RedirectToAction(nameof(ListarDetalleAlternativa));
                 }
@@ -50,8 +69,6 @@ namespace Gestor.UI.Controllers
                 {
                     return View();
                 }
-
-
             }
             catch (Exception ex)
             {
@@ -60,7 +77,9 @@ namespace Gestor.UI.Controllers
         }
 
 
-        public async Task<IActionResult> ListarDetalleAlternativa()
+
+
+    public async Task<IActionResult> ListarDetalleAlternativa()
         {
             List<DetalleAlternativa> listadetallealternativa;
 
@@ -294,37 +313,18 @@ namespace Gestor.UI.Controllers
             return View(viewModel);
         }
 
-        //Montos totales por beneficiario*****************************************************
-        public async Task<IActionResult> MontosTotalesPorBeneficiario(int id)
+        
+
+
+        private async Task<ActionResult> MontosTotalesPorBeneficiario(int id)
         {
-
-            MontosTotalesViewModel beneficiario;
-
-            try
-            {
-                var httpClient = new HttpClient();
-                var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorBeneficiario?idBeneficiario={id}");
-                string apiResponse1 = await response1.Content.ReadAsStringAsync();
-                beneficiario = JsonConvert.DeserializeObject<MontosTotalesViewModel>(apiResponse1);
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            return View(beneficiario);
-        }
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> MontosTotalesPorBeneficiario()
-        {
+            
             MontosTotalesViewModel viewModel = new MontosTotalesViewModel();
 
             try
             {
                 var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorBeneficiario");
+                var response = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorBeneficiario/{id}");
                 if (response.IsSuccessStatusCode)
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
@@ -342,11 +342,6 @@ namespace Gestor.UI.Controllers
 
             return View(viewModel);
         }
-
-
-
-        //public async Task<ActionResult<MontosTotalesViewModel>> MontosTotalesPorAlternativa()
-        // no se si seren asi
 
 
         //montos totales por alternativa*****************************************************

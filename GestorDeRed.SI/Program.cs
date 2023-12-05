@@ -29,6 +29,7 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod());
 });
 
+builder.Services.AddControllersWithViews();
 
 
 var app = builder.Build();

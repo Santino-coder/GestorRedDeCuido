@@ -16,7 +16,7 @@
         <div class="card-body">
             <h4>Montos totales por beneficiario</h4>
             <hr />
-            @using (Html.BeginForm("MontosTotalesPorBeneficiario", "DetalleAlternativa", FormMethod.Post, new { name = "formBeneficiario" }))
+           @using (Html.BeginForm("MontosTotalesPorBeneficiario", "DetalleAlternativa", FormMethod.Get, new { name = "formBeneficiario" }))
             {
                 <label for="idBeneficiario">Selecciona un beneficiario:</label>
                 <select name="idBeneficiario" id="idBeneficiario">

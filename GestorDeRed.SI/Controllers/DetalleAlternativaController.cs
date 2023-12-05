@@ -21,7 +21,8 @@ namespace Gestor.SI.Controllers
             _serviciosRedDeCuido = serviciosRedDeCuido;
         }
 
-        [HttpGet("AgregarDetalleAlternativa")]
+
+        [HttpGet]
         public ActionResult<DetalleAlternativa> AgregarDetalleAlternativa(int id)
         {
             DetalleAlternativa detalleAlternativa = new DetalleAlternativa
@@ -32,51 +33,30 @@ namespace Gestor.SI.Controllers
         }
 
         [HttpPost("AgregarDetalleAlternativa")]
-        [ValidateAntiForgeryToken]
-        public IActionResult AgregarDetalleAlternativa(DetalleAlternativa detalleAlternativa, IFormFile FacturaFoto, IFormFile Proforma)
+        public IActionResult AgregarDetalleAlternativa(DetalleAlternativa detalleAlternativa)
         {
-            var datos = detalleAlternativa;
             try
             {
-                if (FacturaFoto != null && FacturaFoto.Length > 0)
+                if (ModelState.IsValid)
                 {
-                    using (var ms = new MemoryStream())
-                    {
-                        FacturaFoto.CopyTo(ms);
-                        detalleAlternativa.FacturaFoto = ms.ToArray();
-                    }
-                }
+                    // Agregar lógica para guardar los datos en la base de datos
+                    _serviciosRedDeCuido.AgregarDetalleAlternativa(detalleAlternativa);
 
-                if (Proforma != null && Proforma.Length > 0)
-                {
-                    using (var ms = new MemoryStream())
-                    {
-                        Proforma.CopyTo(ms);
-                        detalleAlternativa.Proforma = ms.ToArray();
-                    }
+                    // Puedes devolver un objeto JSON con detalles de éxito
+                    return Ok(new { Message = "Detalle alternativa agregado con éxito" });
                 }
-                _serviciosRedDeCuido.AgregarDetalleAlternativa(detalleAlternativa);
-                return RedirectToAction("ListarBeneficiario", "Beneficiario");
+                else
+                {
+                    // Devuelve un código de estado 400 Bad Request con los errores del modelo
+                    return BadRequest(ModelState);
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return BadRequest();
+                // Manejar la excepción adecuadamente, puedes logearla o devolver un mensaje de error
+                return StatusCode(500, $"Error al agregar detalle alternativa: {ex.Message}");
             }
         }
-
-        private byte[] ReadFileToByteArray(IFormFile file)
-        {
-            if (file != null && file.Length > 0)
-            {
-                using (var memoryStream = new MemoryStream())
-                {
-                    file.CopyTo(memoryStream);
-                    return memoryStream.ToArray();
-                }
-            }
-            return null; // O manejar de acuerdo a tus necesidades si el archivo es nulo o tiene longitud cero
-        }
-
 
         [HttpGet("ListarDetalleAlternativa")]
         public ActionResult<IEnumerable<DetalleAlternativa>> ListarDetalleAlternativa()
@@ -262,23 +242,12 @@ namespace Gestor.SI.Controllers
             return Ok(viewModel);
         }
 
-        [HttpGet("MontosTotalesPorBeneficiario")]
-        public ActionResult<MontosTotalesViewModel> MontosTotalesPorBeneficiario()
+        [HttpGet("MontosTotalesPorBeneficiario/{id}")]
+        public ActionResult<MontosTotalesViewModel> MontosTotalesPorBeneficiario(int id)
         {
-            var listaBeneficiarios = _serviciosRedDeCuido.ListarBeneficiario();
-            var viewModel = new MontosTotalesViewModel
-            {
-                Beneficiarios = listaBeneficiarios
-            };
-            return Ok(viewModel);
-        }
-
-        [HttpPost("MontosTotalesPorBeneficiario")]
-        public ActionResult<MontosTotalesViewModel> MontosTotalesPorBeneficiario(int idBeneficiario)
-        {
-            var detalles = _serviciosRedDeCuido.ObtenerDetallePorIdBeneficiario(idBeneficiario);
+            var detalles = _serviciosRedDeCuido.ObtenerDetallePorIdBeneficiario(id);
             var montoTotalBeneficiario = detalles.Sum(d => d.Monto);
-            var beneficiario = _serviciosRedDeCuido.ObtenerBeneficiarioPorId(idBeneficiario);
+            var beneficiario = _serviciosRedDeCuido.ObtenerBeneficiarioPorId(id);
 
             if (beneficiario == null)
             {
