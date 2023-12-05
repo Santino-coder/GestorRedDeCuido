@@ -313,18 +313,18 @@ namespace Gestor.UI.Controllers
             return View(viewModel);
         }
 
-        
+        //montos totales por beneficiario*****************************************************
 
-
-        private async Task<ActionResult> MontosTotalesPorBeneficiario(int id)
+        [HttpGet]
+        public async Task<ActionResult> MontosTotalesPorBeneficiario()
         {
-            
             MontosTotalesViewModel viewModel = new MontosTotalesViewModel();
 
             try
             {
                 var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorBeneficiario/{id}");
+                var response = await httpClient.GetAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorBeneficiario/9"); // Reemplaza '1' con el ID real que necesitas.
+
                 if (response.IsSuccessStatusCode)
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
@@ -333,15 +333,18 @@ namespace Gestor.UI.Controllers
                 else
                 {
                     // Maneja el error de una manera adecuada para tu aplicación.
+                    return StatusCode((int)response.StatusCode, response.ReasonPhrase);
                 }
             }
             catch (Exception ex)
             {
                 // Maneja el error de acuerdo a tus necesidades (por ejemplo, registrando el error).
+                return StatusCode(500, "Error interno del servidor");
             }
 
             return View(viewModel);
         }
+
 
 
         //montos totales por alternativa*****************************************************
@@ -367,6 +370,8 @@ namespace Gestor.UI.Controllers
 
             return View(detalleAlternativa);
         }
+
+
         public async Task<ActionResult> MontosTotalesPorAlternativa()
         {
             MontosTotalesViewModel viewModel = new MontosTotalesViewModel();

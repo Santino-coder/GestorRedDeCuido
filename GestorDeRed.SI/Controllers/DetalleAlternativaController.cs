@@ -243,38 +243,47 @@ namespace Gestor.SI.Controllers
         }
 
         [HttpGet("MontosTotalesPorBeneficiario/{id}")]
-        public ActionResult<MontosTotalesViewModel> MontosTotalesPorBeneficiario(int id)
+        public async Task<ActionResult<MontosTotalesViewModel>> MontosTotalesPorBeneficiario(int id)
         {
-            var detalles = _serviciosRedDeCuido.ObtenerDetallePorIdBeneficiario(id);
-            var montoTotalBeneficiario = detalles.Sum(d => d.Monto);
-            var beneficiario = _serviciosRedDeCuido.ObtenerBeneficiarioPorId(id);
-
-            if (beneficiario == null)
+            try
             {
-                return NotFound("El beneficiario no se encontró.");
-            }
+                var detalles = _serviciosRedDeCuido.ObtenerDetallePorIdBeneficiario(id);
+                var montoTotalBeneficiario = detalles.Sum(d => d.Monto);
+                var beneficiario = _serviciosRedDeCuido.ObtenerBeneficiarioPorId(id);
 
-            var montosPorMesBeneficiario = detalles
-                .GroupBy(d => d.Fecha.ToString("yyyy-MM"))
-                .Select(group => new MontosTotalesViewModel
+                if (beneficiario == null)
                 {
-                    MesBeneficiario = group.Key,
-                    MontoTotalBeneficiario = group.Sum(d => d.Monto)
-                })
-                .ToList();
+                    return NotFound("El beneficiario no se encontró.");
+                }
 
-            var listaBeneficiarios = _serviciosRedDeCuido.ListarBeneficiario();
-            var viewModel = new MontosTotalesViewModel
+                var montosPorMesBeneficiario = detalles
+                    .GroupBy(d => d.Fecha.ToString("yyyy-MM"))
+                    .Select(group => new MontosTotalesViewModel
+                    {
+                        MesBeneficiario = group.Key,
+                        MontoTotalBeneficiario = group.Sum(d => d.Monto)
+                    })
+                    .ToList();
+
+                var listaBeneficiarios = _serviciosRedDeCuido.ListarBeneficiario();
+                var viewModel = new MontosTotalesViewModel
+                {
+                    Detalles = detalles,
+                    Beneficiario = beneficiario,
+                    MontoPorBeneficiario = montoTotalBeneficiario,
+                    Beneficiarios = listaBeneficiarios,
+                    MontoPorBeneficiarios = montosPorMesBeneficiario
+                };
+
+                return Ok(viewModel);
+            }
+            catch (Exception ex)
             {
-                Detalles = detalles,
-                Beneficiario = beneficiario,
-                MontoPorBeneficiario = montoTotalBeneficiario,
-                Beneficiarios = listaBeneficiarios,
-                MontoPorBeneficiarios = montosPorMesBeneficiario
-            };
-
-            return Ok(viewModel);
+                // Maneja el error de acuerdo a tus necesidades (por ejemplo, registrando el error).
+                return StatusCode(500, "Error interno del servidor");
+            }
         }
+
 
         [HttpGet("MontosTotalesPorAlternativa")]
         public ActionResult<MontosTotalesViewModel> MontosTotalesPorAlternativa()
