@@ -1,28 +1,36 @@
-﻿@model Gestor.Models.DetalleAlternativa
+﻿@model Gestor.Models.AgregarAlternativaDto
 
 @{
     ViewData["Title"] = "EditarDetalleAlternativa";
 }
-@using (Html.BeginForm("EditarDetalleAlternativa", "DetalleAlternativa", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
 
-    @Html.AntiForgeryToken()
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>EditarDetalleAlternativa</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- Enlaces a los archivos de hojas de estilo personalizados -->
     <link rel="stylesheet" href="~/css/_Layout.css" asp-append-version="true" />
     <link href="~/css/style.css" rel="stylesheet" type="text/css" />
+</head>
 
+<body>
+    <form asp-area="" asp-controller="DetalleAlternativa" asp-action="EditarDetalleAlternativa" enctype="multipart/form-data" method="post">
 
-    <form asp-action="EditarDetalleAlternativa">
+        <input asp-for="FacturaFoto" type="hidden" />
+        <input asp-for="Proforma" type="hidden" />
+
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-        <div class="form-group" style="display:none">
-            <label asp-for="idDetalleAlternativa" class="control-label">Número de identificación</label>
-            <input asp-for="idDetalleAlternativa" class="form-control" />
+        <div class="form-group">
+
+            <input asp-for="idDetalleAlternativa" class="form-control" type="hidden" />
             <span asp-validation-for="idDetalleAlternativa" class="text-danger"></span>
         </div>
 
-        <div class="form-group" style="display:none">
+        <div class="form-group">
             <label asp-for="idBeneficiario" class="control-label">ids de benes</label>
-            <input asp-for="idBeneficiario" class="form-control" />
+            <input asp-for="idBeneficiario" class="form-control" type="hidden" />
             <span asp-validation-for="idBeneficiario" class="text-danger"></span>
         </div>
 
@@ -98,12 +106,45 @@
                     </div>
                 </div>
 
+                <td>
+                    @if (@Model.FotoFacturaActual != null && Model.FotoFacturaActual.Length > 0)
+                    {
+                        <!-- Mostrar imagen de factura si está disponible -->
+                        @* Convierte la imagen de factura a Base64 y genera una URL de datos *@
+                        string imagenBase64 = Convert.ToBase64String(Model.FotoFacturaActual);
+                        string imagenDataUrl = $"data:image/jpeg;base64,{imagenBase64}";
+                        <img src="@imagenDataUrl" alt="Factura" width="120" height="180" />
+                    }
+                    else
+                    {
+                        <!-- Mensaje si no hay foto de factura -->
+                        <p>No se encontró una foto</p>
+                    }
+                </td>
+                <td>
+                    @if (@Model.ProformaActual != null && Model.ProformaActual.Length > 0)
+                    {
+                        <!-- Mostrar imagen de proforma si está disponible -->
+                        @* Convierte la imagen de proforma a Base64 y genera una URL de datos *@
+                        string imagenBase64 = Convert.ToBase64String(Model.ProformaActual);
+                        string imagenDataUrl = $"data:image/jpeg;base64,{imagenBase64}";
+                        <img src="@imagenDataUrl" alt="Proforma" width="120" height="180" />
+                    }
+                    else
+                    {
+                        <!-- Mensaje si no hay foto de proforma -->
+                        <p>No se encontró una foto</p>
+                    }
+                </td>
+
+
+
                 <div class="row">
                     <div class="col-lg-4 mb-3">
                         <div>
                             <label asp-for="FacturaFoto">Foto de factura</label>
                             <input asp-for="FacturaFoto" type="file" name="FacturaFoto" class="form-control" />
-                            <span asp-validation-for="FacturaFoto" class="text-danger"></span>
+                            
                         </div>
                     </div>
                 </div>
@@ -113,7 +154,7 @@
                         <div>
                             <label asp-for="Proforma">Foto de proforma</label>
                             <input asp-for="Proforma" type="file" name="Proforma" class="form-control" />
-                            <span asp-validation-for="Proforma" class="text-danger"></span>
+                            
                         </div>
                     </div>
                 </div>
@@ -129,10 +170,12 @@
 
     </form>
 
+</body>
+</html>
 
-    @section Scripts {
+
+@section Scripts {
     @{
-            await Html.RenderPartialAsync("_ValidationScriptsPartial");
-        }
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }

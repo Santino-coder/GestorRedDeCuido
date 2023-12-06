@@ -6,7 +6,6 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using Gestor.Models;
 
 namespace Gestor.SI.Controllers
 {
@@ -22,15 +21,41 @@ namespace Gestor.SI.Controllers
         }
 
 
-        [HttpGet]
-        public ActionResult<DetalleAlternativa> AgregarDetalleAlternativa(int id)
-        {
-            DetalleAlternativa detalleAlternativa = new DetalleAlternativa
-            {
-                idBeneficiario = id
-            };
-            return detalleAlternativa;
-        }
+        //[HttpGet]
+        //public ActionResult<DetalleAlternativa> AgregarDetalleAlternativa(int id)
+        //{
+        //    DetalleAlternativa detalleAlternativa = new DetalleAlternativa
+        //    {
+        //        idBeneficiario = id
+        //    };
+        //    return detalleAlternativa;
+        //}
+
+        //[HttpPost("AgregarDetalleAlternativa")]
+        //public IActionResult AgregarDetalleAlternativa(DetalleAlternativa detalleAlternativa)
+        //{
+        //    try
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            // Agregar lógica para guardar los datos en la base de datos
+        //            _serviciosRedDeCuido.AgregarDetalleAlternativa(detalleAlternativa);
+
+        //            // Puedes devolver un objeto JSON con detalles de éxito
+        //            return Ok(new { Message = "Detalle alternativa agregado con éxito" });
+        //        }
+        //        else
+        //        {
+        //            // Devuelve un código de estado 400 Bad Request con los errores del modelo
+        //            return BadRequest(ModelState);
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Manejar la excepción adecuadamente, puedes logearla o devolver un mensaje de error
+        //        return StatusCode(500, $"Error al agregar detalle alternativa: {ex.Message}");
+        //    }
+        //}
 
         [HttpPost("AgregarDetalleAlternativa")]
         public IActionResult AgregarDetalleAlternativa(DetalleAlternativa detalleAlternativa)
@@ -58,6 +83,7 @@ namespace Gestor.SI.Controllers
             }
         }
 
+
         [HttpGet("ListarDetalleAlternativa")]
         public ActionResult<IEnumerable<DetalleAlternativa>> ListarDetalleAlternativa()
         {
@@ -74,57 +100,106 @@ namespace Gestor.SI.Controllers
             return Ok(listar);
         }
 
-        [HttpGet("EditarDetalleAlternativa/{id}")]
-        public ActionResult<DetalleAlternativa> EditarDetalleAlternativa(int id)
+
+
+        //[HttpGet("EditarDetalleAlternativa/{id}")]
+        //public ActionResult<DetalleAlternativa> EditarDetalleAlternativa(int id)
+        //{
+        //    DetalleAlternativa detalleAlternativa = _serviciosRedDeCuido.ObteneridDetalleAlternativa(id);
+        //    return detalleAlternativa;
+        //}
+
+        //[HttpPost("EditarDetalleAlternativa")]
+        //[ValidateAntiForgeryToken]
+        //public IActionResult EditarDetalleAlternativa(DetalleAlternativa detalleAlternativa, IFormFile FacturaFoto, IFormFile Proforma)
+        //{
+        //    try
+        //    {
+        //        // Carga el detalle original desde la base de datos
+        //        DetalleAlternativa detalleOriginal = _serviciosRedDeCuido.ObteneridDetalleAlternativa(detalleAlternativa.idDetalleAlternativa);
+
+        //        if (FacturaFoto != null && FacturaFoto.Length > 0)
+        //        {
+        //            using (var ms = new MemoryStream())
+        //            {
+        //                FacturaFoto.CopyTo(ms);
+        //                detalleAlternativa.FacturaFoto = ms.ToArray();
+        //            }
+        //        }
+        //        else
+        //        {
+        //            // Si no se proporciona una nueva imagen, conserva la imagen original
+        //            detalleAlternativa.FacturaFoto = detalleOriginal.FacturaFoto;
+        //        }
+
+        //        if (Proforma != null && Proforma.Length > 0)
+        //        {
+        //            using (var ms = new MemoryStream())
+        //            {
+        //                Proforma.CopyTo(ms);
+        //                detalleAlternativa.Proforma = ms.ToArray();
+        //            }
+        //        }
+        //        else
+        //        {
+        //            // Si no se proporciona una nueva imagen, conserva la imagen original
+        //            detalleAlternativa.Proforma = detalleOriginal.Proforma;
+        //        }
+
+        //        _serviciosRedDeCuido.EditarDetalleAlternativa(detalleAlternativa);
+
+        //        return RedirectToAction("ObtenerDetallePorIdBeneficiario", new { idBeneficiario = detalleAlternativa.idBeneficiario });
+        //    }
+        //    catch
+        //    {
+        //        return BadRequest();
+        //    }
+        //}
+
+        //  ----> Se necesita para editar un detalle 
+
+        [HttpGet("{id}")]
+        public ActionResult<IEnumerable<DetalleAlternativa>> ListarDetalleAlternativa(int id)
         {
-            DetalleAlternativa detalleAlternativa = _serviciosRedDeCuido.ObteneridDetalleAlternativa(id);
-            return detalleAlternativa;
+            var detalle = _serviciosRedDeCuido.ObteneridDetalleAlternativa(id);
+            if (detalle != null)
+            {
+                return Ok(detalle);
+
+            }
+            return BadRequest("Detalle no encontrado!");
+
+
         }
 
-        [HttpPost("EditarDetalleAlternativa")]
-        [ValidateAntiForgeryToken]
-        public IActionResult EditarDetalleAlternativa(DetalleAlternativa detalleAlternativa, IFormFile FacturaFoto, IFormFile Proforma)
+
+
+
+        [HttpPut("EditarDetalleAlternativa")]
+        // [ValidateAntiForgeryToken]
+        public IActionResult EditarDetalleAlternativa(DetalleAlternativa detalleAlternativa)
         {
             try
             {
-                // Carga el detalle original desde la base de datos
-                DetalleAlternativa detalleOriginal = _serviciosRedDeCuido.ObteneridDetalleAlternativa(detalleAlternativa.idDetalleAlternativa);
-
-                if (FacturaFoto != null && FacturaFoto.Length > 0)
+                if (ModelState.IsValid)
                 {
-                    using (var ms = new MemoryStream())
-                    {
-                        FacturaFoto.CopyTo(ms);
-                        detalleAlternativa.FacturaFoto = ms.ToArray();
-                    }
+                    // Carga el detalle original desde la base de datos
+                    // DetalleAlternativa detalleOriginal = _serviciosRedDeCuido.ObteneridDetalleAlternativa(detalleAlternativa.idDetalleAlternativa);
+
+
+                    _serviciosRedDeCuido.EditarDetalleAlternativa(detalleAlternativa);
+
+                    return Ok("Detalle editado exitosamente!");
                 }
                 else
                 {
-                    // Si no se proporciona una nueva imagen, conserva la imagen original
-                    detalleAlternativa.FacturaFoto = detalleOriginal.FacturaFoto;
+                    return BadRequest(ModelState);
                 }
 
-                if (Proforma != null && Proforma.Length > 0)
-                {
-                    using (var ms = new MemoryStream())
-                    {
-                        Proforma.CopyTo(ms);
-                        detalleAlternativa.Proforma = ms.ToArray();
-                    }
-                }
-                else
-                {
-                    // Si no se proporciona una nueva imagen, conserva la imagen original
-                    detalleAlternativa.Proforma = detalleOriginal.Proforma;
-                }
-
-                _serviciosRedDeCuido.EditarDetalleAlternativa(detalleAlternativa);
-
-                return RedirectToAction("ObtenerDetallePorIdBeneficiario", new { idBeneficiario = detalleAlternativa.idBeneficiario });
             }
-            catch
+            catch (Exception ex)
             {
-                return BadRequest();
+                return BadRequest(ex);
             }
         }
 
@@ -285,14 +360,14 @@ namespace Gestor.SI.Controllers
         }
 
 
-        [HttpGet("MontosTotalesPorAlternativa")]
-        public ActionResult<MontosTotalesViewModel> MontosTotalesPorAlternativa()
-        {
-            var viewModel = new MontosTotalesViewModel();
-            return Ok(viewModel);
-        }
+        //[HttpGet("MontosTotalesPorAlternativa")]
+        //public ActionResult<MontosTotalesViewModel> MontosTotalesPorAlternativa()
+        //{
+        //    var viewModel = new MontosTotalesViewModel();
+        //    return Ok(viewModel);
+        //}
 
-        [HttpPost("MontosTotalesPorAlternativa")]
+        [HttpGet("MontosTotalesPorAlternativa")]
         public ActionResult<MontosTotalesViewModel> MontosTotalesPorAlternativa(string AlternativaSeleccionada)
         {
             var detalles = _serviciosRedDeCuido.ListarDetalleAlternativa();

@@ -1,5 +1,4 @@
-﻿vista MontosTotalesPorAlternativa:
-
+﻿
 
 @model Gestor.Models.MontosTotalesViewModel
 
@@ -22,7 +21,7 @@
 
             <h3 class="h6">Monto total por alternativa</h3>
 
-            @using (Html.BeginForm("MontosTotalesPorAlternativa", "DetalleAlternativa", FormMethod.Get, new { name = "formAlternativa" }))
+            @using (Html.BeginForm("MontosTotalesPorAlternativa", "DetalleAlternativa", new { area = "" }, FormMethod.Get))
             {
                 <!-- Selector para elegir una alternativa -->
                 <label for="AlternativaSeleccionada">Selecciona una alternativa:</label>

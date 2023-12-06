@@ -35,28 +35,28 @@ namespace Gestor.Models
         [Required(ErrorMessage = "*Dato requerido.")]
         [DisplayFormat(DataFormatString = "{0:N0}", ApplyFormatInEditMode = true)]
         public decimal Monto { get; set; }
-      
+
         public byte[]? FacturaFoto { get; set; }
-       
+
         public byte[]? Proforma { get; set; }
 
         [NotMapped]
-        public string NombreBeneficiario { get; set; }
+        public string? NombreBeneficiario { get; set; }
         [NotMapped]
-        public string ApellidoBeneficiario { get; set; }
+        public string? ApellidoBeneficiario { get; set; }
 
         [NotMapped]
-        public string NombreCompleto { get; set; }
+        public string? NombreCompleto { get; set; }
 
 
         [NotMapped]
         [JsonProperty("listaBeneficiario")]
 
-        public List<Beneficiario> beneficiario { get; set; }
+        public List<Beneficiario>? beneficiario { get; set; }
 
         [NotMapped]
         [JsonProperty("elBeneficiario")]
-        public Beneficiario Beneficiario { get; set; }
+        public Beneficiario? Beneficiario { get; set; }
 
         [ForeignKey("idBeneficiario")]
         public int idBeneficiario { get; set; } // Esta propiedad representa la clave foránea

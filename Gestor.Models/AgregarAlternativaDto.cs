@@ -8,7 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Gestor.UI.Models.Dtos
+namespace Gestor.Models
 {
     public class AgregarAlternativaDto
     {
@@ -37,9 +37,13 @@ namespace Gestor.UI.Models.Dtos
         [DisplayFormat(DataFormatString = "{0:N0}", ApplyFormatInEditMode = true)]
         public decimal Monto { get; set; }
         [JsonIgnore]
-        public IFormFile FacturaFoto { get; set; }
+        public IFormFile? FacturaFoto { get; set; }
         [JsonIgnore]
-        public IFormFile Proforma { get; set; }
+        public IFormFile ?Proforma { get; set; }
+
+        public byte[]? FotoFacturaActual { get; set; }
+        [JsonIgnore]
+        public byte[] ?ProformaActual { get; set; }
 
         public int idBeneficiario { get; set; } // Esta propiedad representa la clave foránea
 

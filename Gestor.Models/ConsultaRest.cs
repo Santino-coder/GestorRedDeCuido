@@ -1,4 +1,4 @@
-﻿namespace Gestor.UI.Models.Dtos
+﻿namespace Gestor.Models
 {
     public class ConsultaRest
     {

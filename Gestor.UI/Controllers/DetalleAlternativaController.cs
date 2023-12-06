@@ -19,36 +19,123 @@ namespace Gestor.UI.Controllers
         }
 
 
+        //[HttpGet]
+        //public ActionResult AgregarDetalleAlternativa()
+        //{
+
+
+        //    return View();
+        //}
+
+
+        //[HttpPost()]
+        ////[ValidateAntiForgeryToken]
+        //public async Task<IActionResult> AgregarDetalleAlternativa(DetalleAlternativa detalleAlternativa, IFormFile FacturaFoto, IFormFile Proforma)
+        //{
+        //    try
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+        //            var httpClient = new HttpClient();
+        //            string json = JsonConvert.SerializeObject(detalleAlternativa);
+        //            var buffer = System.Text.Encoding.UTF8.GetBytes(json);
+
+        //            var byteContent = new ByteArrayContent(buffer);
+        //            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+
+        //            if (FacturaFoto != null)
+        //            {
+        //                using (var stream = new MemoryStream())
+        //                {
+        //                    await FacturaFoto.CopyToAsync(stream);
+        //                    detalleAlternativa.FacturaFoto = stream.ToArray();
+        //                }
+        //            }
+
+        //            if (Proforma != null)
+        //            {
+        //                using (var stream = new MemoryStream())
+        //                {
+        //                    await Proforma.CopyToAsync(stream);
+        //                    detalleAlternativa.Proforma = stream.ToArray();
+        //                }
+        //            }
+
+        //            await httpClient.PostAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/AgregarDetalleAlternativa", byteContent);
+
+        //            return RedirectToAction(nameof(ListarDetalleAlternativa));
+        //        }
+        //        else
+        //        {
+        //            return View();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        return View();
+        //    }
+        //}
+
+
         [HttpGet]
-        public ActionResult AgregarDetalleAlternativa()
+        public async Task<ActionResult> AgregarDetalleAlternativa(int id)
         {
+            try
+            {
+                var httpClient = new HttpClient();
+                var response = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/Beneficiario/ObtenerPorId/{id}");
 
+                if (response.IsSuccessStatusCode)
+                {
+                    string apiResponse = await response.Content.ReadAsStringAsync();
+                    var beneficiario = JsonConvert.DeserializeObject<Beneficiario>(apiResponse);
+                    var detalle = new AgregarAlternativaDto() { idBeneficiario = id };
+                    return View(detalle);
+                }
+                else
+                {
+                    // Maneja el error de una manera adecuada para tu aplicación.
+                    throw new Exception("Error al obtener los detalles del beneficiario");
+                }
 
-            return View();
+            }
+            catch (Exception ex)
+            {
+                return View();
+            }
+
         }
 
 
         [HttpPost()]
         //[ValidateAntiForgeryToken]
-        public async Task<IActionResult> AgregarDetalleAlternativa(DetalleAlternativa detalleAlternativa, IFormFile FacturaFoto, IFormFile Proforma)
+        public async Task<IActionResult> AgregarDetalleAlternativa(AgregarAlternativaDto detalleAlternativa, IFormFile FacturaFoto, IFormFile Proforma)
         {
             try
             {
                 if (ModelState.IsValid)
                 {
-                    var httpClient = new HttpClient();
-                    string json = JsonConvert.SerializeObject(detalleAlternativa);
-                    var buffer = System.Text.Encoding.UTF8.GetBytes(json);
 
-                    var byteContent = new ByteArrayContent(buffer);
-                    byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                    //mapeo 
+                    var detalle = new DetalleAlternativa()
+                    {
+                        idBeneficiario = detalleAlternativa.idBeneficiario,
+                        NombreAlternativa = detalleAlternativa.NombreAlternativa,
+                        Fecha = detalleAlternativa.Fecha,
+                        Articulo = detalleAlternativa.Articulo,
+                        Proveedor = detalleAlternativa.Proveedor,
+                        Cantidad = detalleAlternativa.Cantidad,
+                        NumeroFactura = detalleAlternativa.NumeroFactura,
+                        Monto = detalleAlternativa.Monto
+
+                    };
 
                     if (FacturaFoto != null)
                     {
                         using (var stream = new MemoryStream())
                         {
                             await FacturaFoto.CopyToAsync(stream);
-                            detalleAlternativa.FacturaFoto = stream.ToArray();
+                            detalle.FacturaFoto = stream.ToArray();
                         }
                     }
 
@@ -57,11 +144,17 @@ namespace Gestor.UI.Controllers
                         using (var stream = new MemoryStream())
                         {
                             await Proforma.CopyToAsync(stream);
-                            detalleAlternativa.Proforma = stream.ToArray();
+                            detalle.Proforma = stream.ToArray();
                         }
                     }
 
-                    await httpClient.PostAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/AgregarDetalleAlternativa", byteContent);
+                    var httpClient = new HttpClient();
+                    string json = JsonConvert.SerializeObject(detalle);
+                    var buffer = System.Text.Encoding.UTF8.GetBytes(json);
+
+                    var byteContent = new ByteArrayContent(buffer);
+                    byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                    var respueta = await httpClient.PostAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/AgregarDetalleAlternativa", byteContent);
 
                     return RedirectToAction(nameof(ListarDetalleAlternativa));
                 }
@@ -75,6 +168,7 @@ namespace Gestor.UI.Controllers
                 return View();
             }
         }
+
 
 
 
@@ -107,6 +201,58 @@ namespace Gestor.UI.Controllers
 
 
 
+        //public async Task<IActionResult> EditarDetalleAlternativa(int id)
+        //{
+
+        //    DetalleAlternativa detalleAlternativa;
+
+        //    try
+        //    {
+        //        var httpClient = new HttpClient();
+        //        var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/EditarDetalleAlternativa/{id}");
+        //        string apiResponse1 = await response1.Content.ReadAsStringAsync();
+        //        detalleAlternativa = JsonConvert.DeserializeObject<DetalleAlternativa>(apiResponse1);
+
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw ex;
+        //    }
+
+        //    return View(detalleAlternativa);
+        //}
+
+        //[HttpPost]
+        //[ValidateAntiForgeryToken]
+        //public async Task<ActionResult> EditarDetalleAlternativa(DetalleAlternativa detalleAlternativa)
+        //{
+        //    try
+        //    {
+        //        if (ModelState.IsValid)
+        //        {
+
+        //            var httpClient = new HttpClient();
+        //            string jsonBeneficiario = JsonConvert.SerializeObject(detalleAlternativa);
+        //            var buffer = System.Text.Encoding.UTF8.GetBytes(jsonBeneficiario);
+        //            var byteContent = new ByteArrayContent(buffer);
+        //            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+        //            await httpClient.PutAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/EditarDetalleAlternativa", byteContent);
+        //            return RedirectToAction(nameof(ListarDetalleAlternativa));
+
+
+        //        }
+        //        else
+        //        {
+        //            return View();
+        //        }
+        //    }
+        //    catch
+        //    {
+        //        return View();
+        //    }
+        //}
+
+
         public async Task<IActionResult> EditarDetalleAlternativa(int id)
         {
 
@@ -114,8 +260,9 @@ namespace Gestor.UI.Controllers
 
             try
             {
+                //  ----> Primero se encuentra el detalle a editar
                 var httpClient = new HttpClient();
-                var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/EditarDetalleAlternativa/{id}");
+                var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api//DetalleAlternativa/{id}");
                 string apiResponse1 = await response1.Content.ReadAsStringAsync();
                 detalleAlternativa = JsonConvert.DeserializeObject<DetalleAlternativa>(apiResponse1);
 
@@ -124,35 +271,92 @@ namespace Gestor.UI.Controllers
             {
                 throw ex;
             }
+            //  ----> Si existe  el detalle se envia al view
 
-            return View(detalleAlternativa);
+            var detalle = new AgregarAlternativaDto()
+            {
+
+                idDetalleAlternativa = detalleAlternativa.idDetalleAlternativa,
+                idBeneficiario = detalleAlternativa.idBeneficiario,
+                NombreAlternativa = detalleAlternativa.NombreAlternativa,
+                Fecha = detalleAlternativa.Fecha,
+                Articulo = detalleAlternativa.Articulo,
+                Proveedor = detalleAlternativa.Proveedor,
+                Cantidad = detalleAlternativa.Cantidad,
+                NumeroFactura = detalleAlternativa.NumeroFactura,
+                Monto = detalleAlternativa.Monto,
+                FotoFacturaActual = detalleAlternativa.FacturaFoto,
+                ProformaActual = detalleAlternativa.Proforma
+            };
+
+            return View(detalle);
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public async Task<ActionResult> EditarDetalleAlternativa(DetalleAlternativa detalleAlternativa)
+        public async Task<ActionResult> EditarDetalleAlternativa(AgregarAlternativaDto detalleAlternativa,
+            IFormFile FacturaFoto, IFormFile Proforma)
         {
             try
             {
-                if (ModelState.IsValid)
-                {
+                
+                
 
+                    DetalleAlternativa detalleOriginal;
+
+
+
+                    //  ----> Primero se encuentra el detalle a editar
                     var httpClient = new HttpClient();
-                    string jsonBeneficiario = JsonConvert.SerializeObject(detalleAlternativa);
+                    var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/{detalleAlternativa.idDetalleAlternativa}");
+                    string apiResponse1 = await response1.Content.ReadAsStringAsync();
+                    detalleOriginal = JsonConvert.DeserializeObject<DetalleAlternativa>(apiResponse1);
+
+
+                    // ---> Agregamos las nuevas fotos si vienen en el request
+                    if (FacturaFoto != null)
+                    {
+                        using (var stream = new MemoryStream())
+                        {
+                            await FacturaFoto.CopyToAsync(stream);
+                            detalleOriginal.FacturaFoto = stream.ToArray();
+                        }
+                    }
+
+                    if (Proforma != null)
+                    {
+                        using (var stream = new MemoryStream())
+                        {
+                            await Proforma.CopyToAsync(stream);
+                            detalleOriginal.Proforma = stream.ToArray();
+                        }
+                    }
+
+                    //mapeo 
+                    detalleOriginal.NombreAlternativa = detalleAlternativa.NombreAlternativa;
+                    detalleOriginal.Fecha = detalleAlternativa.Fecha;
+                    detalleOriginal.Articulo = detalleAlternativa.Articulo;
+                    detalleOriginal.Cantidad = detalleAlternativa.Cantidad;
+                    detalleOriginal.Proveedor = detalleAlternativa.Proveedor;
+                    detalleOriginal.Monto = detalleAlternativa.Monto;
+                    detalleOriginal.NumeroFactura = detalleAlternativa.NumeroFactura;
+                    //detalleOriginal.FacturaFoto = detalleAlternativa.FacturaFoto;
+                    //detalleOriginal.Proforma = detalleAlternativa.Proforma;
+
+
+                    string jsonBeneficiario = JsonConvert.SerializeObject(detalleOriginal);
                     var buffer = System.Text.Encoding.UTF8.GetBytes(jsonBeneficiario);
                     var byteContent = new ByteArrayContent(buffer);
                     byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
-                    await httpClient.PutAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/EditarDetalleAlternativa", byteContent);
+                    var response = await httpClient.PutAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/EditarDetalleAlternativa", byteContent);
+
                     return RedirectToAction(nameof(ListarDetalleAlternativa));
 
 
-                }
-                else
-                {
-                    return View();
-                }
+                
+                
+                
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }
@@ -354,18 +558,20 @@ namespace Gestor.UI.Controllers
 
         //montos totales por alternativa*****************************************************
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> MontosTotalesPorAlternativa(int id)
+        [HttpGet]
+        public async Task<IActionResult> MontosTotalesPorAlternativa(string AlternativaSeleccionada)
         {
 
-            DetalleAlternativa detalleAlternativa;
+            MontosTotalesViewModel detalleAlternativa;
 
             try
             {
                 var httpClient = new HttpClient();
-                var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorAlternativa?AlternativaSeleccionada={id}");
+                //var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorAlternativa?AlternativaSeleccionada={AlternativaSeleccionada}");
+
+                var response1 = await httpClient.GetAsync($"https://localhost:7229/api/DetalleAlternativa/MontosTotalesPorAlternativa?AlternativaSeleccionada={AlternativaSeleccionada}");
                 string apiResponse1 = await response1.Content.ReadAsStringAsync();
-                detalleAlternativa = JsonConvert.DeserializeObject<DetalleAlternativa>(apiResponse1);
+                detalleAlternativa = JsonConvert.DeserializeObject<MontosTotalesViewModel>(apiResponse1);
 
             }
             catch (Exception ex)
@@ -377,38 +583,38 @@ namespace Gestor.UI.Controllers
         }
 
 
-        public async Task<ActionResult> MontosTotalesPorAlternativa(string AlternativaSeleccionada)
-        {
-            MontosTotalesViewModel viewModel;
+        //public async Task<ActionResult> MontosTotalesPorAlternativa(string AlternativaSeleccionada)
+        //{
+        //    MontosTotalesViewModel viewModel;
 
-            try
-            {
-                var httpClient = new HttpClient();
-                var response = await httpClient.GetAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorAlternativa");
-                if (response.IsSuccessStatusCode)
-                {
-                    string apiResponse = await response.Content.ReadAsStringAsync();
-                    viewModel = JsonConvert.DeserializeObject<MontosTotalesViewModel>(apiResponse);
+        //    try
+        //    {
+        //        var httpClient = new HttpClient();
+        //        var response = await httpClient.GetAsync("https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorAlternativa");
+        //        if (response.IsSuccessStatusCode)
+        //        {
+        //            string apiResponse = await response.Content.ReadAsStringAsync();
+        //            viewModel = JsonConvert.DeserializeObject<MontosTotalesViewModel>(apiResponse);
 
-                    if (AlternativaSeleccionada != null)
-                    {
-                        viewModel.AlternativaSeleccionada = AlternativaSeleccionada;
+        //            if (AlternativaSeleccionada != null)
+        //            {
+        //                viewModel.AlternativaSeleccionada = AlternativaSeleccionada;
 
-                        return View(viewModel);
-                    }
-                }
-                else
-                {
-                    // Maneja el error de una manera adecuada para tu aplicación.
-                }
-            }
-            catch (Exception ex)
-            {
-                // Maneja el error de acuerdo a tus necesidades (por ejemplo, registrando el error).
-            }
-            viewModel = new MontosTotalesViewModel();
-            return View(viewModel);
-        }
+        //                return View(viewModel);
+        //            }
+        //        }
+        //        else
+        //        {
+        //            // Maneja el error de una manera adecuada para tu aplicación.
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        // Maneja el error de acuerdo a tus necesidades (por ejemplo, registrando el error).
+        //    }
+        //    viewModel = new MontosTotalesViewModel();
+        //    return View(viewModel);
+        //}
 
 
 
