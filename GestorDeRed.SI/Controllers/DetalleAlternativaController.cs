@@ -286,6 +286,13 @@ namespace Gestor.SI.Controllers
 
 
         [HttpGet("MontosTotalesPorAlternativa")]
+        public ActionResult<MontosTotalesViewModel> MontosTotalesPorAlternativa()
+        {
+            var viewModel = new MontosTotalesViewModel();
+            return Ok(viewModel);
+        }
+
+        [HttpPost("MontosTotalesPorAlternativa")]
         public ActionResult<MontosTotalesViewModel> MontosTotalesPorAlternativa(string AlternativaSeleccionada)
         {
             var detalles = _serviciosRedDeCuido.ListarDetalleAlternativa();

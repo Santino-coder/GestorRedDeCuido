@@ -354,7 +354,29 @@ namespace Gestor.UI.Controllers
 
         //montos totales por alternativa*****************************************************
 
-        [HttpGet]
+        [HttpGet("{id}")]
+        public async Task<IActionResult> MontosTotalesPorAlternativa(int id)
+        {
+
+            DetalleAlternativa detalleAlternativa;
+
+            try
+            {
+                var httpClient = new HttpClient();
+                var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorAlternativa?AlternativaSeleccionada={id}");
+                string apiResponse1 = await response1.Content.ReadAsStringAsync();
+                detalleAlternativa = JsonConvert.DeserializeObject<DetalleAlternativa>(apiResponse1);
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            return View(detalleAlternativa);
+        }
+
+
         public async Task<ActionResult> MontosTotalesPorAlternativa(string AlternativaSeleccionada)
         {
             MontosTotalesViewModel viewModel;
@@ -387,7 +409,13 @@ namespace Gestor.UI.Controllers
             viewModel = new MontosTotalesViewModel();
             return View(viewModel);
         }
+
+
+
+
     }
+
+
 
 
 }

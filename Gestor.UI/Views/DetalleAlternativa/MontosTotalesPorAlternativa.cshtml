@@ -1,4 +1,7 @@
-﻿@model Gestor.Models.MontosTotalesViewModel
+﻿vista MontosTotalesPorAlternativa:
+
+
+@model Gestor.Models.MontosTotalesViewModel
 
 <!DOCTYPE html>
 <html lang="en">
@@ -19,8 +22,7 @@
 
             <h3 class="h6">Monto total por alternativa</h3>
 
-            @using (Html.BeginForm("MontosTotalesPorAlternativa", "DetalleAlternativa", new { area = "" }, FormMethod.Get))
-            
+            @using (Html.BeginForm("MontosTotalesPorAlternativa", "DetalleAlternativa", FormMethod.Get, new { name = "formAlternativa" }))
             {
                 <!-- Selector para elegir una alternativa -->
                 <label for="AlternativaSeleccionada">Selecciona una alternativa:</label>
@@ -81,7 +83,7 @@
                 </table>
             }
             <!-- Enlace para regresar a la vista de montos totales -->
-            @Html.ActionLink("Regresar a montos totales", "MontosTotales","DetalleAlternativa", new { @class = "btn btn-danger btn-sm" })
+            @Html.ActionLink("Regresar a montos totales", "MontosTotales", "DetalleAlternativa", new { @class = "btn btn-danger btn-sm" })
         </div>
     </div>
 </body>
