@@ -19,7 +19,8 @@
 
             <h3 class="h6">Monto total por alternativa</h3>
 
-            @using (Html.BeginForm("MontosTotalesPorAlternativa", "DetalleAlternativa", FormMethod.Post, new { name = "formAlternativa" }))
+            @using (Html.BeginForm("MontosTotalesPorAlternativa", "DetalleAlternativa", new { area = "" }, FormMethod.Get))
+            
             {
                 <!-- Selector para elegir una alternativa -->
                 <label for="AlternativaSeleccionada">Selecciona una alternativa:</label>
@@ -61,13 +62,20 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.MontoMensualDeAlternativa)
+                        @if (Model.MontoMensualDeAlternativa != null && Model.MontoMensualDeAlternativa.Any())
                         {
-                            <!-- Filas para mostrar montos por mes de la alternativa -->
-                            <tr>
-                                <td>@item.Mesanio</td>
-                                <td>@item.MontoTotalMes.ToString("C")</td>
-                            </tr>
+                            @foreach (var item in Model.MontoMensualDeAlternativa)
+                            {
+                                <!-- Filas para mostrar montos por mes de la alternativa -->
+                                <tr>
+                                    <td>@item.Mesanio</td>
+                                    <td>@item.MontoTotalMes.ToString("C")</td>
+                                </tr>
+                            }
+                        }
+                        else
+                        {
+                            <p>No hay datos disponibles para mostrar.</p>
                         }
                     </tbody>
                 </table>

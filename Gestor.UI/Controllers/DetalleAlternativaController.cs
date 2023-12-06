@@ -354,32 +354,10 @@ namespace Gestor.UI.Controllers
 
         //montos totales por alternativa*****************************************************
 
-        [HttpGet("{id}")]
-        public async Task<IActionResult> MontosTotalesPorAlternativa(int id)
+        [HttpGet]
+        public async Task<ActionResult> MontosTotalesPorAlternativa(string AlternativaSeleccionada)
         {
-
-            DetalleAlternativa detalleAlternativa;
-
-            try
-            {
-                var httpClient = new HttpClient();
-                var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorAlternativa?AlternativaSeleccionada={id}");
-                string apiResponse1 = await response1.Content.ReadAsStringAsync();
-                detalleAlternativa = JsonConvert.DeserializeObject<DetalleAlternativa>(apiResponse1);
-
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-
-            return View(detalleAlternativa);
-        }
-
-
-        public async Task<ActionResult> MontosTotalesPorAlternativa()
-        {
-            MontosTotalesViewModel viewModel = new MontosTotalesViewModel();
+            MontosTotalesViewModel viewModel;
 
             try
             {
@@ -389,6 +367,13 @@ namespace Gestor.UI.Controllers
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     viewModel = JsonConvert.DeserializeObject<MontosTotalesViewModel>(apiResponse);
+
+                    if (AlternativaSeleccionada != null)
+                    {
+                        viewModel.AlternativaSeleccionada = AlternativaSeleccionada;
+
+                        return View(viewModel);
+                    }
                 }
                 else
                 {
@@ -399,13 +384,9 @@ namespace Gestor.UI.Controllers
             {
                 // Maneja el error de acuerdo a tus necesidades (por ejemplo, registrando el error).
             }
-
+            viewModel = new MontosTotalesViewModel();
             return View(viewModel);
         }
-
-
-
-
     }
 
 
