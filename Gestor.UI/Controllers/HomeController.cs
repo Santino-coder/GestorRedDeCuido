@@ -21,12 +21,6 @@ namespace Gestor.UI.Controllers
                     {
                         string apiResponse = await response.Content.ReadAsStringAsync();
 
-                        // Aquí puedes procesar la respuesta, por ejemplo, deserializarla si es JSON.
-                        // Ejemplo de deserialización de JSON:
-                        // var listaBeneficiarios = JsonConvert.DeserializeObject<List<Beneficiario>>(apiResponse);
-
-                        // Luego, puedes usar los datos como lo necesites.
-
                         return View(); // Retorna la vista adecuada o un modelo con los datos.
                     }
                     else

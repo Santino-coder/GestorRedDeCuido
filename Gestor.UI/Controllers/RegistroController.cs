@@ -12,10 +12,8 @@
         {
             if (ModelState.IsValid)
             {
-                // Lógica de registro (simulada)
-                var user = new { UserName = model.Email, Email = model.Email }; // Simulación de usuario
-
-                // Aquí podrías realizar la lógica de registro personalizada, por ejemplo, almacenar el usuario en una base de datos
+            
+                var user = new { UserName = model.Email, Email = model.Email }; 
 
                 // Genera un token de confirmación de correo electrónico (simulado)
                 var token = "token_de_confirmacion_generado";
@@ -23,10 +21,7 @@
                 // Crea una URL de confirmación de correo electrónico
                 var callbackUrl = $"https://reddecuido-hojancha-si.azurewebsites.net/api/Registro={user.UserName}&code={token}";
 
-                // En una implementación real, enviarías un correo electrónico para la confirmación
-                // Aquí se simula el envío del correo electrónico
-
-                // Redirige al usuario a una página de confirmación
+               
                 return Ok("Usuario registrado con éxito");
             }
 

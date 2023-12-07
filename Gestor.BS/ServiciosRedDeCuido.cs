@@ -64,29 +64,6 @@ namespace Gestor.BS
 
         }
 
-        //public void EditarDetalleAlternativa(DetalleAlternativa detalleAlternativa)
-        //{
-        //    DetalleAlternativa detalle;
-
-        //    detalle = ObteneridDetalleAlternativa(detalleAlternativa.idDetalleAlternativa);
-        //    detalle.NombreAlternativa = detalleAlternativa.NombreAlternativa;
-        //    detalle.Fecha = detalleAlternativa.Fecha;
-        //    detalle.Articulo = detalleAlternativa.Articulo;
-        //    detalle.Proveedor = detalleAlternativa.Proveedor;
-        //    detalle.Cantidad = detalleAlternativa.Cantidad;
-        //    detalle.NumeroFactura = detalleAlternativa.NumeroFactura;
-        //    detalle.Monto = detalleAlternativa.Monto;
-        //    detalle.FacturaFoto = detalleAlternativa.FacturaFoto;
-        //    detalle.Proforma = detalleAlternativa.Proforma;
-
-
-
-
-        //    ContextoBD.DetalleAlternativa.Update(detalle);
-        //    ContextoBD.SaveChanges();
-
-        //}
-
         public void EditarDetalleAlternativa(DetalleAlternativa detalleAlternativa)
         {
             try
