@@ -148,15 +148,15 @@ namespace Gestor.UI.Areas.Identity.Pages.Account
                 foreach (var error in result.Errors)
                 {
                     if (error.Code == "PasswordRequiresDigit")
-                        ModelState.AddModelError(string.Empty, "*La contraseña debe contener al menos un dígito ('0'-'9').");
+                        ModelState.AddModelError(string.Empty, "La contraseña debe contener al menos un dígito ('0'-'9').");
                     else if (error.Code == "PasswordRequiresLower")
-                        ModelState.AddModelError(string.Empty, "*La contraseña debe contener al menos una letra minúscula.");
+                        ModelState.AddModelError(string.Empty, "La contraseña debe contener al menos una letra minúscula.");
                     else if (error.Code == "PasswordRequiresUpper")
-                        ModelState.AddModelError(string.Empty, "*La contraseña debe contener al menos una letra mayúscula.");
+                        ModelState.AddModelError(string.Empty, "La contraseña debe contener al menos una letra mayúscula.");
                     else if (error.Code == "PasswordRequiresNonAlphanumeric")
-                        ModelState.AddModelError(string.Empty, "*La contraseña debe contener al menos un carácter no alfanumérico.");
+                        ModelState.AddModelError(string.Empty, "La contraseña debe contener al menos un carácter no alfanumérico.");
                     else if (error.Code == "DuplicateUserName")
-                        ModelState.AddModelError(string.Empty, "*El correo electrónico ya está registrado.");
+                        ModelState.AddModelError(string.Empty, "El correo electrónico ya está registrado.");
                 }
             }
 
