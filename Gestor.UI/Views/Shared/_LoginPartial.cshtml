@@ -3,30 +3,25 @@
 @inject UserManager<IdentityUser> UserManager
 
 
-<ul class="navbar-nav">
-@if (SignInManager.IsSignedIn(User))
-{
-    <li class="nav-item">
-            <a class="nav-link text-dark disabled-link" style="cursor: pointer; margin:9px;">Usuario: @User.Identity?.Name</a>
-    </li>
-    <li class="nav-item">
-        <form  class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
-
-
-                <label for="cerrarSesion" class="btn btn-danger btn-sm" style="margin:9px;">Cerrar Sesión</label>
-                <input type="submit" id="cerrarSesion" style="display: none;">
-
-
-        </form>
-    </li>
-}
-else
-{
-    <li class="nav-item">
-            <a class="btn btn-primary btn-sm" style="margin:9px;" asp-area="Identity" asp-page="/Account/Register">Registrarte</a>
-    </li>
-    <li class="nav-item">
-            <a class="btn btn-primary btn-sm" style="margin:9px;" asp-area="Identity" asp-page="/Account/Login">Iniciar Sesión</a>
-    </li>
-}
+<ul class="navbar-nav ml-auto">
+    <!-- Alinea los elementos a la derecha -->
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <li class="nav-item">
+            <a class="nav-link text-dark disabled-link" style="cursor: pointer; margin-right: 9px;">@User.Identity?.Name</a>
+        </li>
+        <li class="nav-item">
+            <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button type="submit" class="btn btn-danger btn-sm" style="margin-right: 9px;">Cerrar Sesión</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <li class="nav-item">
+            <a class="btn btn-primary btn-sm" style="margin-right: 9px;" asp-area="Identity" asp-page="/Account/Register">Registrarte</a>
+      
+            <a class="btn btn-primary btn-sm" style="margin-right: 9px;" asp-area="Identity" asp-page="/Account/Login">Iniciar Sesión</a>
+        </li>
+    }
 </ul>

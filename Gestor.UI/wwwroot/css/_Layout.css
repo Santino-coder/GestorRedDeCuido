@@ -5,7 +5,6 @@ body {
     background-attachment: fixed;
     background-size: cover;
 }
-
 /* Estilo de la lista y los elementos de la lista */
 li {
     position: relative;
@@ -17,28 +16,45 @@ li {
         color: #fff;
         font-size: 18px;
         text-decoration: none;
-        transition: color 1s;
+        position: relative;
+        z-index: 1; /* Asegura que el texto esté sobre la línea */
     }
 
     li::after {
         content: '';
-        background-color: #fff;
+        background-color: inherit;
         position: absolute;
-        left: 0;
+        left: 50%;
         bottom: 0;
+        transform: translateX(-50%);
         width: 0;
         height: 2px;
-        transition: width 0.5s;
-    }
-
-    li a:hover {
-        color: rgb(45, 168, 240);
+        opacity: 1; /* Asegura que la línea sea inicialmente visible */
+        transition: transform 0.3s ease; /* Agregamos opacity a la transición */
     }
 
     li:hover::after {
         width: 100%;
-        background-color: rgb(45, 168, 240);
+        opacity: 0; /* Establecemos opacity a 0 durante el hover */
+        background-color: inherit;
+        transition: transform 0.3s ease; /* Mantenemos la transición solo para el ancho */
     }
+
+    li a:hover {
+        color: #ffdb58;
+    }
+
+/* Efecto de transición al pasar el ratón sobre los enlaces del menú */
+.nav-link {
+    transition: transform 0.1s ease;
+}
+
+    .nav-link:hover {
+        color: #ffdb58 !important;
+        transform: scale(1.1);
+    }
+
+
 
 /* Estilo del menú de navegación en un contenedor fluido */
 .container-fluid nav ul li a {
@@ -71,14 +87,6 @@ li {
     margin: 0;
 }
 
-/* Efecto de transición al pasar el ratón sobre los enlaces del menú */
-.nav-link {
-    transition: 0.3s ease-out;
-}
-
-    .nav-link:hover {
-        color: dodgerblue;
-    }
 
 /* Estilo del icono de menú desplegable en pantallas pequeñas */
 .hamburger {
