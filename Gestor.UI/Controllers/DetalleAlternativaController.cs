@@ -8,9 +8,12 @@ using System.Linq;
 using Gestor.UI.Models;
 using Newtonsoft.Json;
 using System.Net.Http.Headers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Gestor.UI.Controllers
 {
+
+    [Authorize]
     public class DetalleAlternativaController : Controller
     {
         public DetalleAlternativaController()

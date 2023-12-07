@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 namespace Gestor.UI.Controllers
 {
-   // [Authorize]
+   [Authorize]
     public class BeneficiarioController : Controller
     {
         public BeneficiarioController()

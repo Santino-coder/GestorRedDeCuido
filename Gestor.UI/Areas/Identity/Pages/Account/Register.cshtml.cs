@@ -133,7 +133,7 @@ namespace Gestor.UI.Areas.Identity.Pages.Account
                         protocol: Request.Scheme);
 
                     await _emailSender.SendEmailAsync(Input.Email, "Confirma tu correo electrónico",
-                        $"Por favor confirma tu correo electrónico dando <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'> click aquí</a>.");
+                        $"Por favor confirma tu correo electrónico dando <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>click aquí</a>.");
 
                     if (_userManager.Options.SignIn.RequireConfirmedAccount)
                     {
@@ -147,7 +147,14 @@ namespace Gestor.UI.Areas.Identity.Pages.Account
                 }
                 foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    if (error.Code == "PasswordRequiresDigit")
+                        ModelState.AddModelError(string.Empty, "La contraseña debe contener al menos un dígito ('0'-'9').");
+                    else if (error.Code == "PasswordRequiresLower")
+                        ModelState.AddModelError(string.Empty, "La contraseña debe contener al menos una letra minúscula.");
+                    else if (error.Code == "PasswordRequiresUpper")
+                        ModelState.AddModelError(string.Empty, "La contraseña debe contener al menos una letra mayúscula.");
+                    else if (error.Code == "PasswordRequiresNonAlphanumeric")
+                        ModelState.AddModelError(string.Empty, "La contraseña debe contener al menos un carácter no alfanumérico.");
                 }
             }
 
