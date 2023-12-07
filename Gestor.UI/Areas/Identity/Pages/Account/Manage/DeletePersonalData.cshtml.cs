@@ -81,7 +81,7 @@ namespace Gestor.UI.Areas.Identity.Pages.Account.Manage
             {
                 if (!await _userManager.CheckPasswordAsync(user, Input.Password))
                 {
-                    ModelState.AddModelError(string.Empty, "Incorrect password.");
+                    ModelState.AddModelError(string.Empty, "Contraseña incorrecta.");
                     return Page();
                 }
             }
@@ -90,7 +90,7 @@ namespace Gestor.UI.Areas.Identity.Pages.Account.Manage
             var userId = await _userManager.GetUserIdAsync(user);
             if (!result.Succeeded)
             {
-                throw new InvalidOperationException($"Unexpected error occurred deleting user.");
+                throw new InvalidOperationException($"Error al eliminar la cuenta.");
             }
 
             await _signInManager.SignOutAsync();

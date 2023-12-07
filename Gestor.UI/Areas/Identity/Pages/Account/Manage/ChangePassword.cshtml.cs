@@ -52,7 +52,8 @@ namespace Gestor.UI.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "*Dato requerido.")]
+            [EmailAddress(ErrorMessage = "*Dato inválido.")]
             [DataType(DataType.Password)]
             [Display(Name = "Current password")]
             public string OldPassword { get; set; }
@@ -61,8 +62,8 @@ namespace Gestor.UI.Areas.Identity.Pages.Account.Manage
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "*Dato requerido.")]
+            [StringLength(100, ErrorMessage = "La contraseña debe de tener un mínimo de {2} carácteres.", MinimumLength = 6)]
             [DataType(DataType.Password)]
             [Display(Name = "New password")]
             public string NewPassword { get; set; }
@@ -72,8 +73,9 @@ namespace Gestor.UI.Areas.Identity.Pages.Account.Manage
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
+            [Required(ErrorMessage = "*Dato requerido.")]
             [Display(Name = "Confirm new password")]
-            [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+            [Compare("NewPassword", ErrorMessage = "Las contraseñas no coinciden.")]
             public string ConfirmPassword { get; set; }
         }
 
