@@ -53,7 +53,15 @@ namespace Gestor.SI.Controllers
 
                 foreach (var error in result.Errors)
                 {
-                    ModelState.AddModelError(string.Empty, error.Description);
+                    // Personalizar mensajes de error en español
+                    if (error.Code == "PasswordRequiresDigit")
+                        ModelState.AddModelError(string.Empty, "La contraseña debe contener al menos un dígito ('0'-'9').");
+                    else if (error.Code == "PasswordRequiresLower")
+                        ModelState.AddModelError(string.Empty, "La contraseña debe contener al menos una letra minúscula.");
+                    else if (error.Code == "PasswordRequiresUpper")
+                        ModelState.AddModelError(string.Empty, "La contraseña debe contener al menos una letra mayúscula.");
+                    else if (error.Code == "PasswordRequiresNonAlphanumeric")
+                        ModelState.AddModelError(string.Empty, "La contraseña debe contener al menos un carácter no alfanumérico.");
                 }
             }
 
