@@ -121,6 +121,15 @@ namespace Gestor.SI.Controllers
                 return NotFound("No se encontraron detalles para el beneficiario.");
             }
 
+            // Obtener el nombre y apellido del beneficiario
+            Beneficiario beneficiario = _serviciosRedDeCuido.ObtenerBeneficiarioPorId(idBeneficiario);
+
+            // Completar la propiedad NombreCompleto en cada DetalleAlternativa
+            foreach (var detalle in detalles)
+            {
+                detalle.NombreCompleto = $"{beneficiario.Nombre} {beneficiario.Apellidos}";
+            }
+
             return Ok(detalles);
         }
 
