@@ -22,11 +22,9 @@
             <h4 style="text-align:center;">Detalles de alternativas</h4>
             <hr />
 
-            <p>
-                <strong>Nombre: </strong>@Model.FirstOrDefault()?.NombreCompleto
-                <!-- Puedes incluir más detalles del beneficiario si es necesario -->
-            </p>
-
+            <h3 class="h6">Detalles de: @Model.FirstOrDefault()?.NombreCompleto</ h3 >
+                <br />
+                <br />
             <div class="form-group pull-right">
                 <!-- Cuadro de búsqueda -->
                 <input type="text" class="search form-control" placeholder="Buscar">
