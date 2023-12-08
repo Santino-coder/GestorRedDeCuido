@@ -13,8 +13,8 @@ li {
 }
 
     li a {
-        color: #fff;
         font-size: 18px;
+        color: #fff;
         text-decoration: none;
         position: relative;
         z-index: 1; /* Asegura que el texto esté sobre la línea */
