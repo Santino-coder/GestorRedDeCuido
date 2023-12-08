@@ -107,7 +107,7 @@ li {
 }
 
 /* Estilos para pantallas de tamaño máximo de 1024px */
-@media (max-width: 1024px) {
+@media (max-width: 768px) {
     .hamburger {
         display: block;
         margin: 15px;
@@ -155,4 +155,23 @@ li {
         width: 100%;
         overflow-x: auto;
     }
+}
+
+@media (max-width: 1024px) {
+    /* Adjust the font size of navigation links */
+    .nav-menu a {
+        font-size: 14px;
+    }
+
+    /* Adjust the height of the navigation bar */
+    .navbar {
+        min-height: 60px;
+    }
+
+    .bar {
+        width: 20px;
+        height: 2px;
+        margin: 4px auto;
+    }
+
 }
