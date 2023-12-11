@@ -167,6 +167,21 @@ namespace Gestor.UI.Controllers
                 {
                     string apiResponse = await response.Content.ReadAsStringAsync();
                     beneficiario = JsonConvert.DeserializeObject<Beneficiario>(apiResponse);
+                   
+                    DateTime fechaNacimiento = beneficiario.FechaDeNacimiento;
+                    DateTime fechaActual = DateTime.Now;
+
+                    int edad = fechaActual.Year - fechaNacimiento.Year;
+
+                    // Verificar si aún no ha cumplido años en este año
+                    if (fechaActual < fechaNacimiento.AddYears(edad))
+                    {
+                        edad--;
+                    }
+
+                    beneficiario.Edad = edad;
+
+
                 }
                 else
                 {
