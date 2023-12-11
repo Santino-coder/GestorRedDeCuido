@@ -27,7 +27,7 @@ namespace Gestor.Models
         [DataType(DataType.Date)]
         public DateTime FechaDeNacimiento { get; set; }
      
-        [Range(18, 100, ErrorMessage = "La edad debe estar entre 18 y 100.")]
+       
         public int Edad { get; set; }
 
 
