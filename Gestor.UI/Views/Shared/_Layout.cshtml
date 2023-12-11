@@ -4,18 +4,17 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Gestor.UI</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="~/css/_Layout.css" asp-append-version="true" />
 </head>
 <body>
     <header>
         <div class="container-fluid">
-            <nav class="navbar navbar-expand-md" id="myTopnav">
-                <div class="nav-branding">
-                    <img src="https://conapam.go.cr/wp-content/uploads/2023/02/logo-conapam-JD.png" class="rounded" style="height:70px;" alt="...">
-                </div>
-
+            <nav class="navbar" id="myTopnav">
                 <ul class="nav-menu">
+                    <li class="nav-item">
+                        <img src="https://conapam.go.cr/wp-content/uploads/2023/02/logo-conapam-JD.png" class="rounded" style="height:70px;" alt="...">
+                    </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
                     </li>
@@ -27,11 +26,13 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="DetalleAlternativa" asp-action="ListarDetalleAlternativa">Registro de alternativas asignadas</a>
+                    <li class="nav-item">
+                        <partial name="_LoginPartial" />
                     </li>
-                    <partial name="_LoginPartial" />
                 </ul>
 
                 <div class="hamburger">
+                    <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
                     <span class="bar"></span>
@@ -40,14 +41,13 @@
             </nav>
         </div>
     </header>
+
     <div class="container">
-        <main role="main" class="pb-3">
-            @RenderBody()
-        </main>
+    <main role="main" class="pb-3">
+        @RenderBody()
+    </main>
     </div>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/_Layout.js" asp-append-version="true"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

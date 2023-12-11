@@ -1,10 +1,28 @@
-﻿/* Establece el fondo de la página */
+﻿
+/* Establece el fondo de la página */
 body {
     background-image: url('https://cdn.aarp.net/content/dam/aarp/home-and-family/caregiving/2018/09/1140-delirium-definition-management-esp.jpg');
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-size: cover;
 }
+
+/* Estilo del menú de navegación principal */
+.nav-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Alinea los elementos al centro */
+    padding: 0;
+    margin: 0;
+    list-style: none; /* Elimina los estilos de lista predeterminados */
+}
+
+.nav-item {
+    margin-right: 20px !important; /* Ajusta el espacio entre elementos según sea necesario */
+}
+
+
+
 /* Estilo de la lista y los elementos de la lista */
 li {
     position: relative;
@@ -56,6 +74,7 @@ li {
 
 
 
+
 /* Estilo del menú de navegación en un contenedor fluido */
 .container-fluid nav ul li a {
     color: white !important;
@@ -75,17 +94,7 @@ li {
     align-items: center;
     padding: 0;
     margin: 0;
-    background-color: #212F3D;
-}
-
-/* Estilo del menú de navegación principal */
-.nav-menu {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 60px;
-    padding: 0;
-    margin: 0;
+    background-color: #212f3d;
 }
 
 
@@ -157,15 +166,16 @@ li {
     }
 }
 
-@media (max-width: 1024px) {
+@media (max-width: 1420px) {
     /* Adjust the font size of navigation links */
     .nav-menu a {
-        font-size: 14px;
-    }
-
-    /* Adjust the height of the navigation bar */
-    .navbar {
-        min-height: 60px;
+        font-size: 16px;
+        z-index: 1;
+        gap: 0;
+        flex-direction: column;
+        width: 100%;
+        text-align: center;
+        transition: 0.3s;
     }
 
     .bar {
