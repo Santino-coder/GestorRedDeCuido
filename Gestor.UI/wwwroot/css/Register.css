@@ -26,19 +26,24 @@ body {
         transform: scale(1.1);
     }
 
-/* Estilo del contenido de la tarjeta */
 .card-body {
     flex: 1 1 auto;
     padding: 1.5rem 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
+
 
 /* Estilo para todos los elementos div en el documento */
 div {
-    margin: 10px; /* Agrega un margen de 10px a todos los elementos div en el documento */
+    margin: 10px; /* Agrega un margen a todos los elementos div */
+    width: 100%;
+    text-align: center; /* Centra los elementos internos */
 }
 
 input[type=email]:not(:placeholder-shown):invalid {
     color: red;
     outline-color: red;
 }
-
