@@ -13,10 +13,9 @@
             <nav class="navbar" id="myTopnav">
                 <ul class="nav-menu">
                     <li class="nav-item">
-                        <img src="https://conapam.go.cr/wp-content/uploads/2023/02/logo-conapam-JD.png" class="rounded" style="height:70px;" alt="...">
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Inicio</a>
+                        <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">
+                            <img src="https://conapam.go.cr/wp-content/uploads/2023/02/logo-conapam-JD.png" alt="Inicio" style="height:70px; cursor:pointer;">
+                        </a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link text-dark" asp-area="" asp-controller="Beneficiario" asp-action="AgregarBeneficiario">Agregar beneficiario</a>
@@ -29,6 +28,7 @@
                     <li class="nav-item">
                         <partial name="_LoginPartial" />
                     </li>
+
                 </ul>
 
                 <div class="hamburger">
@@ -43,9 +43,9 @@
     </header>
 
     <div class="container">
-    <main role="main" class="pb-3">
-        @RenderBody()
-    </main>
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
     </div>
 
     <script src="~/js/_Layout.js" asp-append-version="true"></script>

@@ -40,9 +40,11 @@
                         </svg>
                     </span>
                     <input asp-for="Input.Email" type="email" class="form-control" placeholder="Correo electrónico" aria-label="Input group example" aria-describedby="basic-addon1">
+
+                </div>
+                <div>
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
-
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-key-fill" viewBox="0 0 16 16">
@@ -50,9 +52,11 @@
                         </svg>
                     </span>
                     <input asp-for="Input.Password" type="password" class="form-control" placeholder="Contraseña" aria-label="Input group example" aria-describedby="basic-addon1">
+
+                </div>
+                <div>
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
-
                 <div class="input-group">
                     <span class="input-group-text" id="basic-addon1">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-shield-lock-fill" viewBox="0 0 16 16">
@@ -60,6 +64,9 @@
                         </svg>
                     </span>
                     <input asp-for="Input.ConfirmPassword" type="password" class="form-control" placeholder="Confirmar contraseña" aria-label="Input group example" aria-describedby="basic-addon1">
+
+                </div>
+                <div>
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                 </div>
 

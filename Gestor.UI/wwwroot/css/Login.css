@@ -36,3 +36,9 @@ body {
 div {
     margin: 10px; /* Agrega un margen a todos los elementos div */
 }
+
+input[type=email]:not(:placeholder-shown):invalid {
+    color: red;
+    outline-color: red;
+}
+
