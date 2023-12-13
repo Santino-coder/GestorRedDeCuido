@@ -34,7 +34,7 @@
     });
 });
 
-// Función para ordenar la tabla alfabéticamente por la columna "Nombre"
+// Función para ordenar la tabla alfabéticamente por "Nombre"
 function ordenarTabla() {
     var table, rows, switching, i, x, y, shouldSwitch;
     table = document.getElementById("miTabla");
@@ -61,4 +61,6 @@ function ordenarTabla() {
 
 // Llama a la función de ordenar al cargar la página
 window.onload = ordenarTabla;
+
+
 

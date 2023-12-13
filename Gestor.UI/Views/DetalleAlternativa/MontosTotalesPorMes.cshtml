@@ -45,6 +45,64 @@
         </div>
     </div>
 </body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        ordenarTabla(0); // Llama a la función para ordenar por la primera columna al cargar la página
+    });
+
+    function obtenerAnioYMes(fecha) {
+        // Obtén el año y el mes a partir de una fecha (suponiendo que el formato es "YYYY-MM")
+        var partes = fecha.split("-");
+        return {
+            anio: parseInt(partes[0], 10),
+            mes: parseInt(partes[1], 10)
+        };
+    }
+
+    function compararFechas(fecha1, fecha2) {
+        var fechaA = obtenerAnioYMes(fecha1);
+        var fechaB = obtenerAnioYMes(fecha2);
+
+        if (fechaA.anio === fechaB.anio) {
+            return fechaA.mes - fechaB.mes;
+        } else {
+            return fechaA.anio - fechaB.anio;
+        }
+    }
+
+    function ordenarTabla(columna) {
+        var table, rows, switching, i, shouldSwitch;
+        table = document.querySelector("#TotalPorMes table");
+        switching = true;
+
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+
+            for (i = 1; i < rows.length - 1; i++) {
+                shouldSwitch = false;
+
+                // Comparar fechas en lugar de números
+                var fecha1 = rows[i].cells[columna].innerHTML;
+                var fecha2 = rows[i + 1].cells[columna].innerHTML;
+
+                if (compararFechas(fecha1, fecha2) > 0) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
+</script>
+
+
+
 </html>
 
 

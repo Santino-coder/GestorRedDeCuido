@@ -43,6 +43,42 @@
         </div>
     </div>
 </body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        ordenarTabla(0); // Llama a la función para ordenar por la primera columna al cargar la página
+    });
+
+    function ordenarTabla(columna) {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.querySelector("#TotalPorAnio table");
+        switching = true;
+
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+
+            for (i = 1; i < rows.length - 1; i++) {
+                shouldSwitch = false;
+
+                x = parseInt(rows[i].cells[columna].innerHTML, 10);
+                y = parseInt(rows[i + 1].cells[columna].innerHTML, 10);
+
+                if (x > y) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
+</script>
+
+
 </html>
 
 @section Scripts {
