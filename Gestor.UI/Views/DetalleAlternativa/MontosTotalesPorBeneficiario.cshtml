@@ -16,9 +16,10 @@
         <div class="card-body">
             <h4>Montos totales por beneficiario</h4>
             <hr />
+
             @using (Html.BeginForm("MontosTotalesPorBeneficiario", "DetalleAlternativa", new { area = "" }, FormMethod.Get))
             {
-                <label for="idBeneficiario">Selecciona un beneficiario:</label>
+                <h3 class="h6"> <label for="idBeneficiario">Selecciona un beneficiario</label></h3>
                 <select name="idBeneficiario" id="idBeneficiario">
                     @foreach (var beneficiario in Model.Beneficiarios)
                     {
@@ -30,18 +31,21 @@
 
             @if (Model.Beneficiario != null)
             {
-                <br />
-                <h3 class="h6">Monto total de: @Model.Beneficiario.Nombre @Model.Beneficiario.Apellidos</h3>
-            }
+                <hr />
+                <h3 class="h6">Beneficiario seleccionado: @Model.Beneficiario.Nombre @Model.Beneficiario.Apellidos</h3>
+                <p>Total: @Model.MontoPorBeneficiario.ToString("C")</p>
 
+                <hr />
+            }
+            <h3 class="h6">Montos por mes</h3>
             @if (Model.MontoPorBeneficiario > 0)
             {
                 <!-- Tabla para mostrar los montos totales por beneficiario -->
                 <table class="table table-hover table-bordered results">
                     <thead>
                         <tr>
-                            <th>Mes Beneficiario</th>
-                            <th>Monto Total Beneficiario</th>
+                            <th>Mes</th>
+                            <th>Monto</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -56,9 +60,70 @@
                     </tbody>
                 </table>
             }
+            else
+            {
+                <p>No hay datos disponibles para mostrar.</p>
+            }
             <!-- Enlace para regresar a la vista de montos totales -->
-            @Html.ActionLink("Regresar a montos totales", "MontosTotales","DetalleAlternativa", new { @class = "btn btn-danger btn-sm" })
+            @Html.ActionLink("Regresar a montos totales", "MontosTotales", "DetalleAlternativa", new { @class = "btn btn-danger btn-sm" })
         </div>
     </div>
 </body>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        ordenarTabla(0); // Llama a la función para ordenar por la primera columna al cargar la página
+    });
+
+    function obtenerAnioYMes(fecha) {
+        // Obtén el año y el mes a partir de una fecha (suponiendo que el formato es "YYYY-MM")
+        var partes = fecha.split("-");
+        return {
+            anio: parseInt(partes[0], 10),
+            mes: parseInt(partes[1], 10)
+        };
+    }
+
+    function compararFechas(fecha1, fecha2) {
+        var fechaA = obtenerAnioYMes(fecha1);
+        var fechaB = obtenerAnioYMes(fecha2);
+
+        if (fechaA.anio === fechaB.anio) {
+            return fechaA.mes - fechaB.mes;
+        } else {
+            return fechaA.anio - fechaB.anio;
+        }
+    }
+
+    function ordenarTabla(columna) {
+        var table, rows, switching, i, shouldSwitch;
+        table = document.querySelector("#TotalPorBeneficiario table");
+        switching = true;
+
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+
+            for (i = 1; i < rows.length - 1; i++) {
+                shouldSwitch = false;
+
+                // Comparar fechas en lugar de números
+                var fecha1 = rows[i].cells[columna].innerHTML;
+                var fecha2 = rows[i + 1].cells[columna].innerHTML;
+
+                if (compararFechas(fecha1, fecha2) > 0) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
+</script>
+
+
 </html>
