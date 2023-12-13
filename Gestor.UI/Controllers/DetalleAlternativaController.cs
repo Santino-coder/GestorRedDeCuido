@@ -423,7 +423,7 @@ namespace Gestor.UI.Controllers
             try
             {
                 // Si no se proporciona un ID de beneficiario seleccionado, utiliza un valor predeterminado o maneja de acuerdo a tus necesidades.
-                int beneficiaryId = idBeneficiario ?? 9; // Cambia '1' al valor predeterminado que desees.
+                int beneficiaryId = idBeneficiario ?? 44; // Cambia '1' al valor predeterminado que desees.
 
                 using (var httpClient = new HttpClient())
                 {
@@ -463,9 +463,7 @@ namespace Gestor.UI.Controllers
             try
             {
                 var httpClient = new HttpClient();
-                //var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorAlternativa?AlternativaSeleccionada={AlternativaSeleccionada}");
-
-                var response1 = await httpClient.GetAsync($"https://localhost:7229/api/DetalleAlternativa/MontosTotalesPorAlternativa?AlternativaSeleccionada={AlternativaSeleccionada}");
+                var response1 = await httpClient.GetAsync($"https://reddecuido-hojancha-si.azurewebsites.net/api/DetalleAlternativa/MontosTotalesPorAlternativa?AlternativaSeleccionada={AlternativaSeleccionada}");
                 string apiResponse1 = await response1.Content.ReadAsStringAsync();
                 detalleAlternativa = JsonConvert.DeserializeObject<MontosTotalesViewModel>(apiResponse1);
 
